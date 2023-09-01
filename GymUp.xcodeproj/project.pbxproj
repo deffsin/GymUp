@@ -53,6 +53,11 @@
 			children = (
 				156CED462AA287DC0000EEEA /* GymUpApp.swift */,
 				156CED482AA287DC0000EEEA /* ContentView.swift */,
+				156CED562AA289450000EEEA /* Views */,
+				156CED552AA2893F0000EEEA /* ViewModels */,
+				156CED542AA289370000EEEA /* Models */,
+				156CED592AA2896F0000EEEA /* Services */,
+				156CED572AA2894E0000EEEA /* Shared */,
 				156CED4A2AA287DD0000EEEA /* Assets.xcassets */,
 				156CED4C2AA287DD0000EEEA /* Preview Content */,
 			);
@@ -65,6 +70,73 @@
 				156CED4D2AA287DD0000EEEA /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		156CED542AA289370000EEEA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		156CED552AA2893F0000EEEA /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		156CED562AA289450000EEEA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		156CED572AA2894E0000EEEA /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				156CED5B2AA289880000EEEA /* Utils */,
+				156CED582AA289560000EEEA /* Extensions */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		156CED582AA289560000EEEA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		156CED592AA2896F0000EEEA /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				156CED5C2AA289B50000EEEA /* Network */,
+				156CED5A2AA289760000EEEA /* Firebase */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		156CED5A2AA289760000EEEA /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		156CED5B2AA289880000EEEA /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		156CED5C2AA289B50000EEEA /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
