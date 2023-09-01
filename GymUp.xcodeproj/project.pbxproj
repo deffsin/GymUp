@@ -11,6 +11,12 @@
 		156CED492AA287DC0000EEEA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156CED482AA287DC0000EEEA /* ContentView.swift */; };
 		156CED4B2AA287DD0000EEEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 156CED4A2AA287DD0000EEEA /* Assets.xcassets */; };
 		156CED4E2AA287DD0000EEEA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 156CED4D2AA287DD0000EEEA /* Preview Assets.xcassets */; };
+		156CED5F2AA28C090000EEEA /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 156CED5E2AA28C090000EEEA /* FirebaseAuth */; };
+		156CED612AA28DEB0000EEEA /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156CED602AA28DEB0000EEEA /* SignInView.swift */; };
+		156CED632AA28E040000EEEA /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156CED622AA28E040000EEEA /* SignInViewModel.swift */; };
+		156CED662AA291660000EEEA /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156CED652AA291660000EEEA /* AuthenticationManager.swift */; };
+		156CED682AA293720000EEEA /* AuthDataResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156CED672AA293720000EEEA /* AuthDataResultModel.swift */; };
+		156CED6A2AA29A400000EEEA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 156CED692AA29A400000EEEA /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +25,11 @@
 		156CED482AA287DC0000EEEA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		156CED4A2AA287DD0000EEEA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		156CED4D2AA287DD0000EEEA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		156CED602AA28DEB0000EEEA /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		156CED622AA28E040000EEEA /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		156CED652AA291660000EEEA /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
+		156CED672AA293720000EEEA /* AuthDataResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthDataResultModel.swift; sourceTree = "<group>"; };
+		156CED692AA29A400000EEEA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				156CED5F2AA28C090000EEEA /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +65,7 @@
 			children = (
 				156CED462AA287DC0000EEEA /* GymUpApp.swift */,
 				156CED482AA287DC0000EEEA /* ContentView.swift */,
+				156CED642AA291530000EEEA /* Authentication */,
 				156CED562AA289450000EEEA /* Views */,
 				156CED552AA2893F0000EEEA /* ViewModels */,
 				156CED542AA289370000EEEA /* Models */,
@@ -75,6 +88,7 @@
 		156CED542AA289370000EEEA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				156CED672AA293720000EEEA /* AuthDataResultModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -82,6 +96,7 @@
 		156CED552AA2893F0000EEEA /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				156CED622AA28E040000EEEA /* SignInViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -89,6 +104,7 @@
 		156CED562AA289450000EEEA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				156CED602AA28DEB0000EEEA /* SignInView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -121,6 +137,7 @@
 		156CED5A2AA289760000EEEA /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
+				156CED692AA29A400000EEEA /* GoogleService-Info.plist */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -139,6 +156,14 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		156CED642AA291530000EEEA /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				156CED652AA291660000EEEA /* AuthenticationManager.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -155,6 +180,9 @@
 			dependencies = (
 			);
 			name = GymUp;
+			packageProductDependencies = (
+				156CED5E2AA28C090000EEEA /* FirebaseAuth */,
+			);
 			productName = GymUp;
 			productReference = 156CED432AA287DC0000EEEA /* GymUp.app */;
 			productType = "com.apple.product-type.application";
@@ -183,6 +211,9 @@
 				Base,
 			);
 			mainGroup = 156CED3A2AA287DC0000EEEA;
+			packageReferences = (
+				156CED5D2AA28C090000EEEA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 156CED442AA287DC0000EEEA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -199,6 +230,7 @@
 			files = (
 				156CED4E2AA287DD0000EEEA /* Preview Assets.xcassets in Resources */,
 				156CED4B2AA287DD0000EEEA /* Assets.xcassets in Resources */,
+				156CED6A2AA29A400000EEEA /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,7 +241,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				156CED682AA293720000EEEA /* AuthDataResultModel.swift in Sources */,
+				156CED632AA28E040000EEEA /* SignInViewModel.swift in Sources */,
+				156CED612AA28DEB0000EEEA /* SignInView.swift in Sources */,
 				156CED492AA287DC0000EEEA /* ContentView.swift in Sources */,
+				156CED662AA291660000EEEA /* AuthenticationManager.swift in Sources */,
 				156CED472AA287DC0000EEEA /* GymUpApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -411,6 +447,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		156CED5D2AA28C090000EEEA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		156CED5E2AA28C090000EEEA /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 156CED5D2AA28C090000EEEA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 156CED3B2AA287DC0000EEEA /* Project object */;
 }
