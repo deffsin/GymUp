@@ -9,6 +9,14 @@ import Foundation
 
 final class SettingsViewModel: ObservableObject {
     
+    @Published var authProviders: [AuthProviderOption] = []
+    
+    func loadAuthProviders() {
+        if let providers = try? AuthenticationManager.shared.getProviders() {
+            authProviders = providers
+        }
+    }
+    
     func updateEmail(email: String) async throws {
         try await AuthenticationManager.shared.updateEmail(email: email)
     }
