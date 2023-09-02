@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct SignInView: View {
-    @StateObject var viewModel = SignInViewModel()
+struct SignInEmailView: View {
+    @StateObject var viewModel = SignInEmailViewModel()
     @Binding var showSignInView: Bool
     
     var body: some View {
@@ -75,8 +75,8 @@ struct SignInView: View {
     }
 }
 
-struct SignInView_Previews: PreviewProvider {
+struct SignInEmailView_Previews: PreviewProvider {
     static var previews: some View {
-        SignInView(showSignInView: .constant(false))
+        SignInEmailView(showSignInView: .constant(false))
     }
 }

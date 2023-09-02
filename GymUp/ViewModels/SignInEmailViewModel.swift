@@ -1,5 +1,5 @@
 //
-//  SignInViewModel.swift
+//  SignInViewEmailViewModel.swift
 //  GymUp
 //
 //  Created by Denis Sinitsa on 02.09.2023.
@@ -8,7 +8,7 @@
 import Foundation
 
 @MainActor
-final class SignInViewModel: ObservableObject {
+final class SignInEmailViewModel: ObservableObject {
     @Published var email = ""
     @Published var password = ""
     @Published var confirmPassword = ""

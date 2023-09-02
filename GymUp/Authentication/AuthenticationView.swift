@@ -14,7 +14,7 @@ struct AuthenticationView: View {
         NavigationStack {
             VStack {
                 NavigationLink {
-                    SignInView(showSignInView: $showSignInView)
+                    SignInEmailView(showSignInView: $showSignInView)
                 } label: {
                     Text("Sign in with email")
                         .font(.caption)
