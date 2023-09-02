@@ -15,7 +15,7 @@ struct GymUpApp: App {
     
     var body: some Scene {
         WindowGroup {
-            SignInView()
+            RootView()
         }
     }
 }
