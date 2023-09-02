@@ -14,61 +14,8 @@ struct SettingsView: View {
     var body: some View {
         VStack {
             
-            Button(action: {
-                Task {
-                    do {
-                        // try await viewModel.updateEmail(email: String)
-                        print("Email update!")
-                    } catch {
-                        print(error)
-                    }
-                }
-            }) {
-                Text("Update email")
-                    .bold()
-                    .font(.system(size: 13))
-                    .foregroundColor(Color.white)
-                    .padding()
-                    .background(Color.blue.opacity(0.8))
-                    .cornerRadius(10)
-            }
-            
-            Button(action: {
-                Task {
-                    do {
-                        try await viewModel.resetPassword()
-                        print("Password reset!")
-                    } catch {
-                        print(error)
-                    }
-                }
-            }) {
-                Text("Reset password")
-                    .bold()
-                    .font(.system(size: 13))
-                    .foregroundColor(Color.white)
-                    .padding()
-                    .background(Color.blue.opacity(0.8))
-                    .cornerRadius(10)
-            }
-            
-            Button(action: {
-                Task {
-                    do {
-                        // try await viewModel.updatePassword(password: )
-                        print("Update password!")
-                    } catch {
-                        print(error)
-                    }
-                }
-            }) {
-                Text("Update password")
-                    .bold()
-                    .font(.system(size: 13))
-                    .foregroundColor(Color.white)
-                    .padding()
-                    .background(Color.blue.opacity(0.8))
-                    .cornerRadius(10)
+            if viewModel.authProviders.contains(.email) {
+                emailSections
             }
             
             Button(action: {
@@ -89,6 +36,9 @@ struct SettingsView: View {
                     .background(Color.red.opacity(0.8))
                     .cornerRadius(10)
             }
+        }
+        .onAppear {
+            viewModel.loadAuthProviders()
         }
     }
 }
