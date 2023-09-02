@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SignInView: View {
     @StateObject var viewModel = SignInViewModel()
+    @Binding var showSignInView: Bool
     
     var body: some View {
         NavigationStack {
@@ -25,9 +26,37 @@ struct SignInView: View {
                         .cornerRadius(10)
                     
                     Button(action: {
-                        viewModel.singIn()
+                        Task {
+                            do {
+                                try await viewModel.singIn()
+                                showSignInView = false
+                                return
+                            } catch {
+                                print(error)
+                            }
+                        }
                     }) {
                         Text("Sign In")
+                            .font(.caption)
+                            .foregroundColor(Color.white)
+                            .frame(height: 50)
+                            .frame(maxWidth: .infinity)
+                            .background(Color.blue)
+                            .cornerRadius(10)
+                    }
+                    
+                    Button(action: {
+                        Task {
+                            do {
+                                try await viewModel.singUp()
+                                showSignInView = false
+                                return
+                            } catch {
+                                print(error)
+                            }
+                        }
+                    }) {
+                        Text("Sign Up")
                             .font(.caption)
                             .foregroundColor(Color.white)
                             .frame(height: 50)
@@ -48,6 +77,6 @@ struct SignInView: View {
 
 struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
-        SignInView()
+        SignInView(showSignInView: .constant(false))
     }
 }

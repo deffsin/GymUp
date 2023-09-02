@@ -13,20 +13,19 @@ final class SignInViewModel: ObservableObject {
     @Published var password = ""
     @Published var confirmPassword = ""
     
-    func singIn() {
+    func singUp() async throws {
         guard !email.isEmpty, !password.isEmpty else {
             print("No email or password found")
             return
         }
-        
-        Task {
-            do {
-                let returnedUserData = try await AuthenticationManager.shared.createUser(email: email, password: password)
-                print("Success ")
-                print(returnedUserData)
-            } catch {
-                print("Error: \(error)")
-            }
+        try await AuthenticationManager.shared.createUser(email: email, password: password)
+    }
+    
+    func singIn() async throws {
+        guard !email.isEmpty, !password.isEmpty else {
+            print("No email or password found")
+            return
         }
+        try await AuthenticationManager.shared.signInUser(email: email, password: password)
     }
 }
