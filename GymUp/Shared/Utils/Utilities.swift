@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 final class Utilities {
-    static let share = Utilities()
+    static let shared = Utilities()
     private init() {}
     
     @MainActor

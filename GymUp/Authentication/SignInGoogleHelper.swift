@@ -9,11 +9,18 @@ import Foundation
 import GoogleSignIn
 import GoogleSignInSwift
 
+struct GoogleSignInResultModel {
+    let idToken: String
+    let accessToken: String
+    let email: String?
+    let name: String?
+}
+
 final class SignInGoogleHelper {
     
     @MainActor
     func signIn() async throws -> GoogleSignInResultModel {
-        guard let topVC = Utilities.share.topViewController() else {
+        guard let topVC = Utilities.shared.topViewController() else {
             throw URLError(.cannotFindHost)
         }
         
