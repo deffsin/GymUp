@@ -36,6 +36,19 @@ struct SettingsView: View {
                     .background(Color.red.opacity(0.8))
                     .cornerRadius(10)
             }
+            
+            Button(role: .destructive) {
+                Task {
+                    do {
+                        try await viewModel.deleteAccount()
+                        showSignInView = true
+                    } catch {
+                        print(error)
+                    }
+                }
+            } label: {
+                Text("Delete account")
+            }
         }
         .onAppear {
             viewModel.loadAuthProviders()
