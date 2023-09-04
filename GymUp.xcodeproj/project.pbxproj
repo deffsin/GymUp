@@ -25,7 +25,6 @@
 		156CED7B2AA360420000EEEA /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 156CED7A2AA360420000EEEA /* GoogleSignIn */; };
 		156CED7D2AA360420000EEEA /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 156CED7C2AA360420000EEEA /* GoogleSignInSwift */; };
 		156CED802AA3629E0000EEEA /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156CED7F2AA3629E0000EEEA /* AuthenticationViewModel.swift */; };
-		156CED822AA3D7C60000EEEA /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156CED812AA3D7C60000EEEA /* Utilities.swift */; };
 		156CED842AA3E6DF0000EEEA /* SignInGoogleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156CED832AA3E6DF0000EEEA /* SignInGoogleHelper.swift */; };
 		156CED862AA5CD420000EEEA /* SignInAppleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156CED852AA5CD420000EEEA /* SignInAppleHelper.swift */; };
 /* End PBXBuildFile section */
@@ -48,7 +47,6 @@
 		156CED772AA357C70000EEEA /* View+EmailSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+EmailSections.swift"; sourceTree = "<group>"; };
 		156CED7E2AA3607E0000EEEA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		156CED7F2AA3629E0000EEEA /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
-		156CED812AA3D7C60000EEEA /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		156CED832AA3E6DF0000EEEA /* SignInGoogleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInGoogleHelper.swift; sourceTree = "<group>"; };
 		156CED852AA5CD420000EEEA /* SignInAppleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInAppleHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -171,7 +169,6 @@
 		156CED5B2AA289880000EEEA /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				156CED812AA3D7C60000EEEA /* Utilities.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -281,7 +278,6 @@
 				156CED742AA3367C0000EEEA /* SettingsViewModel.swift in Sources */,
 				156CED682AA293720000EEEA /* AuthDataResultModel.swift in Sources */,
 				156CED632AA28E040000EEEA /* SignInEmailViewModel.swift in Sources */,
-				156CED822AA3D7C60000EEEA /* Utilities.swift in Sources */,
 				156CED612AA28DEB0000EEEA /* SignInView.swift in Sources */,
 				156CED782AA357C70000EEEA /* View+EmailSections.swift in Sources */,
 				156CED762AA343840000EEEA /* AuthenticationView.swift in Sources */,
