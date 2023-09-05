@@ -18,7 +18,8 @@ final class SignInEmailViewModel: ObservableObject {
             print("No email or password found")
             return
         }
-        try await AuthenticationManager.shared.createUser(email: email, password: password)
+        let authDataResult = try await AuthenticationManager.shared.createUser(email: email, password: password)
+        try await UserManager.shared.createNewUser(auth: authDataResult)
     }
     
     func singIn() async throws {
