@@ -34,6 +34,42 @@ struct DBUser: Codable {
         self.isPremium = isPremium
     }
     
+//    func togglePremiumStatus() -> DBUser {
+//        let currentValue = isPremium ?? false
+//        return DBUser(
+//            userId: userId,
+//            email: email,
+//            dataCreated: dataCreated,
+//            isPremium: !currentValue)
+//    }
+    
+//    mutating func togglePremiumStatus() {
+//        let currentValue = isPremium ?? false
+//        isPremium = !currentValue
+//    }
+    
+    enum CodingKeys: String, CodingKey {
+        case userId = "user_id"
+        case email = "email"
+        case dataCreated = "data_created"
+        case isPremium = "user_isPremium"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.userId = try container.decode(String.self, forKey: .userId)
+        self.email = try container.decodeIfPresent(String.self, forKey: .email)
+        self.dataCreated = try container.decodeIfPresent(Date.self, forKey: .dataCreated)
+        self.isPremium = try container.decodeIfPresent(Bool.self, forKey: .isPremium)
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.userId, forKey: .userId)
+        try container.encodeIfPresent(self.email, forKey: .email)
+        try container.encodeIfPresent(self.dataCreated, forKey: .dataCreated)
+        try container.encodeIfPresent(self.isPremium, forKey: .isPremium)
+    }
 }
 
 final class UserManager {
@@ -47,20 +83,20 @@ final class UserManager {
         userCollection.document(userId)
     }
     
-    private let encoder: Firestore.Encoder = { // encode перед созданием юзера и добавлением какого либо поля
-        let encoder = Firestore.Encoder()
-        encoder.keyEncodingStrategy = .convertToSnakeCase
-        return encoder
-    }()
-    
-    private let decoder: Firestore.Decoder = { // decode при получении данных
-        let decoder = Firestore.Decoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        return decoder
-    }()
+//    private let encoder: Firestore.Encoder = { // encode перед созданием юзера и добавлением какого либо поля
+//        let encoder = Firestore.Encoder()
+//        encoder.keyEncodingStrategy = .convertToSnakeCase
+//        return encoder
+//    }()
+//
+//    private let decoder: Firestore.Decoder = { // decode при получении данных
+//        let decoder = Firestore.Decoder()
+//        decoder.keyDecodingStrategy = .convertFromSnakeCase
+//        return decoder
+//    }()
     
     func createNewUser(user: DBUser) async throws {
-        try userDocument(userId: user.userId).setData(from: user, merge: false, encoder: encoder)
+        try userDocument(userId: user.userId).setData(from: user, merge: false)
     }
     
 //    func createNewUser(auth: AuthDataResultModel) async throws {
@@ -76,7 +112,7 @@ final class UserManager {
 //    }
     
     func getUser(userId: String) async throws -> DBUser {
-        try await userDocument(userId: userId).getDocument(as: DBUser.self, decoder: decoder)
+        try await userDocument(userId: userId).getDocument(as: DBUser.self)
     }
     
 //    func getUser(userId: String) async throws -> DBUser {
@@ -92,7 +128,14 @@ final class UserManager {
 //        return DBUser(userId: userId, email: email, dataCreated: dataCreated)
 //    }
     
-    func updateUserPremium(user: DBUser) async throws {
-        try userDocument(userId: user.userId).setData(from: user, merge: true, encoder: encoder)
+//    func updateUserPremium(user: DBUser) async throws { // полностью переписывает весь "документ"
+//        try userDocument(userId: user.userId).setData(from: user, merge: true, encoder: encoder)
+//    }
+    
+    func updateUserPremium(userId: String, isPremium: Bool) async throws {
+        let data: [String:Any] = [
+            DBUser.CodingKeys.isPremium.rawValue : isPremium
+        ]
+        try await userDocument(userId: userId).updateData(data)
     }
 }
