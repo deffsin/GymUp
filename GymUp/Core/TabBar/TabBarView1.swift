@@ -14,7 +14,7 @@ struct TabBarView1: View {
         VStack {
             Spacer()
             ZStack {
-                RoundedRectangle(cornerRadius: 30, style: .continuous)
+                RoundedRectangle(cornerRadius: 40, style: .continuous)
                     .fill(Color.white)
                     .shadow(color: Color.gray.opacity(0.3), radius: 15, x: 0, y: 15)
                     .frame(height: 70)

@@ -21,9 +21,11 @@ struct TabBar: View {
             VStack(spacing: 70) {
                 switch selectedTab {
                 case .main:
-                    MainView() // ili tut showSignInView bool?
+                    MainView()
                 case .beTrainerAdd:
                     BeTrainerAddView()
+                case .settings:
+                    SettingsView(showSignInView: $showSignInView)
                 }
                 
                 TabBarView1(selectedTab: $selectedTab)
@@ -46,7 +48,7 @@ enum Tab: Int, Identifiable, CaseIterable, Comparable {
         lhs.rawValue < rhs.rawValue
     }
     
-    case main, beTrainerAdd
+    case main, beTrainerAdd, settings
     
     internal var id: Int { rawValue }
     
@@ -56,24 +58,8 @@ enum Tab: Int, Identifiable, CaseIterable, Comparable {
             return "house.fill"
         case .beTrainerAdd:
             return "person.fill"
-        }
-    }
-    
-    var title: String {
-        switch self {
-        case .main:
-            return "Home"
-        case .beTrainerAdd:
-            return "Account"
-        }
-    }
-    
-    var color: Color {
-        switch self {
-        case .main:
-            return .indigo
-        case .beTrainerAdd:
-            return .pink
+        case .settings:
+            return "gear"
         }
     }
 }
