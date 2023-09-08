@@ -17,7 +17,7 @@ final class ProfileViewModel: ObservableObject {
         self.user = try await UserManager.shared.getUser(userId: authDataResult.uid)
     }
     
-    func toggleTrainerStatus() { // isTrainer?
+    func toggleTrainerStatus() {
         guard let user else { return }
         let currentValue = user.isTrainer ?? false
         Task {
@@ -80,7 +80,7 @@ struct ProfileView: View {
                 Button {
                     viewModel.toggleTrainerStatus()
                 } label: {
-                    Text("User is premium: \((user.isTrainer ?? false).description.capitalized)")
+                    Text("User is trainer: \((user.isTrainer ?? false).description.capitalized)")
                 }
                 
                 VStack {
