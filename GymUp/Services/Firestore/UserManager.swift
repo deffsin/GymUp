@@ -19,7 +19,7 @@ struct DBUser: Codable {
     let userId: String
     let email: String?
     let dataCreated: Date?
-    let isPremium: Bool?
+    let isTrainer: Bool?
     let preferences: [String]?
     let favoriteMovie: Movie?
     
@@ -27,7 +27,7 @@ struct DBUser: Codable {
         self.userId = auth.uid
         self.email = auth.email
         self.dataCreated = Date()
-        self.isPremium = false
+        self.isTrainer = false
         self.preferences = nil
         self.favoriteMovie = nil
     }
@@ -36,14 +36,14 @@ struct DBUser: Codable {
     userId: String,
     email: String? = nil,
     dataCreated: Date? = nil,
-    isPremium: Bool? = nil,
+    isTrainer: Bool? = nil,
     preferences: [String]? = nil,
     favoriteMovie: Movie? = nil
     ) {
         self.userId = userId
         self.email = email
         self.dataCreated = dataCreated
-        self.isPremium = isPremium
+        self.isTrainer = isTrainer
         self.preferences = preferences
         self.favoriteMovie = favoriteMovie
     }
@@ -66,7 +66,7 @@ struct DBUser: Codable {
         case userId = "user_id"
         case email = "email"
         case dataCreated = "data_created"
-        case isPremium = "user_isPremium"
+        case isTrainer = "user_isTrainer"
         case preferences = "preferences"
         case favoriteMovie = "favorite_movie"
     }
@@ -76,7 +76,7 @@ struct DBUser: Codable {
         self.userId = try container.decode(String.self, forKey: .userId)
         self.email = try container.decodeIfPresent(String.self, forKey: .email)
         self.dataCreated = try container.decodeIfPresent(Date.self, forKey: .dataCreated)
-        self.isPremium = try container.decodeIfPresent(Bool.self, forKey: .isPremium)
+        self.isTrainer = try container.decodeIfPresent(Bool.self, forKey: .isTrainer)
         self.preferences = try container.decodeIfPresent([String].self, forKey: .preferences)
         self.favoriteMovie = try container.decodeIfPresent(Movie.self, forKey: .favoriteMovie)
     }
@@ -86,7 +86,7 @@ struct DBUser: Codable {
         try container.encode(self.userId, forKey: .userId)
         try container.encodeIfPresent(self.email, forKey: .email)
         try container.encodeIfPresent(self.dataCreated, forKey: .dataCreated)
-        try container.encodeIfPresent(self.isPremium, forKey: .isPremium)
+        try container.encodeIfPresent(self.isTrainer, forKey: .isTrainer)
         try container.encodeIfPresent(self.favoriteMovie, forKey: .favoriteMovie)
     }
 }
@@ -151,9 +151,9 @@ final class UserManager {
 //        try userDocument(userId: user.userId).setData(from: user, merge: true, encoder: encoder)
 //    }
     
-    func updateUserPremium(userId: String, isPremium: Bool) async throws {
+    func updateUserTrainer(userId: String, isTrainer: Bool) async throws {
         let data: [String:Any] = [
-            DBUser.CodingKeys.isPremium.rawValue : isPremium
+            DBUser.CodingKeys.isTrainer.rawValue : isTrainer
         ]
         try await userDocument(userId: userId).updateData(data)
     }

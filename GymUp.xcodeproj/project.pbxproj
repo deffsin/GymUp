@@ -97,8 +97,6 @@
 				156CED462AA287DC0000EEEA /* GymUpApp.swift */,
 				156CED482AA287DC0000EEEA /* ContentView.swift */,
 				156CED562AA289450000EEEA /* Core */,
-				156CED552AA2893F0000EEEA /* ViewModels */,
-				156CED542AA289370000EEEA /* Models */,
 				156CED642AA291530000EEEA /* Authentication */,
 				156CED592AA2896F0000EEEA /* Services */,
 				156CED572AA2894E0000EEEA /* Shared */,
@@ -114,20 +112,6 @@
 				156CED4D2AA287DD0000EEEA /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		156CED542AA289370000EEEA /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		156CED552AA2893F0000EEEA /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		156CED562AA289450000EEEA /* Core */ = {

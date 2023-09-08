@@ -17,11 +17,11 @@ final class ProfileViewModel: ObservableObject {
         self.user = try await UserManager.shared.getUser(userId: authDataResult.uid)
     }
     
-    func togglePremiumStatus() { // isTrainer?
+    func toggleTrainerStatus() {
         guard let user else { return }
-        let currentValue = user.isPremium ?? false
+        let currentValue = user.isTrainer ?? false
         Task {
-            try await UserManager.shared.updateUserPremium(userId: user.userId, isPremium: !currentValue)
+            try await UserManager.shared.updateUserTrainer(userId: user.userId, isTrainer: !currentValue)
             self.user = try await UserManager.shared.getUser(userId: user.userId)
         }
     }
@@ -78,9 +78,9 @@ struct ProfileView: View {
                 Text("UserID: \(user.userId)")
                 
                 Button {
-                    viewModel.togglePremiumStatus()
+                    viewModel.toggleTrainerStatus()
                 } label: {
-                    Text("User is premium: \((user.isPremium ?? false).description.capitalized)")
+                    Text("User is trainer: \((user.isTrainer ?? false).description.capitalized)")
                 }
                 
                 VStack {
