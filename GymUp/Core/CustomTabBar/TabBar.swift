@@ -57,7 +57,7 @@ enum Tab: Int, Identifiable, CaseIterable, Comparable {
         case .main:
             return "house.fill"
         case .beTrainerAdd:
-            return "person.fill"
+            return "person.badge.plus"
         case .settings:
             return "gear"
         }
