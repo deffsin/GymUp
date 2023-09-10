@@ -9,11 +9,61 @@ import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
+struct TrainerInformation: Codable {
+    let id: String
+    let fullname: String
+    let description: String
+    let email: String
+    let phoneNumber: String
+    let instagram: String
+    let facebook: String
+    let webLink: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case fullname = "fullname"
+        case description = "description"
+        case email = "email"
+        case phoneNumber = "phoneNumber"
+        case instagram = "instagram"
+        case facebook = "facebook"
+        case webLink = "web_link" // ???
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decode(String.self, forKey: .id)
+        self.fullname = try container.decode(String.self, forKey: .fullname)
+        self.description = try container.decode(String.self, forKey: .description)
+        self.email = try container.decode(String.self, forKey: .email)
+        self.phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
+        self.instagram = try container.decode(String.self, forKey: .instagram)
+        self.facebook = try container.decode(String.self, forKey: .facebook)
+        self.webLink = try container.decode(String.self, forKey: .webLink)
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.id, forKey: .id)
+        try container.encode(self.fullname, forKey: .fullname)
+        try container.encode(self.description, forKey: .description)
+        try container.encode(self.email, forKey: .email)
+        try container.encode(self.phoneNumber, forKey: .phoneNumber)
+        try container.encode(self.instagram, forKey: .instagram)
+        try container.encode(self.facebook, forKey: .facebook)
+        try container.encode(self.webLink, forKey: .webLink)
+    }
+}
+
+//
+
 struct Movie: Codable {
     let id: String
     let title: String
     let isPopular: Bool
 }
+
+//
 
 struct DBUser: Codable {
     let userId: String
@@ -96,10 +146,18 @@ final class UserManager {
     static let shared = UserManager()
     private init() {}
     
-    private let userCollection = Firestore.firestore().collection("users")
+    private let userCollection: CollectionReference = Firestore.firestore().collection("users")
     
     private func userDocument(userId: String) -> DocumentReference {
         userCollection.document(userId)
+    }
+    
+    private func trainerInformationCollection(userId: String) -> CollectionReference {
+        userDocument(userId: userId).collection("trainer_information")
+    }
+    
+    private func trainerInformationDocument(userId: String, trainerInformationId: String) -> DocumentReference {
+        trainerInformationCollection(userId: userId).document(trainerInformationId)
     }
     
     private let encoder: Firestore.Encoder = { // encode перед созданием юзера и добавлением какого либо поля
@@ -150,6 +208,17 @@ final class UserManager {
 //    func updateUserPremium(user: DBUser) async throws { // полностью переписывает весь "документ"
 //        try userDocument(userId: user.userId).setData(from: user, merge: true, encoder: encoder)
 //    }
+    
+    func addTrainerFullname(userId: String, fullname: String) async throws {
+        let document = trainerInformationCollection(userId: userId).document()
+        let documentId = document.documentID
+        
+        let data: [String:Any] = [
+            TrainerInformation.CodingKeys.id.rawValue : documentId,
+            TrainerInformation.CodingKeys.fullname.rawValue : fullname
+        ]
+        try await document.setData(data, merge: false)
+    }
     
     func updateUserTrainer(userId: String, isTrainer: Bool) async throws {
         let data: [String:Any] = [
