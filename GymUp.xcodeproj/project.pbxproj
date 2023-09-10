@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1511C9472AAE311000864044 /* FillInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1511C9462AAE311000864044 /* FillInformationView.swift */; };
 		156CED472AA287DC0000EEEA /* GymUpApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156CED462AA287DC0000EEEA /* GymUpApp.swift */; };
 		156CED492AA287DC0000EEEA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156CED482AA287DC0000EEEA /* ContentView.swift */; };
 		156CED4B2AA287DD0000EEEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 156CED4A2AA287DD0000EEEA /* Assets.xcassets */; };
@@ -38,6 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1511C9462AAE311000864044 /* FillInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillInformationView.swift; sourceTree = "<group>"; };
 		156CED432AA287DC0000EEEA /* GymUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GymUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		156CED462AA287DC0000EEEA /* GymUpApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymUpApp.swift; sourceTree = "<group>"; };
 		156CED482AA287DC0000EEEA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				15BC79E12AAB2EBA000DD93F /* BeTrainerAddView.swift */,
+				1511C9462AAE311000864044 /* FillInformationView.swift */,
 			);
 			path = BeTrainerAdd;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 				156CED782AA357C70000EEEA /* View+EmailSections.swift in Sources */,
 				156CED9B2AA66EB70000EEEA /* UserManager.swift in Sources */,
 				156CED762AA343840000EEEA /* AuthenticationView.swift in Sources */,
+				1511C9472AAE311000864044 /* FillInformationView.swift in Sources */,
 				156CED962AA637080000EEEA /* ProfileView.swift in Sources */,
 				156CED862AA5CD420000EEEA /* SignInAppleHelper.swift in Sources */,
 				156CED842AA3E6DF0000EEEA /* SignInGoogleHelper.swift in Sources */,
