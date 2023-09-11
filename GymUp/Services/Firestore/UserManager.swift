@@ -11,13 +11,46 @@ import FirebaseFirestoreSwift
 
 struct TrainerInformation: Codable {
     let id: String
-    let fullname: String
-    let description: String
-    let email: String
-    let phoneNumber: String
-    let instagram: String
-    let facebook: String
-    let webLink: String
+    let fullname: String?
+    let description: String?
+    let email: String?
+    let phoneNumber: String?
+    let instagram: String?
+    let facebook: String?
+    let webLink: String?
+    
+    init(auth: AuthDataResultModel) {
+        self.id = auth.uid
+        self.fullname = nil
+        self.description = nil
+        self.email = nil
+        self.phoneNumber = nil
+        self.instagram = nil
+        self.facebook = nil
+        self.webLink = nil
+    }
+    
+    init(
+    id: String,
+    fullname: String? = nil,
+    description: String? = nil,
+    email: String? = nil,
+    phoneNumber: String? = nil,
+    instagram: String? = nil,
+    facebook: String? = nil,
+    webLink: String? = nil
+    
+    ) {
+        self.id = id
+        self.fullname = fullname
+        self.description = description
+        self.email = email
+        self.phoneNumber = phoneNumber
+        self.instagram = instagram
+        self.facebook = facebook
+        self.webLink = webLink
+
+    }
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -175,22 +208,21 @@ final class UserManager {
     func createNewUser(user: DBUser) async throws {
         try userDocument(userId: user.userId).setData(from: user, merge: false)
     }
-    
-//    func createNewUser(auth: AuthDataResultModel) async throws {
-//        var userData: [String:Any] = [
-//            "user_id": auth.uid,
-//            "date_created": Timestamp()
-//        ]
-//        if let email = auth.email {
-//            userData["email"] = email
-//        }
-//
-//        try await userDocument(userId: auth.uid).setData(userData, merge: false)
-//    }
+
     
     func getUser(userId: String) async throws -> DBUser {
         try await userDocument(userId: userId).getDocument(as: DBUser.self)
     }
+    
+    func getFirstTrainerInformation(userId: String) async throws -> TrainerInformation? {
+        let snapshot = try await trainerInformationCollection(userId: userId).getDocuments()
+        let documents = snapshot.documents
+        if let firstDocument = documents.first {
+            return try? firstDocument.data(as: TrainerInformation.self)
+        }
+        return nil
+    }
+
     
 //    func getUser(userId: String) async throws -> DBUser {
 //        let snapshot = try await userDocument(userId: userId).getDocument()
@@ -209,16 +241,25 @@ final class UserManager {
 //        try userDocument(userId: user.userId).setData(from: user, merge: true, encoder: encoder)
 //    }
     
-    func addTrainerFullname(userId: String, fullname: String) async throws {
+    // this function is used in the .sheet -> FillInformationView
+    func addTrainerAllInformation(userId: String, fullname: String, phoneNumber: String, email: String, description: String, webLink: String, instagram: String, facebook: String) async throws {
         let document = trainerInformationCollection(userId: userId).document()
         let documentId = document.documentID
         
         let data: [String:Any] = [
             TrainerInformation.CodingKeys.id.rawValue : documentId,
-            TrainerInformation.CodingKeys.fullname.rawValue : fullname
+            TrainerInformation.CodingKeys.fullname.rawValue : fullname,
+            TrainerInformation.CodingKeys.phoneNumber.rawValue : phoneNumber,
+            TrainerInformation.CodingKeys.email.rawValue : email,
+            TrainerInformation.CodingKeys.description.rawValue : description,
+            TrainerInformation.CodingKeys.webLink.rawValue : webLink,
+            TrainerInformation.CodingKeys.instagram.rawValue : instagram,
+            TrainerInformation.CodingKeys.facebook.rawValue : facebook
         ]
         try await document.setData(data, merge: false)
     }
+    
+    // func updateTrainerInformation
     
     func updateUserTrainer(userId: String, isTrainer: Bool) async throws {
         let data: [String:Any] = [
