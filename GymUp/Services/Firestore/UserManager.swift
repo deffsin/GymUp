@@ -209,13 +209,20 @@ final class UserManager {
 //        try userDocument(userId: user.userId).setData(from: user, merge: true, encoder: encoder)
 //    }
     
-    func addTrainerFullname(userId: String, fullname: String) async throws {
+    // this function is used in the .sheet -> FillInformationView
+    func addTrainerAllInformation(userId: String, fullname: String, phoneNumber: String, email: String, description: String, webLink: String, instagram: String, facebook: String) async throws {
         let document = trainerInformationCollection(userId: userId).document()
         let documentId = document.documentID
         
         let data: [String:Any] = [
             TrainerInformation.CodingKeys.id.rawValue : documentId,
-            TrainerInformation.CodingKeys.fullname.rawValue : fullname
+            TrainerInformation.CodingKeys.fullname.rawValue : fullname,
+            TrainerInformation.CodingKeys.phoneNumber.rawValue : phoneNumber,
+            TrainerInformation.CodingKeys.email.rawValue : email,
+            TrainerInformation.CodingKeys.description.rawValue : description,
+            TrainerInformation.CodingKeys.webLink.rawValue : webLink,
+            TrainerInformation.CodingKeys.instagram.rawValue : instagram,
+            TrainerInformation.CodingKeys.facebook.rawValue : facebook
         ]
         try await document.setData(data, merge: false)
     }
