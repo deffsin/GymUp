@@ -11,15 +11,18 @@ import SwiftUI
 final class BeTrainerAddViewModel: ObservableObject {
     
     @Published private(set) var user: DBUser? = nil
+    @Published private(set) var trainer: TrainerInformation? = nil
     
-    func loadCurrentUser() async throws { 
+    func loadCurrentUser() async throws {
         let authDataResult = try AuthenticationManager.shared.authenticatedUser()
         self.user = try await UserManager.shared.getUser(userId: authDataResult.uid)
+        self.trainer = try await UserManager.shared.getFirstTrainerInformation(userId: authDataResult.uid)
     }
+
     
     func toggleTrainerStatus() {
         guard let user else { return }
-        let currentValue = user.isTrainer ?? false
+        let currentValue = user.isTrainer ?? false // если человек вышел с аккаунта то меняет на фолс
         Task {
             try await UserManager.shared.updateUserTrainer(userId: user.userId, isTrainer: !currentValue)
             self.user = try await UserManager.shared.getUser(userId: user.userId)
@@ -32,6 +35,7 @@ struct BeTrainerAddView: View {
     
     @StateObject private var viewModel = BeTrainerAddViewModel()
     @State var createAccount = false
+    @State var showTrainerInformation = false
     
     var body: some View {
         ZStack {
@@ -49,10 +53,17 @@ struct BeTrainerAddView: View {
                                     .bold()
                             }
                             
+                            Button {
+                                showTrainerInformation.toggle()
+                            } label: {
+                                Text("Show trainer info")
+                                    .bold()
+                            }
+                            
                         }
                     } else {
                         Button(action: {
-                            viewModel.toggleTrainerStatus()
+                            viewModel.toggleTrainerStatus() // "PAY"
                         }) {
                             Text("Be a trainer!")
                                 .foregroundColor(Color.white)
@@ -64,6 +75,14 @@ struct BeTrainerAddView: View {
                 }
                 .sheet(isPresented: $createAccount) {
                     FillInformationView()
+                }
+                .sheet(isPresented: $showTrainerInformation) {
+                    if let trainer = viewModel.trainer {
+                        Text(trainer.description ?? "Aa")
+                        Text(trainer.id)
+                    } else {
+                        Text("No information")
+                    }
                 }
             }
         }
