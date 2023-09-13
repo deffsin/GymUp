@@ -40,49 +40,12 @@ struct BeTrainerAddView: View {
     var body: some View {
         ZStack {
             if let user = viewModel.user {
-                VStack {
-                    Spacer()
-                    
-                    if user.isTrainer == true {
-                        VStack(spacing: 15) {
-                            Text("Now you need to create a trainer account!")
-                            Button {
-                                createAccount.toggle()
-                            } label: {
-                                Text("Create")
-                                    .bold()
-                            }
-                            
-                            Button {
-                                showTrainerInformation.toggle()
-                            } label: {
-                                Text("Show trainer info")
-                                    .bold()
-                            }
-                            
-                        }
-                    } else {
-                        Button(action: {
-                            viewModel.toggleTrainerStatus() // "PAY"
-                        }) {
-                            Text("Be a trainer!")
-                                .foregroundColor(Color.white)
-                                .frame(width: 110, height: 65)
-                                .background(Color.pink.opacity(0.8))
-                                .cornerRadius(15)
-                        }
-                    }
-                }
-                .sheet(isPresented: $createAccount) {
-                    FillInformationView()
-                }
-                .sheet(isPresented: $showTrainerInformation) {
-                    if let trainer = viewModel.trainer {
-                        Text(trainer.description ?? "Aa")
-                        Text(trainer.id)
-                    } else {
-                        Text("No information")
-                    }
+                if user.isTrainer == true, let trainer = viewModel.trainer, trainer.id.isEmpty {
+                    NeedToCreateAccountView(createAccount: $createAccount)
+                } else if user.isTrainer == true {
+                    TrainerView()
+                } else {
+                    BecomeTrainerButton()
                 }
             }
         }
