@@ -47,7 +47,11 @@ struct BeTrainerAddView: View {
                 }
             }
         }
-        .fullScreenCover(isPresented: $createAccount) {
+        .sheet(isPresented: $createAccount, onDismiss: {
+            Task {
+                try? await viewModel.loadCurrentUser()
+            }
+        }) {
             FillInformationView()
         }
         .task {
