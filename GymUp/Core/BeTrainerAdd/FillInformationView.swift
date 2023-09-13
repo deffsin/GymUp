@@ -12,8 +12,7 @@ final class FillInformationViewModel: ObservableObject {
     
     @Published private(set) var user: DBUser? = nil
     @Published var isAddingInformation = false
-    var completionHandler: (() -> Void)?
-    
+
     // username?
     // photo?
     @Published var fullname: String = ""
@@ -36,10 +35,7 @@ final class FillInformationViewModel: ObservableObject {
         Task {
             let authDataResult = try AuthenticationManager.shared.authenticatedUser()
             try? await UserManager.shared.addTrainerAllInformation(userId: authDataResult.uid, fullname: fullname, phoneNumber: phoneNumber, email: email, description: description, webLink: webLink, instagram: instagram, facebook: facebook)
-            do {
                 isAddingInformation = false
-                completionHandler?()
-            }
         }
     }
     
