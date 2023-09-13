@@ -12,7 +12,7 @@ final class BeTrainerAddViewModel: ObservableObject {
     
     @Published private(set) var user: DBUser? = nil
     @Published private(set) var trainer: TrainerInformation? = nil
-    
+        
     func loadCurrentUser() async throws {
         let authDataResult = try AuthenticationManager.shared.authenticatedUser()
         self.user = try await UserManager.shared.getUser(userId: authDataResult.uid)
@@ -22,7 +22,7 @@ final class BeTrainerAddViewModel: ObservableObject {
     
     func toggleTrainerStatus() {
         guard let user else { return }
-        let currentValue = user.isTrainer ?? false // если человек вышел с аккаунта то меняет на фолс
+        let currentValue = user.isTrainer ?? false // some issue with log out, i can fix it later
         Task {
             try await UserManager.shared.updateUserTrainer(userId: user.userId, isTrainer: !currentValue)
             self.user = try await UserManager.shared.getUser(userId: user.userId)
@@ -40,51 +40,15 @@ struct BeTrainerAddView: View {
     var body: some View {
         ZStack {
             if let user = viewModel.user {
-                VStack {
-                    Spacer()
-                    
-                    if user.isTrainer == true {
-                        VStack(spacing: 15) {
-                            Text("Now you need to create a trainer account!")
-                            Button {
-                                createAccount.toggle()
-                            } label: {
-                                Text("Create")
-                                    .bold()
-                            }
-                            
-                            Button {
-                                showTrainerInformation.toggle()
-                            } label: {
-                                Text("Show trainer info")
-                                    .bold()
-                            }
-                            
-                        }
-                    } else {
-                        Button(action: {
-                            viewModel.toggleTrainerStatus() // "PAY"
-                        }) {
-                            Text("Be a trainer!")
-                                .foregroundColor(Color.white)
-                                .frame(width: 110, height: 65)
-                                .background(Color.pink.opacity(0.8))
-                                .cornerRadius(15)
-                        }
-                    }
-                }
-                .sheet(isPresented: $createAccount) {
-                    FillInformationView()
-                }
-                .sheet(isPresented: $showTrainerInformation) {
-                    if let trainer = viewModel.trainer {
-                        Text(trainer.description ?? "Aa")
-                        Text(trainer.id)
-                    } else {
-                        Text("No information")
-                    }
+                if user.isTrainer == false {
+                    NeedToCreateAccountView(createAccount: $createAccount)
+                } else {
+                    TrainerView()
                 }
             }
+        }
+        .fullScreenCover(isPresented: $createAccount) {
+            FillInformationView()
         }
         .task {
             try? await viewModel.loadCurrentUser()
