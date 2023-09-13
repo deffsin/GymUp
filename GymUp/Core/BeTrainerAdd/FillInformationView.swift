@@ -11,6 +11,8 @@ import SwiftUI
 final class FillInformationViewModel: ObservableObject {
     
     @Published private(set) var user: DBUser? = nil
+    @Published var isAddingInformation = false
+    var completionHandler: (() -> Void)?
     
     // username?
     // photo?
@@ -30,12 +32,25 @@ final class FillInformationViewModel: ObservableObject {
     }
     
     func addTrainerAllInformation(fullname: String, phoneNumber: String, email: String, description: String, webLink: String, instagram: String, facebook: String) {
+        isAddingInformation = true
         Task {
             let authDataResult = try AuthenticationManager.shared.authenticatedUser()
             try? await UserManager.shared.addTrainerAllInformation(userId: authDataResult.uid, fullname: fullname, phoneNumber: phoneNumber, email: email, description: description, webLink: webLink, instagram: instagram, facebook: facebook)
+            do {
+                isAddingInformation = false
+                completionHandler?()
+            }
         }
     }
     
+    func toggleTrainerStatus() {
+        guard let user else { return }
+        let currentValue = user.isTrainer ?? false // some issue with log out, i can fix it later
+        Task {
+            try await UserManager.shared.updateUserTrainer(userId: user.userId, isTrainer: !currentValue)
+            self.user = try await UserManager.shared.getUser(userId: user.userId)
+        }
+    }
 }
 
 struct FillInformationView: View {
@@ -45,44 +60,55 @@ struct FillInformationView: View {
 
     var body: some View {
         ZStack {
-            VStack(spacing: 15) {
-                InformationField(title: "Fullname:", placeholder: "Name and last name", text: $viewModel.fullname)
-                InformationField(title: "Email:", placeholder: "Email", text: $viewModel.email, keyboardType: .emailAddress)
-                InformationField(title: "Number:", placeholder: "Phone number", text: $viewModel.phoneNumber, keyboardType: .phonePad)
-                InformationField(title: "Gyms:", placeholder: "Gyms", text: $viewModel.none)
-                InformationField(title: "Link:", placeholder: "Web link", text: $viewModel.webLink)
-                InformationField(title: "Instagram:", placeholder: "Instagram", text: $viewModel.instagram)
-                InformationField(title: "Facebook:", placeholder: "Facebook", text: $viewModel.facebook)
-
-                VStack {
-                    HStack {
-                        Text("About you:")
-                            .font(.system(size: 19))
-                            .padding(.bottom, 75)
-                        TextEditor(text: $viewModel.description)
-                            .padding([.horizontal, .vertical], 5)
-                            .frame(width: 250, height: 100)
-                            .overlay {
-                                RoundedRectangle(cornerRadius: 10)
-                                    .stroke(Color.gray.opacity(0.4), lineWidth: 1)
-                            }
-                        Spacer()
+            
+            if viewModel.isAddingInformation {
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: Color.blue))
+                    .scaleEffect(2)
+            } else {
+                VStack(spacing: 15) {
+                    InformationField(title: "Fullname:", placeholder: "Name and last name", text: $viewModel.fullname)
+                    InformationField(title: "Email:", placeholder: "Email", text: $viewModel.email, keyboardType: .emailAddress)
+                    InformationField(title: "Number:", placeholder: "Phone number", text: $viewModel.phoneNumber, keyboardType: .phonePad)
+                    InformationField(title: "Gyms:", placeholder: "Gyms", text: $viewModel.none)
+                    InformationField(title: "Link:", placeholder: "Web link", text: $viewModel.webLink)
+                    InformationField(title: "Instagram:", placeholder: "Instagram", text: $viewModel.instagram)
+                    InformationField(title: "Facebook:", placeholder: "Facebook", text: $viewModel.facebook)
+                    
+                    VStack {
+                        HStack {
+                            Text("About you:")
+                                .font(.system(size: 19))
+                                .padding(.bottom, 75)
+                            TextEditor(text: $viewModel.description)
+                                .padding([.horizontal, .vertical], 5)
+                                .frame(width: 250, height: 100)
+                                .overlay {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Color.gray.opacity(0.4), lineWidth: 1)
+                                }
+                            Spacer()
+                        }
+                    }
+                    
+                    Button(action: {
+                        viewModel.addTrainerAllInformation(fullname: viewModel.fullname, phoneNumber: viewModel.phoneNumber, email: viewModel.email, description: viewModel.description, webLink: viewModel.webLink, instagram: viewModel.instagram, facebook: viewModel.facebook)
+                        viewModel.toggleTrainerStatus()
+                        dismiss()
+                    }) {
+                        Text("Add information")
+                            .frame(width: 130, height: 20)
+                            .padding()
+                            .foregroundColor(Color.white)
+                            .background(Color.blue)
+                            .cornerRadius(15)
                     }
                 }
-
-                Button(action: {
-                    viewModel.addTrainerAllInformation(fullname: viewModel.fullname, phoneNumber: viewModel.phoneNumber, email: viewModel.email, description: viewModel.description, webLink: viewModel.webLink, instagram: viewModel.instagram, facebook: viewModel.facebook)
-                    dismiss()
-                }) {
-                    Text("Add information")
-                        .frame(width: 130, height: 20)
-                        .padding()
-                        .foregroundColor(Color.white)
-                        .background(Color.blue)
-                        .cornerRadius(15)
-                }
+                .padding(.horizontal, 10)
             }
-            .padding(.horizontal, 10)
+        }
+        .task {
+            try? await viewModel.loadCurrentUser()
         }
     }
 }
