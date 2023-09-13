@@ -12,7 +12,7 @@ final class BeTrainerAddViewModel: ObservableObject {
     
     @Published private(set) var user: DBUser? = nil
     @Published private(set) var trainer: TrainerInformation? = nil
-    
+        
     func loadCurrentUser() async throws {
         let authDataResult = try AuthenticationManager.shared.authenticatedUser()
         self.user = try await UserManager.shared.getUser(userId: authDataResult.uid)
@@ -22,7 +22,7 @@ final class BeTrainerAddViewModel: ObservableObject {
     
     func toggleTrainerStatus() {
         guard let user else { return }
-        let currentValue = user.isTrainer ?? false // если человек вышел с аккаунта то меняет на фолс
+        let currentValue = user.isTrainer ?? false // some issue with log out, i can fix it later
         Task {
             try await UserManager.shared.updateUserTrainer(userId: user.userId, isTrainer: !currentValue)
             self.user = try await UserManager.shared.getUser(userId: user.userId)
@@ -40,14 +40,15 @@ struct BeTrainerAddView: View {
     var body: some View {
         ZStack {
             if let user = viewModel.user {
-                if user.isTrainer == true, let trainer = viewModel.trainer, trainer.id.isEmpty {
+                if user.isTrainer == false {
                     NeedToCreateAccountView(createAccount: $createAccount)
-                } else if user.isTrainer == true {
-                    TrainerView()
                 } else {
-                    BecomeTrainerButton()
+                    TrainerView()
                 }
             }
+        }
+        .fullScreenCover(isPresented: $createAccount) {
+            FillInformationView()
         }
         .task {
             try? await viewModel.loadCurrentUser()
