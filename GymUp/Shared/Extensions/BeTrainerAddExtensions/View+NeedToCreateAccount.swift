@@ -9,17 +9,19 @@ import Foundation
 import SwiftUI
 
 extension BeTrainerAddView {
-    struct NeedToCreateAccountView: View {
+    struct NeedToCreateAccountView: View { // for the trainer account
         @Binding var createAccount: Bool
-        
+
         var body: some View {
-            VStack(spacing: 15) {
-                Text("Now you need to create a trainer account!")
-                Button {
-                    createAccount.toggle()
-                } label: {
-                    Text("Create")
-                        .bold()
+            ZStack {
+                VStack(spacing: 15) {
+                    Text("Now you need to create a trainer account!")
+                    Button {
+                        createAccount.toggle()
+                    } label: {
+                        Text("Create")
+                            .bold()
+                    }
                 }
             }
         }
