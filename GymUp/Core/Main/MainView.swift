@@ -13,6 +13,10 @@ struct MainView: View {
             ScrollView {
                 Text("Main")
             }
+            .refreshable {
+                try? await Task.sleep(nanoseconds: 1_200_000_000)
+                try? await viewModel.loadCurrentUser()
+            }
         }
     }
 }

@@ -10,6 +10,7 @@ import SwiftUI
 struct TrainerView: View {
     @StateObject var viewModel = TrainerViewModel()
     
+    
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -27,8 +28,19 @@ struct TrainerView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
 
             }
+            .refreshable {
+                try? await Task.sleep(nanoseconds: 1_200_000_000)
+                try? await viewModel.loadCurrentUser()
+            }
+
             .task {
                 try? await viewModel.loadCurrentUser()
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Text("My profile")
+                    .font(.system(size: 24))
             }
         }
     }
