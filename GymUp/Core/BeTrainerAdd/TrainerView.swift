@@ -11,16 +11,25 @@ struct TrainerView: View {
     @StateObject var viewModel = TrainerViewModel()
     
     var body: some View {
-        ZStack {
-            if let trainer = viewModel.trainer {
-                VStack {
-                    Text(trainer.fullname ?? "")
-                    Text(trainer.description ?? "")
+        NavigationStack {
+            ScrollView {
+                ZStack {
+                    VStack {
+                        VStack {
+                            if let trainer = viewModel.trainer {
+                                Text(trainer.fullname ?? "")
+                                Text(trainer.description ?? "")
+                            }
+                        }
+                    }
+                    .padding(.horizontal, 20)
                 }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+
             }
-        }
-        .task {
-            try? await viewModel.loadCurrentUser()
+            .task {
+                try? await viewModel.loadCurrentUser()
+            }
         }
     }
 }
