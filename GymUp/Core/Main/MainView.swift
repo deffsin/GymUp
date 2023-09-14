@@ -9,7 +9,23 @@ import SwiftUI
 
 struct MainView: View {
     var body: some View {
-        Text("MainView")
+        NavigationStack {
+            ScrollView {
+                ZStack {
+                    VStack {
+                        VStack {
+                            Text("Main")
+                        }
+                    }
+                    .padding(.horizontal, 20)
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            }
+            .refreshable {
+                try? await Task.sleep(nanoseconds: 1_200_000_000)
+                // try? await viewModel.loadCurrentUser()
+            }
+        }
     }
 }
 

@@ -24,6 +24,7 @@ struct TabBarView1: View {
             TabsLayoutView(selectedTab: $selectedTab)
         }
         .ignoresSafeArea(.all, edges: .bottom)
+        .padding(.horizontal)
     }
 }
 
