@@ -11,6 +11,9 @@
 		1536893A2AB1D0250043ABC8 /* TrainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153689392AB1D0250043ABC8 /* TrainerView.swift */; };
 		1536893C2AB1D3FB0043ABC8 /* View+NeedToCreateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1536893B2AB1D3FB0043ABC8 /* View+NeedToCreateAccount.swift */; };
 		1536893E2AB1D4560043ABC8 /* View+TrainerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1536893D2AB1D4560043ABC8 /* View+TrainerButton.swift */; };
+		153689412AB367CE0043ABC8 /* BeTrainerAddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153689402AB367CE0043ABC8 /* BeTrainerAddViewModel.swift */; };
+		153689432AB367F10043ABC8 /* TrainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153689422AB367F10043ABC8 /* TrainerViewModel.swift */; };
+		153689452AB3680B0043ABC8 /* FillInformationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153689442AB3680B0043ABC8 /* FillInformationViewModel.swift */; };
 		156CED472AA287DC0000EEEA /* GymUpApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156CED462AA287DC0000EEEA /* GymUpApp.swift */; };
 		156CED492AA287DC0000EEEA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156CED482AA287DC0000EEEA /* ContentView.swift */; };
 		156CED4B2AA287DD0000EEEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 156CED4A2AA287DD0000EEEA /* Assets.xcassets */; };
@@ -46,6 +49,9 @@
 		153689392AB1D0250043ABC8 /* TrainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerView.swift; sourceTree = "<group>"; };
 		1536893B2AB1D3FB0043ABC8 /* View+NeedToCreateAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+NeedToCreateAccount.swift"; sourceTree = "<group>"; };
 		1536893D2AB1D4560043ABC8 /* View+TrainerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+TrainerButton.swift"; sourceTree = "<group>"; };
+		153689402AB367CE0043ABC8 /* BeTrainerAddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeTrainerAddViewModel.swift; sourceTree = "<group>"; };
+		153689422AB367F10043ABC8 /* TrainerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerViewModel.swift; sourceTree = "<group>"; };
+		153689442AB3680B0043ABC8 /* FillInformationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillInformationViewModel.swift; sourceTree = "<group>"; };
 		156CED432AA287DC0000EEEA /* GymUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GymUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		156CED462AA287DC0000EEEA /* GymUpApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymUpApp.swift; sourceTree = "<group>"; };
 		156CED482AA287DC0000EEEA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -261,8 +267,11 @@
 			isa = PBXGroup;
 			children = (
 				15BC79E12AAB2EBA000DD93F /* BeTrainerAddView.swift */,
+				153689402AB367CE0043ABC8 /* BeTrainerAddViewModel.swift */,
 				153689392AB1D0250043ABC8 /* TrainerView.swift */,
+				153689422AB367F10043ABC8 /* TrainerViewModel.swift */,
 				1511C9462AAE311000864044 /* FillInformationView.swift */,
+				153689442AB3680B0043ABC8 /* FillInformationViewModel.swift */,
 			);
 			path = BeTrainerAdd;
 			sourceTree = "<group>";
@@ -366,6 +375,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				153689412AB367CE0043ABC8 /* BeTrainerAddViewModel.swift in Sources */,
 				15BC79E72AAB2F3E000DD93F /* TabBarView1.swift in Sources */,
 				156CED802AA3629E0000EEEA /* AuthenticationViewModel.swift in Sources */,
 				156CED742AA3367C0000EEEA /* SettingsViewModel.swift in Sources */,
@@ -375,10 +385,12 @@
 				156CED612AA28DEB0000EEEA /* SignInView.swift in Sources */,
 				156CED782AA357C70000EEEA /* View+EmailSections.swift in Sources */,
 				156CED9B2AA66EB70000EEEA /* UserManager.swift in Sources */,
+				153689432AB367F10043ABC8 /* TrainerViewModel.swift in Sources */,
 				156CED762AA343840000EEEA /* AuthenticationView.swift in Sources */,
 				1536893E2AB1D4560043ABC8 /* View+TrainerButton.swift in Sources */,
 				1536893A2AB1D0250043ABC8 /* TrainerView.swift in Sources */,
 				1511C9472AAE311000864044 /* FillInformationView.swift in Sources */,
+				153689452AB3680B0043ABC8 /* FillInformationViewModel.swift in Sources */,
 				156CED962AA637080000EEEA /* ProfileView.swift in Sources */,
 				156CED862AA5CD420000EEEA /* SignInAppleHelper.swift in Sources */,
 				156CED842AA3E6DF0000EEEA /* SignInGoogleHelper.swift in Sources */,
