@@ -18,7 +18,7 @@ struct TabBar: View {
             backgroundColor
                 .ignoresSafeArea()
             
-            VStack(spacing: 70) {
+            ZStack {
                 switch selectedTab {
                 case .main:
                     MainView()
@@ -30,7 +30,6 @@ struct TabBar: View {
                 
                 TabBarView1(selectedTab: $selectedTab)
             }
-            .padding(.horizontal)
         }
     }
 }
