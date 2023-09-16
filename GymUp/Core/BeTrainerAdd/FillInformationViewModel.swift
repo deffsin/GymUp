@@ -18,23 +18,24 @@ final class FillInformationViewModel: ObservableObject {
     @Published var fullname: String = ""
     @Published var email: String = ""
     @Published var description: String = ""
-    @Published var gyms: [String] = []
+    @Published var location: String = ""
+    @Published var gyms: String = ""
     @Published var phoneNumber: String = ""
     @Published var webLink: String = ""
     @Published var instagram: String = ""
     @Published var facebook: String = ""
-    @Published var none: String = "" // !
+    @Published var linkedIn: String = ""
     
     func loadCurrentUser() async throws {
         let authDataResult = try AuthenticationManager.shared.authenticatedUser()
         self.user = try await UserManager.shared.getUser(userId: authDataResult.uid)
     }
     
-    func addTrainerAllInformation(fullname: String, phoneNumber: String, email: String, description: String, webLink: String, instagram: String, facebook: String) {
+    func addTrainerAllInformation(fullname: String, phoneNumber: String, email: String, description: String, location: String, gyms: String, webLink: String, instagram: String, facebook: String, linkedIn: String) {
         isAddingInformation = true
         Task {
             let authDataResult = try AuthenticationManager.shared.authenticatedUser()
-            try? await UserManager.shared.addTrainerAllInformation(userId: authDataResult.uid, fullname: fullname, phoneNumber: phoneNumber, email: email, description: description, webLink: webLink, instagram: instagram, facebook: facebook)
+            try? await UserManager.shared.addTrainerAllInformation(userId: authDataResult.uid, fullname: fullname, phoneNumber: phoneNumber, email: email, description: description, location: location, gyms: gyms, webLink: webLink, instagram: instagram, facebook: facebook, linkedIn: linkedIn)
                 isAddingInformation = false
         }
     }

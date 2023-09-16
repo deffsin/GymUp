@@ -21,13 +21,17 @@ struct FillInformationView: View {
                     .scaleEffect(2)
             } else {
                 VStack(spacing: 15) {
-                    InformationField(title: "Fullname:", placeholder: "Name and last name", text: $viewModel.fullname)
-                    InformationField(title: "Email:", placeholder: "Email", text: $viewModel.email, keyboardType: .emailAddress)
-                    InformationField(title: "Number:", placeholder: "Phone number", text: $viewModel.phoneNumber, keyboardType: .phonePad)
-                    InformationField(title: "Gyms:", placeholder: "Gyms", text: $viewModel.none)
-                    InformationField(title: "Link:", placeholder: "Web link", text: $viewModel.webLink)
-                    InformationField(title: "Instagram:", placeholder: "Instagram", text: $viewModel.instagram)
-                    InformationField(title: "Facebook:", placeholder: "Facebook", text: $viewModel.facebook)
+                    Group {
+                        InformationField(title: "Fullname:", placeholder: "Name and last name", text: $viewModel.fullname)
+                        InformationField(title: "Email:", placeholder: "Email", text: $viewModel.email, keyboardType: .emailAddress)
+                        InformationField(title: "Number:", placeholder: "Phone number", text: $viewModel.phoneNumber, keyboardType: .phonePad)
+                        InformationField(title: "Location", placeholder: "Location", text: $viewModel.location)
+                        InformationField(title: "Gyms:", placeholder: "Gyms", text: $viewModel.gyms)
+                        InformationField(title: "Link:", placeholder: "Web link", text: $viewModel.webLink)
+                        InformationField(title: "Instagram:", placeholder: "Instagram", text: $viewModel.instagram)
+                        InformationField(title: "Facebook:", placeholder: "Facebook", text: $viewModel.facebook)
+                        InformationField(title: "LinkedIn", placeholder: "LinkedIn", text: $viewModel.linkedIn)
+                    }
                     
                     VStack {
                         HStack {
@@ -46,7 +50,7 @@ struct FillInformationView: View {
                     }
                     
                     Button(action: {
-                        viewModel.addTrainerAllInformation(fullname: viewModel.fullname, phoneNumber: viewModel.phoneNumber, email: viewModel.email, description: viewModel.description, webLink: viewModel.webLink, instagram: viewModel.instagram, facebook: viewModel.facebook)
+                        viewModel.addTrainerAllInformation(fullname: viewModel.fullname, phoneNumber: viewModel.phoneNumber, email: viewModel.email, description: viewModel.description, location: viewModel.location, gyms: viewModel.gyms, webLink: viewModel.webLink, instagram: viewModel.instagram, facebook: viewModel.facebook, linkedIn: viewModel.linkedIn)
                         viewModel.toggleTrainerStatus()
                         dismiss()
                     }) {

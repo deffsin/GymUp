@@ -21,18 +21,18 @@ struct UserInfoView: View {
             
             if let trainer = viewModel.trainer {
                 VStack(spacing: 5){
-                    Text(trainer.fullname ?? "None")
+                    Text(trainer.fullname ?? "")
                         .bold()
-                    Text("Tallinn, Estonia")
-                        .font(.system(size: 17))
-                    Text("Trainer at: Gym, MyFitness")
+                    Text(trainer.location ?? "")
+                        .font(.system(size: 15))
+                    Text("Trainer at: \(trainer.gyms ?? "")")
                 }
                 
                 HStack(spacing:25) {
-                    socialButton(urlString: "\(trainer.instagram)", imageName: "instagram")
-                    socialButton(urlString: "\(trainer.facebook)", imageName: "facebook")
-                    socialButton(urlString: "https://linkedin.com/in/deffsin", imageName: "linkedin")
-                    socialButton(urlString: "\(trainer.webLink)", imageName: "web")
+                    socialButton(urlString: "\(trainer.instagram ?? "")", imageName: "instagram")
+                    socialButton(urlString: "\(trainer.facebook ?? "")", imageName: "facebook")
+                    socialButton(urlString: "\(trainer.linkedIn ?? "")", imageName: "linkedin")
+                    socialButton(urlString: "\(trainer.webLink ?? "")", imageName: "web")
                         .padding(.trailing, 3)
                 }
                 .padding(8)

@@ -69,7 +69,7 @@ final class UserManager {
     }
     
     // this function is used in the .sheet -> FillInformationView
-    func addTrainerAllInformation(userId: String, fullname: String, phoneNumber: String, email: String, description: String, webLink: String, instagram: String, facebook: String) async throws {
+    func addTrainerAllInformation(userId: String, fullname: String, phoneNumber: String, email: String, description: String, location: String, gyms: String, webLink: String, instagram: String, facebook: String, linkedIn: String) async throws {
         let document = trainerInformationCollection(userId: userId).document()
         let documentId = document.documentID
         
@@ -79,9 +79,12 @@ final class UserManager {
             TrainerInformation.CodingKeys.phoneNumber.rawValue : phoneNumber,
             TrainerInformation.CodingKeys.email.rawValue : email,
             TrainerInformation.CodingKeys.description.rawValue : description,
+            TrainerInformation.CodingKeys.location.rawValue : location,
+            TrainerInformation.CodingKeys.gyms.rawValue : gyms,
             TrainerInformation.CodingKeys.webLink.rawValue : webLink,
             TrainerInformation.CodingKeys.instagram.rawValue : instagram,
-            TrainerInformation.CodingKeys.facebook.rawValue : facebook
+            TrainerInformation.CodingKeys.facebook.rawValue : facebook,
+            TrainerInformation.CodingKeys.linkedIn.rawValue : linkedIn
         ]
         try await document.setData(data, merge: false)
     }
