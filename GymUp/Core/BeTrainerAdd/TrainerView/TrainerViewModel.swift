@@ -8,7 +8,7 @@
 import SwiftUI
 
 @MainActor
-final class TrainerViewModel: ObservableObject {
+final class TrainerViewModel: ObservableObject { // delete?
     
     @Published private(set) var user: DBUser? = nil
     @Published private(set) var trainer: TrainerInformation? = nil
