@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DetailsView: View {
-    @ObservedObject var viewModel: TrainerViewModel
+    @ObservedObject var viewModel: BeTrainerAddViewModel
     
     var body: some View {
         VStack {
@@ -21,6 +21,7 @@ struct DetailsView: View {
             Divider()
             
             AboutMeView(viewModel: viewModel)
+            
             Divider()
             ResourcesView()
         }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BeTrainerAddView: View {
     
-    @StateObject private var viewModel = BeTrainerAddViewModel()
+    @ObservedObject var viewModel: BeTrainerAddViewModel
     @State var createAccount = false
     @State var showTrainerInformation = false
     
@@ -19,7 +19,7 @@ struct BeTrainerAddView: View {
                 if user.isTrainer == false {
                     NeedToCreateAccountView(createAccount: $createAccount)
                 } else {
-                    TrainerView()
+                    TrainerView(viewModel: viewModel)
                 }
             }
         }
@@ -30,6 +30,12 @@ struct BeTrainerAddView: View {
         }) {
             FillInformationView()
         }
+        .onAppear {
+            print("BeTrainerAddView appeared!")
+        }
+        .onDisappear {
+            print("BeTrainerAddView disappeared!")
+        }
         .task {
             try? await viewModel.loadCurrentUser()
         }
@@ -38,6 +44,6 @@ struct BeTrainerAddView: View {
 
 struct BeTrainerAddView_Previews: PreviewProvider {
     static var previews: some View {
-        BeTrainerAddView()
+        BeTrainerAddView(viewModel: BeTrainerAddViewModel())
     }
 }

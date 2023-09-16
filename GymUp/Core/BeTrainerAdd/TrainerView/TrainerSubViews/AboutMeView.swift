@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AboutMeView: View {
-    @ObservedObject var viewModel: TrainerViewModel
+    @ObservedObject var viewModel: BeTrainerAddViewModel
 
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TrainerView: View {
-    @StateObject var viewModel = TrainerViewModel()
+    @ObservedObject var viewModel: BeTrainerAddViewModel
     
     var body: some View {
         NavigationStack {
@@ -30,9 +30,6 @@ struct TrainerView: View {
                 try? await Task.sleep(nanoseconds: 1_200_000_000)
                 try? await viewModel.loadCurrentUser()
             }
-            .task {
-                try? await viewModel.loadCurrentUser()
-            }
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
@@ -46,6 +43,6 @@ struct TrainerView: View {
 
 struct TrainerView_Previews: PreviewProvider {
     static var previews: some View {
-        TrainerView()
+        TrainerView(viewModel: BeTrainerAddViewModel())
     }
 }
