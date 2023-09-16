@@ -30,5 +30,6 @@ struct DetailsView: View {
         .background(Color.white)
         .foregroundColor(Color.black)
         .cornerRadius(15)
+        .shadow(color: .black, radius: 8)
     }
 }

@@ -8,6 +8,7 @@
 import Foundation
 
 struct TrainerInformation: Codable {
+    
     let id: String
     let fullname: String?
     let description: String?
@@ -19,6 +20,9 @@ struct TrainerInformation: Codable {
     let facebook: String?
     let webLink: String?
     let linkedIn: String?
+    // rating
+    // comments
+    // photo?
     
     init(auth: AuthDataResultModel) {
         self.id = auth.uid

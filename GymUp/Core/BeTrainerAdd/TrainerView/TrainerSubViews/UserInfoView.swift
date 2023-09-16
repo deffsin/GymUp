@@ -18,14 +18,24 @@ struct UserInfoView: View {
                 .frame(width: 130, height: 130)
                 .clipShape(Circle())
                 .overlay(Circle().stroke(Color.white, lineWidth: 2))
+                .shadow(color: .white, radius: 2)
             
             if let trainer = viewModel.trainer {
                 VStack(spacing: 5){
                     Text(trainer.fullname ?? "")
                         .bold()
-                    Text(trainer.location ?? "")
-                        .font(.system(size: 15))
+                        .font(.system(size: 19))
+                    
+                    HStack(spacing: 5){
+                        Text(trainer.location ?? "")
+                            .font(.system(size: 15))
+                        Image(systemName: "location")
+                            .font(.system(size: 12))
+                    }
+                    .foregroundColor(Color.white.opacity(0.8))
+                    
                     Text("Trainer at: \(trainer.gyms ?? "")")
+                        .font(.system(size: 17))
                 }
                 
                 HStack(spacing:25) {
@@ -39,6 +49,7 @@ struct UserInfoView: View {
                 .foregroundColor(Color.white)
                 .background(Color.pink)
                 .cornerRadius(15)
+                .shadow(color: .pink, radius: 5)
             }
         }
     }
