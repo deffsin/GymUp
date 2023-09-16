@@ -24,6 +24,11 @@ struct TrainerView: View {
                     .padding(.horizontal, 20)
                     .foregroundColor(Color.white)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    
+                    VStack {
+                        
+                    }
+                    .frame(maxWidth: .infinity, minHeight: 73)
                 }
             }
             .refreshable {

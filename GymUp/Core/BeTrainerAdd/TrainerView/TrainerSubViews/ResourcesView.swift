@@ -13,10 +13,13 @@ struct ResourcesView: View {
             Text("Fitness resources:")
                 .bold()
             ResourceButton(title: "Trainer programs")
+                .padding(.bottom, 5)
             Divider()
             ResourceButton(title: "Nutrition for muscle gain")
+                .padding([.top, .bottom], 5)
             Divider()
             ResourceButton(title: "Nutrition for weight loss")
+                .padding([.top, .bottom], 5)
         }
         .padding(.horizontal, 10)
     }
