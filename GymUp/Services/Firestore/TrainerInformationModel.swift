@@ -20,9 +20,9 @@ struct TrainerInformation: Codable {
     let facebook: String?
     let webLink: String?
     let linkedIn: String?
-    // rating
-    // comments
-    // photo?
+    let rating: String? // Double
+    let comments: String? // Int
+    let price: String?
     
     init(auth: AuthDataResultModel) {
         self.id = auth.uid
@@ -36,6 +36,9 @@ struct TrainerInformation: Codable {
         self.facebook = nil
         self.webLink = nil
         self.linkedIn = nil
+        self.rating = nil
+        self.comments = nil
+        self.price = nil
     }
     
     init(
@@ -49,7 +52,10 @@ struct TrainerInformation: Codable {
     instagram: String? = nil,
     facebook: String? = nil,
     webLink: String? = nil,
-    linkedIn: String? = nil
+    linkedIn: String? = nil,
+    rating: String? = nil,
+    comments: String? = nil,
+    price: String? = nil
     
     ) {
         self.id = id
@@ -63,6 +69,9 @@ struct TrainerInformation: Codable {
         self.facebook = facebook
         self.webLink = webLink
         self.linkedIn = linkedIn
+        self.rating = rating
+        self.comments = comments
+        self.price = price
     }
     
     enum CodingKeys: String, CodingKey {
@@ -77,6 +86,9 @@ struct TrainerInformation: Codable {
         case facebook = "facebook"
         case webLink = "web_link" // ???
         case linkedIn = "linkedIn"
+        case rating = "rating"
+        case comments = "comments"
+        case price = "price"
     }
     
     init(from decoder: Decoder) throws {
@@ -92,6 +104,9 @@ struct TrainerInformation: Codable {
         self.facebook = try container.decode(String.self, forKey: .facebook)
         self.webLink = try container.decode(String.self, forKey: .webLink)
         self.linkedIn = try container.decode(String.self, forKey: .linkedIn)
+        self.rating = try container.decode(String.self, forKey: .rating)
+        self.comments = try container.decode(String.self, forKey: .comments)
+        self.price = try container.decode(String.self, forKey: .price)
     }
     
     func encode(to encoder: Encoder) throws {
@@ -107,5 +122,8 @@ struct TrainerInformation: Codable {
         try container.encode(self.facebook, forKey: .facebook)
         try container.encode(self.webLink, forKey: .webLink)
         try container.encode(self.linkedIn, forKey: .linkedIn)
+        try container.encode(self.rating, forKey: .rating)
+        try container.encode(self.comments, forKey: .comments)
+        try container.encode(self.price, forKey: .price)
     }
 }
