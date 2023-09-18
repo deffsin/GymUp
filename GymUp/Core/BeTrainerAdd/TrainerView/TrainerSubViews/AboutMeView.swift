@@ -11,14 +11,17 @@ struct AboutMeView: View {
     @ObservedObject var viewModel: BeTrainerAddViewModel
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 5) {
-            if let trainer = viewModel.trainer {
-                Text("About me:")
-                    .bold()
-                Text(trainer.description ?? "")
-                Spacer()
+        HStack {
+            VStack(alignment: .leading, spacing: 5) {
+                if let trainer = viewModel.trainer {
+                    Text("About me:")
+                        .bold()
+                    Text(trainer.description ?? "")
+                    Spacer()
+                }
             }
+            .padding(.horizontal, 10)
+            Spacer()
         }
-        .padding(.horizontal, 10)
     }
 }

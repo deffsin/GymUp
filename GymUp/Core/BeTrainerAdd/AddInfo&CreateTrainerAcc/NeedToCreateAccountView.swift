@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct NeedToCreateAccountView: View { // for the trainer account
-    @Binding var createAccount: Bool
+    @ObservedObject var viewModel: BeTrainerAddViewModel
+    @State var createAccount = false
 
     var body: some View {
         ZStack {
@@ -21,6 +22,13 @@ struct NeedToCreateAccountView: View { // for the trainer account
                         .bold()
                 }
             }
+        }
+        .sheet(isPresented: $createAccount, onDismiss: {
+            Task {
+                try? await viewModel.loadCurrentUser()
+            }
+        }) {
+            FillInformationView()
         }
     }
 }
