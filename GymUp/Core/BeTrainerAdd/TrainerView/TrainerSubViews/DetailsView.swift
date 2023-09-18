@@ -17,7 +17,7 @@ struct DetailsView: View {
                 Divider()
                 RatingsInfoView(viewModel: viewModel)
             }
-            .frame(width: 300, height: 50)
+            .frame(width: 280, height: 50)
             Divider()
             
             AboutMeView(viewModel: viewModel)

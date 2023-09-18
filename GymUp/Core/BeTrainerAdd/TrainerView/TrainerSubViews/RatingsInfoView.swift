@@ -12,6 +12,7 @@ struct RatingsInfoView: View {
     
     var body: some View {
         HStack(spacing: 2) {
+            Spacer()
             if let trainer = viewModel.trainer {
                 Text("Rating: ")
                     .font(.system(size: 17))
@@ -21,6 +22,5 @@ struct RatingsInfoView: View {
                     .foregroundColor(Color.yellow)
             }
         }
-        .padding()
     }
 }

@@ -11,15 +11,17 @@ struct RatingsView: View {
     @ObservedObject var viewModel: BeTrainerAddViewModel
     
     var body: some View {
-        Button(action: {}) {
-            if let trainer = viewModel.trainer {
-                HStack {
-                    Text("Comments: ")
-                        .font(.system(size: 17))
-                    Text("\(trainer.comments ?? 0)")
-                        .bold()
+        HStack {
+            Button(action: {}) {
+                if let trainer = viewModel.trainer {
+                    HStack(spacing: 2){
+                        Text("Comments: ")
+                            .font(.system(size: 17))
+                        Text("\(trainer.comments ?? 0)")
+                            .bold()
+                        Spacer()
+                    }
                 }
-                .padding()
             }
         }
     }
