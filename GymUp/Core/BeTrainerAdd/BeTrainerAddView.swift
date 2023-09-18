@@ -30,12 +30,6 @@ struct BeTrainerAddView: View {
         }) {
             FillInformationView()
         }
-        .onAppear {
-            print("BeTrainerAddView appeared!")
-        }
-        .onDisappear {
-            print("BeTrainerAddView disappeared!")
-        }
         .task {
             try? await viewModel.loadCurrentUser()
         }
