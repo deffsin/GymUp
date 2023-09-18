@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
+    // i think i should to create another view model here, not the same like in the BeTrainerAdd
     var body: some View {
         NavigationStack {
             ScrollView {

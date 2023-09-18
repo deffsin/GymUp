@@ -13,8 +13,7 @@ struct TrainerView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                LinearGradient(colors: [.black.opacity(0.9), .mint.opacity(0.3)], startPoint: .top, endPoint: .bottom)
-                    .ignoresSafeArea()
+                Background()
                 
                 ScrollView {
                     VStack(spacing: 25) {
