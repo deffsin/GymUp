@@ -45,6 +45,8 @@
 		156CED902AA632B50000EEEA /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 156CED8F2AA632B50000EEEA /* FirebaseFirestoreSwift */; };
 		156CED962AA637080000EEEA /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156CED952AA637080000EEEA /* ProfileView.swift */; };
 		156CED9B2AA66EB70000EEEA /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156CED9A2AA66EB70000EEEA /* UserManager.swift */; };
+		1594917A2AB8E4CA00C8A683 /* BeTrainerAddError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159491792AB8E4CA00C8A683 /* BeTrainerAddError.swift */; };
+		1594917C2AB8E51600C8A683 /* UserManagerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1594917B2AB8E51600C8A683 /* UserManagerError.swift */; };
 		15BC79E02AAB2EAE000DD93F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BC79DF2AAB2EAE000DD93F /* MainView.swift */; };
 		15BC79E22AAB2EBA000DD93F /* BeTrainerAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BC79E12AAB2EBA000DD93F /* BeTrainerAddView.swift */; };
 		15BC79E52AAB2F36000DD93F /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BC79E42AAB2F36000DD93F /* TabBar.swift */; };
@@ -87,6 +89,8 @@
 		156CED852AA5CD420000EEEA /* SignInAppleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInAppleHelper.swift; sourceTree = "<group>"; };
 		156CED952AA637080000EEEA /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		156CED9A2AA66EB70000EEEA /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		159491792AB8E4CA00C8A683 /* BeTrainerAddError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeTrainerAddError.swift; sourceTree = "<group>"; };
+		1594917B2AB8E51600C8A683 /* UserManagerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManagerError.swift; sourceTree = "<group>"; };
 		15BC79DF2AAB2EAE000DD93F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		15BC79E12AAB2EBA000DD93F /* BeTrainerAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeTrainerAddView.swift; sourceTree = "<group>"; };
 		15BC79E42AAB2F36000DD93F /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
@@ -197,6 +201,7 @@
 		156CED572AA2894E0000EEEA /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				159491782AB8E4A400C8A683 /* AppErrors */,
 				156CED5B2AA289880000EEEA /* Utils */,
 				156CED582AA289560000EEEA /* Extensions */,
 			);
@@ -308,6 +313,15 @@
 				1536894C2AB38EC40043ABC8 /* NeedToCreateAccountView.swift */,
 			);
 			path = "AddInfo&CreateTrainerAcc";
+			sourceTree = "<group>";
+		};
+		159491782AB8E4A400C8A683 /* AppErrors */ = {
+			isa = PBXGroup;
+			children = (
+				159491792AB8E4CA00C8A683 /* BeTrainerAddError.swift */,
+				1594917B2AB8E51600C8A683 /* UserManagerError.swift */,
+			);
+			path = AppErrors;
 			sourceTree = "<group>";
 		};
 		15BC79DD2AAB2E88000DD93F /* BeTrainerAdd */ = {
@@ -430,6 +444,7 @@
 				15BC79E52AAB2F36000DD93F /* TabBar.swift in Sources */,
 				153689522AB5014F0043ABC8 /* DetailsView.swift in Sources */,
 				156CED682AA293720000EEEA /* AuthDataResultModel.swift in Sources */,
+				1594917A2AB8E4CA00C8A683 /* BeTrainerAddError.swift in Sources */,
 				156CED632AA28E040000EEEA /* SignInEmailViewModel.swift in Sources */,
 				153689562AB501BC0043ABC8 /* RatingsInfoView.swift in Sources */,
 				153689502AB501310043ABC8 /* UserInfoView.swift in Sources */,
@@ -452,6 +467,7 @@
 				156CED722AA335EB0000EEEA /* SettingsView.swift in Sources */,
 				15BC79E22AAB2EBA000DD93F /* BeTrainerAddView.swift in Sources */,
 				156CED662AA291660000EEEA /* AuthenticationManager.swift in Sources */,
+				1594917C2AB8E51600C8A683 /* UserManagerError.swift in Sources */,
 				156CED472AA287DC0000EEEA /* GymUpApp.swift in Sources */,
 				153689542AB501610043ABC8 /* RatingsView.swift in Sources */,
 			);
