@@ -20,9 +20,9 @@ struct TrainerInformation: Codable {
     let facebook: String?
     let webLink: String?
     let linkedIn: String?
-    let rating: String? // Double
-    let comments: String? // Int
-    let price: String?
+    let rating: Double? // Double!
+    let comments: Int? // Int!
+    let price: String? // String!
     
     init(auth: AuthDataResultModel) {
         self.id = auth.uid
@@ -53,8 +53,8 @@ struct TrainerInformation: Codable {
     facebook: String? = nil,
     webLink: String? = nil,
     linkedIn: String? = nil,
-    rating: String? = nil,
-    comments: String? = nil,
+    rating: Double? = nil,
+    comments: Int? = nil,
     price: String? = nil
     
     ) {
@@ -104,8 +104,8 @@ struct TrainerInformation: Codable {
         self.facebook = try container.decode(String.self, forKey: .facebook)
         self.webLink = try container.decode(String.self, forKey: .webLink)
         self.linkedIn = try container.decode(String.self, forKey: .linkedIn)
-        self.rating = try container.decode(String.self, forKey: .rating)
-        self.comments = try container.decode(String.self, forKey: .comments)
+        self.rating = try container.decode(Double.self, forKey: .rating)
+        self.comments = try container.decode(Int.self, forKey: .comments)
         self.price = try container.decode(String.self, forKey: .price)
     }
     
