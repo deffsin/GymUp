@@ -303,15 +303,23 @@
 			path = Firestore;
 			sourceTree = "<group>";
 		};
+		159491772AB8D8D100C8A683 /* AddInfo&CreateTrainerAcc */ = {
+			isa = PBXGroup;
+			children = (
+				1511C9462AAE311000864044 /* FillInformationView.swift */,
+				153689442AB3680B0043ABC8 /* FillInformationViewModel.swift */,
+				1536894C2AB38EC40043ABC8 /* NeedToCreateAccountView.swift */,
+			);
+			path = "AddInfo&CreateTrainerAcc";
+			sourceTree = "<group>";
+		};
 		15BC79DD2AAB2E88000DD93F /* BeTrainerAdd */ = {
 			isa = PBXGroup;
 			children = (
 				15BC79E12AAB2EBA000DD93F /* BeTrainerAddView.swift */,
 				153689402AB367CE0043ABC8 /* BeTrainerAddViewModel.swift */,
 				1536894E2AB5010C0043ABC8 /* TrainerView */,
-				1511C9462AAE311000864044 /* FillInformationView.swift */,
-				153689442AB3680B0043ABC8 /* FillInformationViewModel.swift */,
-				1536894C2AB38EC40043ABC8 /* NeedToCreateAccountView.swift */,
+				159491772AB8D8D100C8A683 /* AddInfo&CreateTrainerAcc */,
 			);
 			path = BeTrainerAdd;
 			sourceTree = "<group>";
