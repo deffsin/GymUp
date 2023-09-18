@@ -25,7 +25,7 @@ final class FillInformationViewModel: ObservableObject {
     @Published var instagram: String = ""
     @Published var facebook: String = ""
     @Published var linkedIn: String = ""
-    @Published var rating: Double = 0.0 // Double!
+    @Published var rating: Int = 0 // Double!
     @Published var comments: Int = 0 // Int! + it should be [] or {} in the Firebase(not for now)?
     @Published var price: String = "" // String!
     
@@ -34,7 +34,7 @@ final class FillInformationViewModel: ObservableObject {
         self.user = try await UserManager.shared.getUser(userId: authDataResult.uid)
     }
     
-    func addTrainerAllInformation(fullname: String, phoneNumber: String, email: String, description: String, location: String, gyms: String, webLink: String, instagram: String, facebook: String, linkedIn: String, rating: Double, comments: Int, price: String) {
+    func addTrainerAllInformation(fullname: String, phoneNumber: String, email: String, description: String, location: String, gyms: String, webLink: String, instagram: String, facebook: String, linkedIn: String, rating: Int, comments: Int, price: String) {
         isAddingInformation = true
         Task {
             let authDataResult = try AuthenticationManager.shared.authenticatedUser()
