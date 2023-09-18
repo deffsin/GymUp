@@ -14,19 +14,43 @@ final class BeTrainerAddViewModel: ObservableObject {
     @Published private(set) var trainer: TrainerInformation? = nil
         
     func loadCurrentUser() async throws {
-        let authDataResult = try AuthenticationManager.shared.authenticatedUser()
-        self.user = try await UserManager.shared.getUser(userId: authDataResult.uid)
-        self.trainer = try await UserManager.shared.getFirstTrainerInformation(userId: authDataResult.uid)
+        do {
+            let authDataResult = try AuthenticationManager.shared.authenticatedUser()
+            
+            guard let user = try? await UserManager.shared.getUser(userId: authDataResult.uid) else {
+                throw BeTrainerAddError.userRetrievalError
+            }
+            self.user = user
+            print(BeTrainerAddError.userDataLoaded.localizedDescription)
+            
+            guard let trainerInfo = try? await UserManager.shared.getFirstTrainerInformation(userId: authDataResult.uid) else {
+                throw BeTrainerAddError.trainerRetrievalError
+            }
+            self.trainer = trainerInfo
+            print(BeTrainerAddError.trainerDataLoaded.localizedDescription)
+            
+        } catch {
+            // An authentication issue
+            throw BeTrainerAddError.authenticationError
+        }
     }
 
     
     func toggleTrainerStatus() {
-        guard let user else { return }
-        let currentValue = user.isTrainer ?? false // some issue with log out, i can fix it later
+        guard let user = user else { return }
+        let currentValue = user.isTrainer ?? false
         Task {
-            try await UserManager.shared.updateUserTrainer(userId: user.userId, isTrainer: !currentValue)
-            self.user = try await UserManager.shared.getUser(userId: user.userId)
+            do {
+                try await UserManager.shared.updateUserTrainer(userId: user.userId, isTrainer: !currentValue)
+                
+                guard let updatedUser = try? await UserManager.shared.getUser(userId: user.userId) else {
+                    throw BeTrainerAddError.updateError
+                }
+                self.user = updatedUser
+            } catch {
+                // Handle error, it can send to some publisher to notify UI about the issue
+                print(error.localizedDescription)
+            }
         }
     }
-    
 }
