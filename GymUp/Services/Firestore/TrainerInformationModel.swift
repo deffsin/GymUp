@@ -93,6 +93,7 @@ struct TrainerInformation: Codable {
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        
         self.id = try container.decode(String.self, forKey: .id)
         self.fullname = try container.decode(String.self, forKey: .fullname)
         self.description = try container.decode(String.self, forKey: .description)
