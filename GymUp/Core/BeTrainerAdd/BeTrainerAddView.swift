@@ -10,25 +10,17 @@ import SwiftUI
 struct BeTrainerAddView: View {
     
     @ObservedObject var viewModel: BeTrainerAddViewModel
-    @State var createAccount = false
     @State var showTrainerInformation = false
     
     var body: some View {
         ZStack {
             if let user = viewModel.user {
                 if user.isTrainer == false {
-                    NeedToCreateAccountView(createAccount: $createAccount)
+                    NeedToCreateAccountView(viewModel: viewModel)
                 } else {
                     TrainerView(viewModel: viewModel)
                 }
             }
-        }
-        .sheet(isPresented: $createAccount, onDismiss: {
-            Task {
-                try? await viewModel.loadCurrentUser()
-            }
-        }) {
-            FillInformationView()
         }
         .task {
             try? await viewModel.loadCurrentUser()

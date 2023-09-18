@@ -11,7 +11,6 @@
 		1536893A2AB1D0250043ABC8 /* TrainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153689392AB1D0250043ABC8 /* TrainerView.swift */; };
 		1536893E2AB1D4560043ABC8 /* View+TrainerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1536893D2AB1D4560043ABC8 /* View+TrainerButton.swift */; };
 		153689412AB367CE0043ABC8 /* BeTrainerAddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153689402AB367CE0043ABC8 /* BeTrainerAddViewModel.swift */; };
-		153689432AB367F10043ABC8 /* TrainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153689422AB367F10043ABC8 /* TrainerViewModel.swift */; };
 		153689452AB3680B0043ABC8 /* FillInformationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153689442AB3680B0043ABC8 /* FillInformationViewModel.swift */; };
 		153689492AB36C230043ABC8 /* DBUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153689482AB36C230043ABC8 /* DBUserModel.swift */; };
 		1536894B2AB36C500043ABC8 /* TrainerInformationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1536894A2AB36C500043ABC8 /* TrainerInformationModel.swift */; };
@@ -57,7 +56,6 @@
 		153689392AB1D0250043ABC8 /* TrainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerView.swift; sourceTree = "<group>"; };
 		1536893D2AB1D4560043ABC8 /* View+TrainerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+TrainerButton.swift"; sourceTree = "<group>"; };
 		153689402AB367CE0043ABC8 /* BeTrainerAddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeTrainerAddViewModel.swift; sourceTree = "<group>"; };
-		153689422AB367F10043ABC8 /* TrainerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerViewModel.swift; sourceTree = "<group>"; };
 		153689442AB3680B0043ABC8 /* FillInformationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillInformationViewModel.swift; sourceTree = "<group>"; };
 		153689482AB36C230043ABC8 /* DBUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBUserModel.swift; sourceTree = "<group>"; };
 		1536894A2AB36C500043ABC8 /* TrainerInformationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerInformationModel.swift; sourceTree = "<group>"; };
@@ -123,7 +121,6 @@
 			isa = PBXGroup;
 			children = (
 				153689392AB1D0250043ABC8 /* TrainerView.swift */,
-				153689422AB367F10043ABC8 /* TrainerViewModel.swift */,
 				1536895B2AB502D70043ABC8 /* TrainerSubViews */,
 			);
 			path = TrainerView;
@@ -439,7 +436,6 @@
 				156CED612AA28DEB0000EEEA /* SignInView.swift in Sources */,
 				156CED782AA357C70000EEEA /* View+EmailSections.swift in Sources */,
 				156CED9B2AA66EB70000EEEA /* UserManager.swift in Sources */,
-				153689432AB367F10043ABC8 /* TrainerViewModel.swift in Sources */,
 				156CED762AA343840000EEEA /* AuthenticationView.swift in Sources */,
 				153689492AB36C230043ABC8 /* DBUserModel.swift in Sources */,
 				1536893E2AB1D4560043ABC8 /* View+TrainerButton.swift in Sources */,
