@@ -25,16 +25,16 @@ final class FillInformationViewModel: ObservableObject {
     @Published var instagram: String = ""
     @Published var facebook: String = ""
     @Published var linkedIn: String = ""
-    @Published var rating: String = "" // Double
-    @Published var comments: String = ""// Int
-    @Published var price: String = "" // Int?
+    @Published var rating: Int = 0 // Double!
+    @Published var comments: Int = 0 // Int! + it should be [] or {} in the Firebase(not for now)?
+    @Published var price: String = "" // String!
     
     func loadCurrentUser() async throws {
         let authDataResult = try AuthenticationManager.shared.authenticatedUser()
         self.user = try await UserManager.shared.getUser(userId: authDataResult.uid)
     }
     
-    func addTrainerAllInformation(fullname: String, phoneNumber: String, email: String, description: String, location: String, gyms: String, webLink: String, instagram: String, facebook: String, linkedIn: String, rating: String, comments: String, price: String) {
+    func addTrainerAllInformation(fullname: String, phoneNumber: String, email: String, description: String, location: String, gyms: String, webLink: String, instagram: String, facebook: String, linkedIn: String, rating: Int, comments: Int, price: String) {
         isAddingInformation = true
         Task {
             let authDataResult = try AuthenticationManager.shared.authenticatedUser()
