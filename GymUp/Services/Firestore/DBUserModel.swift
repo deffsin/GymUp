@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 struct DBUser: Codable {
     let userId: String
     let email: String?

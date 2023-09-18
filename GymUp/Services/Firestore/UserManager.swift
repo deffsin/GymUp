@@ -19,6 +19,27 @@ struct Movie: Codable {
 
 //
 
+enum UserManagerError: Error, LocalizedError {
+    case connectionFailed
+    case invalidData
+    case unauthorized
+    case unknownError
+
+    var errorDescription: String? {
+        switch self {
+        case .connectionFailed:
+            return "Failed to connect to the database"
+        case .invalidData:
+            return "Received invalid data from the database"
+        case .unauthorized:
+            return "User is not authorized"
+        case .unknownError:
+            return "An unknown error occurred"
+        }
+    }
+}
+
+
 final class UserManager {
     
     static let shared = UserManager()
@@ -43,7 +64,7 @@ final class UserManager {
         // encoder.keyEncodingStrategy = .convertToSnakeCase
         return encoder
     }()
-
+    
     private let decoder: Firestore.Decoder = { // decode при получении данных
         let decoder = Firestore.Decoder()
         // decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -51,52 +72,79 @@ final class UserManager {
     }()
     
     func createNewUser(user: DBUser) async throws {
-        try userDocument(userId: user.userId).setData(from: user, merge: false)
+        do {
+            try userDocument(userId: user.userId).setData(from: user, merge: false)
+            
+        } catch {
+            throw UserManagerError.connectionFailed
+        }
+    }
+    
+    
+    func getUser(userId: String) async throws -> DBUser {
+        do {
+            let user = try await userDocument(userId: userId).getDocument(as: DBUser.self)
+            return user
+            
+        } catch {
+            throw UserManagerError.connectionFailed
+        }
     }
 
     
-    func getUser(userId: String) async throws -> DBUser {
-        try await userDocument(userId: userId).getDocument(as: DBUser.self)
-    }
-    
     func getFirstTrainerInformation(userId: String) async throws -> TrainerInformation? {
-        let snapshot = try await trainerInformationCollection(userId: userId).getDocuments()
-        let documents = snapshot.documents
-        if let firstDocument = documents.first {
-            return try? firstDocument.data(as: TrainerInformation.self)
+        do {
+            let snapshot = try await trainerInformationCollection(userId: userId).getDocuments()
+            let documents = snapshot.documents
+            if let firstDocument = documents.first {
+                return try? firstDocument.data(as: TrainerInformation.self)
+            }
+            return nil
+            
+        } catch {
+            throw UserManagerError.connectionFailed
         }
-        return nil
     }
     
     // this function is used in the .sheet -> FillInformationView
     func addTrainerAllInformation(userId: String, fullname: String, phoneNumber: String, email: String, description: String, location: String, gyms: String, webLink: String, instagram: String, facebook: String, linkedIn: String, rating: Int, comments: Int, price: String) async throws {
-        let document = trainerInformationCollection(userId: userId).document()
-        let documentId = document.documentID
-        
-        let data: [String:Any] = [
-            TrainerInformation.CodingKeys.id.rawValue : documentId,
-            TrainerInformation.CodingKeys.fullname.rawValue : fullname,
-            TrainerInformation.CodingKeys.phoneNumber.rawValue : phoneNumber,
-            TrainerInformation.CodingKeys.email.rawValue : email,
-            TrainerInformation.CodingKeys.description.rawValue : description,
-            TrainerInformation.CodingKeys.location.rawValue : location,
-            TrainerInformation.CodingKeys.gyms.rawValue : gyms,
-            TrainerInformation.CodingKeys.webLink.rawValue : webLink,
-            TrainerInformation.CodingKeys.instagram.rawValue : instagram,
-            TrainerInformation.CodingKeys.facebook.rawValue : facebook,
-            TrainerInformation.CodingKeys.linkedIn.rawValue : linkedIn,
-            TrainerInformation.CodingKeys.rating.rawValue : rating,
-            TrainerInformation.CodingKeys.comments.rawValue : comments,
-            TrainerInformation.CodingKeys.price.rawValue : price
-        ]
-        try await document.setData(data, merge: false)
+        do {
+            let document = trainerInformationCollection(userId: userId).document()
+            let documentId = document.documentID
+            
+            let data: [String:Any] = [
+                TrainerInformation.CodingKeys.id.rawValue : documentId,
+                TrainerInformation.CodingKeys.fullname.rawValue : fullname,
+                TrainerInformation.CodingKeys.phoneNumber.rawValue : phoneNumber,
+                TrainerInformation.CodingKeys.email.rawValue : email,
+                TrainerInformation.CodingKeys.description.rawValue : description,
+                TrainerInformation.CodingKeys.location.rawValue : location,
+                TrainerInformation.CodingKeys.gyms.rawValue : gyms,
+                TrainerInformation.CodingKeys.webLink.rawValue : webLink,
+                TrainerInformation.CodingKeys.instagram.rawValue : instagram,
+                TrainerInformation.CodingKeys.facebook.rawValue : facebook,
+                TrainerInformation.CodingKeys.linkedIn.rawValue : linkedIn,
+                TrainerInformation.CodingKeys.rating.rawValue : rating,
+                TrainerInformation.CodingKeys.comments.rawValue : comments,
+                TrainerInformation.CodingKeys.price.rawValue : price
+            ]
+            try await document.setData(data, merge: false)
+            
+        } catch {
+            throw UserManagerError.connectionFailed
+        }
     }
         
     func updateUserTrainer(userId: String, isTrainer: Bool) async throws {
-        let data: [String:Any] = [
-            DBUser.CodingKeys.isTrainer.rawValue : isTrainer
-        ]
-        try await userDocument(userId: userId).updateData(data)
+        do {
+            let data: [String:Any] = [
+                DBUser.CodingKeys.isTrainer.rawValue : isTrainer
+            ]
+            try await userDocument(userId: userId).updateData(data)
+            
+        } catch {
+            throw UserManagerError.connectionFailed
+        }
     }
     
     func addUserPreference(userId: String, preference: String) async throws {
