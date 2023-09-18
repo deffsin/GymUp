@@ -8,14 +8,18 @@
 import SwiftUI
 
 struct RatingsInfoView: View {
+    @ObservedObject var viewModel: BeTrainerAddViewModel
+    
     var body: some View {
         HStack(spacing: 2) {
-            Text("Rating: ")
-                .font(.system(size: 17))
-            Text("4.7")
-                .bold()
-            Image(systemName: "star.fill")
-                .foregroundColor(Color.yellow)
+            if let trainer = viewModel.trainer {
+                Text("Rating: ")
+                    .font(.system(size: 17))
+                Text("\(trainer.rating ?? 0)")
+                    .bold()
+                Image(systemName: "star.fill")
+                    .foregroundColor(Color.yellow)
+            }
         }
         .padding()
     }

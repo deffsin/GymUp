@@ -13,9 +13,9 @@ struct DetailsView: View {
     var body: some View {
         VStack {
             HStack {
-                RatingsView()
+                RatingsView(viewModel: viewModel)
                 Divider()
-                RatingsInfoView()
+                RatingsInfoView(viewModel: viewModel)
             }
             .frame(width: 300, height: 50)
             Divider()
