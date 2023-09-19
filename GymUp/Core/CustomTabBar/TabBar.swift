@@ -10,6 +10,7 @@ import SwiftUI
 let backgroundColor = Color.init(white: 0.92)
 
 struct TabBar: View {
+    @StateObject private var mainViewModel = MainViewModel()
     @StateObject private var beTrainerViewModel = BeTrainerAddViewModel()
 
     @Binding var showSignInView: Bool
@@ -23,7 +24,7 @@ struct TabBar: View {
             ZStack {
                 switch selectedTab {
                 case .main:
-                    MainView()
+                    MainView(viewModel: mainViewModel)
                 case .beTrainerAdd:
                     BeTrainerAddView(viewModel: beTrainerViewModel)
                 case .settings:
