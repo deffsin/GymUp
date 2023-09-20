@@ -49,6 +49,8 @@
 		1594917C2AB8E51600C8A683 /* UserManagerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1594917B2AB8E51600C8A683 /* UserManagerError.swift */; };
 		159491802AB8E9A600C8A683 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1594917F2AB8E9A600C8A683 /* Background.swift */; };
 		159491822AB8EC3A00C8A683 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159491812AB8EC3A00C8A683 /* MainViewModel.swift */; };
+		15AD51CE2ABA46FB00713ED9 /* UserProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AD51CD2ABA46FB00713ED9 /* UserProfileCell.swift */; };
+		15AD51D02ABA470A00713ED9 /* UserProfileCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AD51CF2ABA470A00713ED9 /* UserProfileCellViewModel.swift */; };
 		15BC79E02AAB2EAE000DD93F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BC79DF2AAB2EAE000DD93F /* MainView.swift */; };
 		15BC79E22AAB2EBA000DD93F /* BeTrainerAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BC79E12AAB2EBA000DD93F /* BeTrainerAddView.swift */; };
 		15BC79E52AAB2F36000DD93F /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BC79E42AAB2F36000DD93F /* TabBar.swift */; };
@@ -95,6 +97,8 @@
 		1594917B2AB8E51600C8A683 /* UserManagerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManagerError.swift; sourceTree = "<group>"; };
 		1594917F2AB8E9A600C8A683 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		159491812AB8EC3A00C8A683 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		15AD51CD2ABA46FB00713ED9 /* UserProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileCell.swift; sourceTree = "<group>"; };
+		15AD51CF2ABA470A00713ED9 /* UserProfileCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileCellViewModel.swift; sourceTree = "<group>"; };
 		15BC79DF2AAB2EAE000DD93F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		15BC79E12AAB2EBA000DD93F /* BeTrainerAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeTrainerAddView.swift; sourceTree = "<group>"; };
 		15BC79E42AAB2F36000DD93F /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
@@ -337,6 +341,15 @@
 			path = Designs;
 			sourceTree = "<group>";
 		};
+		15AD51D12ABA470F00713ED9 /* UserProfileCell */ = {
+			isa = PBXGroup;
+			children = (
+				15AD51CD2ABA46FB00713ED9 /* UserProfileCell.swift */,
+				15AD51CF2ABA470A00713ED9 /* UserProfileCellViewModel.swift */,
+			);
+			path = UserProfileCell;
+			sourceTree = "<group>";
+		};
 		15BC79DD2AAB2E88000DD93F /* BeTrainerAdd */ = {
 			isa = PBXGroup;
 			children = (
@@ -353,6 +366,7 @@
 			children = (
 				15BC79DF2AAB2EAE000DD93F /* MainView.swift */,
 				159491812AB8EC3A00C8A683 /* MainViewModel.swift */,
+				15AD51D12ABA470F00713ED9 /* UserProfileCell */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -455,11 +469,13 @@
 				15BC79E72AAB2F3E000DD93F /* TabBarView1.swift in Sources */,
 				156CED802AA3629E0000EEEA /* AuthenticationViewModel.swift in Sources */,
 				156CED742AA3367C0000EEEA /* SettingsViewModel.swift in Sources */,
+				15AD51CE2ABA46FB00713ED9 /* UserProfileCell.swift in Sources */,
 				15BC79E52AAB2F36000DD93F /* TabBar.swift in Sources */,
 				153689522AB5014F0043ABC8 /* DetailsView.swift in Sources */,
 				156CED682AA293720000EEEA /* AuthDataResultModel.swift in Sources */,
 				159491802AB8E9A600C8A683 /* Background.swift in Sources */,
 				1594917A2AB8E4CA00C8A683 /* BeTrainerAddError.swift in Sources */,
+				15AD51D02ABA470A00713ED9 /* UserProfileCellViewModel.swift in Sources */,
 				156CED632AA28E040000EEEA /* SignInEmailViewModel.swift in Sources */,
 				159491822AB8EC3A00C8A683 /* MainViewModel.swift in Sources */,
 				153689562AB501BC0043ABC8 /* RatingsInfoView.swift in Sources */,

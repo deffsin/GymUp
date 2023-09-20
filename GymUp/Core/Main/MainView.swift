@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MainView: View {
     // i think i should to create another view model here, not the same like in the BeTrainerAdd
+    @ObservedObject var viewModel: MainViewModel
+    
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -32,6 +34,6 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        MainView(viewModel: MainViewModel())
     }
 }
