@@ -51,6 +51,13 @@
 		159491822AB8EC3A00C8A683 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159491812AB8EC3A00C8A683 /* MainViewModel.swift */; };
 		15AD51CE2ABA46FB00713ED9 /* UserProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AD51CD2ABA46FB00713ED9 /* UserProfileCell.swift */; };
 		15AD51D02ABA470A00713ED9 /* UserProfileCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AD51CF2ABA470A00713ED9 /* UserProfileCellViewModel.swift */; };
+		15AD51D42ABB6F9A00713ED9 /* UserProfileImageAndInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AD51D32ABB6F9A00713ED9 /* UserProfileImageAndInfo.swift */; };
+		15AD51D62ABB6FB300713ED9 /* UserProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AD51D52ABB6FB300713ED9 /* UserProfileImage.swift */; };
+		15AD51D82ABB6FF300713ED9 /* InfoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AD51D72ABB6FF300713ED9 /* InfoRow.swift */; };
+		15AD51DA2ABB702D00713ED9 /* TrainingPlaceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AD51D92ABB702D00713ED9 /* TrainingPlaceInfo.swift */; };
+		15AD51DC2ABB705400713ED9 /* TrainerExperienceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AD51DB2ABB705400713ED9 /* TrainerExperienceInfo.swift */; };
+		15AD51DE2ABB706F00713ED9 /* IconTextRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AD51DD2ABB706F00713ED9 /* IconTextRow.swift */; };
+		15AD51E02ABB709000713ED9 /* InfoRowWithRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AD51DF2ABB709000713ED9 /* InfoRowWithRating.swift */; };
 		15BC79E02AAB2EAE000DD93F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BC79DF2AAB2EAE000DD93F /* MainView.swift */; };
 		15BC79E22AAB2EBA000DD93F /* BeTrainerAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BC79E12AAB2EBA000DD93F /* BeTrainerAddView.swift */; };
 		15BC79E52AAB2F36000DD93F /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BC79E42AAB2F36000DD93F /* TabBar.swift */; };
@@ -99,6 +106,13 @@
 		159491812AB8EC3A00C8A683 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		15AD51CD2ABA46FB00713ED9 /* UserProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileCell.swift; sourceTree = "<group>"; };
 		15AD51CF2ABA470A00713ED9 /* UserProfileCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileCellViewModel.swift; sourceTree = "<group>"; };
+		15AD51D32ABB6F9A00713ED9 /* UserProfileImageAndInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileImageAndInfo.swift; sourceTree = "<group>"; };
+		15AD51D52ABB6FB300713ED9 /* UserProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileImage.swift; sourceTree = "<group>"; };
+		15AD51D72ABB6FF300713ED9 /* InfoRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoRow.swift; sourceTree = "<group>"; };
+		15AD51D92ABB702D00713ED9 /* TrainingPlaceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlaceInfo.swift; sourceTree = "<group>"; };
+		15AD51DB2ABB705400713ED9 /* TrainerExperienceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerExperienceInfo.swift; sourceTree = "<group>"; };
+		15AD51DD2ABB706F00713ED9 /* IconTextRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconTextRow.swift; sourceTree = "<group>"; };
+		15AD51DF2ABB709000713ED9 /* InfoRowWithRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoRowWithRating.swift; sourceTree = "<group>"; };
 		15BC79DF2AAB2EAE000DD93F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		15BC79E12AAB2EBA000DD93F /* BeTrainerAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeTrainerAddView.swift; sourceTree = "<group>"; };
 		15BC79E42AAB2F36000DD93F /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
@@ -346,8 +360,39 @@
 			children = (
 				15AD51CD2ABA46FB00713ED9 /* UserProfileCell.swift */,
 				15AD51CF2ABA470A00713ED9 /* UserProfileCellViewModel.swift */,
+				15AD51D22ABB6F7700713ED9 /* UserProfileCellSubViews */,
 			);
 			path = UserProfileCell;
+			sourceTree = "<group>";
+		};
+		15AD51D22ABB6F7700713ED9 /* UserProfileCellSubViews */ = {
+			isa = PBXGroup;
+			children = (
+				15AD51E12ABB709F00713ED9 /* Left side */,
+				15AD51E22ABB70B300713ED9 /* Right side */,
+			);
+			path = UserProfileCellSubViews;
+			sourceTree = "<group>";
+		};
+		15AD51E12ABB709F00713ED9 /* Left side */ = {
+			isa = PBXGroup;
+			children = (
+				15AD51D32ABB6F9A00713ED9 /* UserProfileImageAndInfo.swift */,
+				15AD51D52ABB6FB300713ED9 /* UserProfileImage.swift */,
+				15AD51D72ABB6FF300713ED9 /* InfoRow.swift */,
+				15AD51DF2ABB709000713ED9 /* InfoRowWithRating.swift */,
+			);
+			path = "Left side";
+			sourceTree = "<group>";
+		};
+		15AD51E22ABB70B300713ED9 /* Right side */ = {
+			isa = PBXGroup;
+			children = (
+				15AD51D92ABB702D00713ED9 /* TrainingPlaceInfo.swift */,
+				15AD51DB2ABB705400713ED9 /* TrainerExperienceInfo.swift */,
+				15AD51DD2ABB706F00713ED9 /* IconTextRow.swift */,
+			);
+			path = "Right side";
 			sourceTree = "<group>";
 		};
 		15BC79DD2AAB2E88000DD93F /* BeTrainerAdd */ = {
@@ -471,6 +516,7 @@
 				156CED742AA3367C0000EEEA /* SettingsViewModel.swift in Sources */,
 				15AD51CE2ABA46FB00713ED9 /* UserProfileCell.swift in Sources */,
 				15BC79E52AAB2F36000DD93F /* TabBar.swift in Sources */,
+				15AD51D82ABB6FF300713ED9 /* InfoRow.swift in Sources */,
 				153689522AB5014F0043ABC8 /* DetailsView.swift in Sources */,
 				156CED682AA293720000EEEA /* AuthDataResultModel.swift in Sources */,
 				159491802AB8E9A600C8A683 /* Background.swift in Sources */,
@@ -481,13 +527,16 @@
 				153689562AB501BC0043ABC8 /* RatingsInfoView.swift in Sources */,
 				153689502AB501310043ABC8 /* UserInfoView.swift in Sources */,
 				156CED612AA28DEB0000EEEA /* SignInView.swift in Sources */,
+				15AD51DE2ABB706F00713ED9 /* IconTextRow.swift in Sources */,
 				156CED782AA357C70000EEEA /* View+EmailSections.swift in Sources */,
 				156CED9B2AA66EB70000EEEA /* UserManager.swift in Sources */,
 				156CED762AA343840000EEEA /* AuthenticationView.swift in Sources */,
+				15AD51D62ABB6FB300713ED9 /* UserProfileImage.swift in Sources */,
 				153689492AB36C230043ABC8 /* DBUserModel.swift in Sources */,
 				1536893E2AB1D4560043ABC8 /* View+TrainerButton.swift in Sources */,
 				1536893A2AB1D0250043ABC8 /* TrainerView.swift in Sources */,
 				1511C9472AAE311000864044 /* FillInformationView.swift in Sources */,
+				15AD51DC2ABB705400713ED9 /* TrainerExperienceInfo.swift in Sources */,
 				153689452AB3680B0043ABC8 /* FillInformationViewModel.swift in Sources */,
 				156CED962AA637080000EEEA /* ProfileView.swift in Sources */,
 				1536895A2AB502100043ABC8 /* ResourcesView.swift in Sources */,
@@ -495,11 +544,14 @@
 				156CED842AA3E6DF0000EEEA /* SignInGoogleHelper.swift in Sources */,
 				15BC79E02AAB2EAE000DD93F /* MainView.swift in Sources */,
 				156CED492AA287DC0000EEEA /* ContentView.swift in Sources */,
+				15AD51DA2ABB702D00713ED9 /* TrainingPlaceInfo.swift in Sources */,
 				156CED702AA332780000EEEA /* RootView.swift in Sources */,
 				156CED722AA335EB0000EEEA /* SettingsView.swift in Sources */,
 				15BC79E22AAB2EBA000DD93F /* BeTrainerAddView.swift in Sources */,
+				15AD51E02ABB709000713ED9 /* InfoRowWithRating.swift in Sources */,
 				156CED662AA291660000EEEA /* AuthenticationManager.swift in Sources */,
 				1594917C2AB8E51600C8A683 /* UserManagerError.swift in Sources */,
+				15AD51D42ABB6F9A00713ED9 /* UserProfileImageAndInfo.swift in Sources */,
 				156CED472AA287DC0000EEEA /* GymUpApp.swift in Sources */,
 				153689542AB501610043ABC8 /* RatingsView.swift in Sources */,
 			);

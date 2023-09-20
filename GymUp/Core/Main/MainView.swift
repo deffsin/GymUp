@@ -13,20 +13,21 @@ struct MainView: View {
     
     var body: some View {
         NavigationStack {
-            ScrollView {
-                ZStack {
+            ZStack {
+                Background()
+                
+                ScrollView {
                     VStack {
-                        VStack {
-                            Text("Main")
-                        }
+                        UserProfileCell(viewModel: viewModel)
                     }
                     .padding(.horizontal, 20)
+                    .foregroundColor(Color.white)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-            }
-            .refreshable {
-                try? await Task.sleep(nanoseconds: 1_200_000_000)
-                // try? await viewModel.loadCurrentUser()
+                .refreshable {
+                    try? await Task.sleep(nanoseconds: 1_200_000_000)
+                    // try? await viewModel.loadCurrentUser()
+                }
             }
         }
     }
