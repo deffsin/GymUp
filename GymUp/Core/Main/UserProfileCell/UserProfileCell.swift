@@ -33,7 +33,7 @@ struct UserProfileCell: View {
                 .padding([.horizontal, .vertical], 7)
             }
             .frame(maxWidth: .infinity, minHeight: 170)
-            .background(Color.white.opacity(0.8))
+            .background(Color.white.opacity(0.9))
             .foregroundColor(Color.black)
             .cornerRadius(15)
             .shadow(color: .black, radius: 8)
