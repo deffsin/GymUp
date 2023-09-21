@@ -32,7 +32,7 @@ struct UserInfoView: View {
                         Image(systemName: "location")
                             .font(.system(size: 12))
                     }
-                    .foregroundColor(Color.white.opacity(0.8))
+                    .foregroundColor(Color.white.opacity(0.9))
                     
                     Text("Trainer at: \(trainer.gyms ?? "")")
                         .font(.system(size: 17))

@@ -15,6 +15,6 @@ struct UserProfileImage: View {
             .frame(width: 90, height: 105)
             .clipShape(RoundedRectangle(cornerRadius: 20))
             .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.white, lineWidth: 2))
-            .shadow(color: .white, radius: 2)
+            .shadow(color: .black, radius: 2)
     }
 }
