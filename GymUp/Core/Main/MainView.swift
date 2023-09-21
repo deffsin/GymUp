@@ -50,6 +50,9 @@ struct MainView: View {
                 // try? await viewModel.loadCurrentUser() // аккаунт залогиненова тренера будет отображаться в самом верху
                 try? await viewModel.loadAllTrainers()
             }
+            .navigationDestination(isPresented: $viewModel.messageView) {
+                MessageView()
+            }
             .sheet(isPresented: $viewModel.filtersView) {
                 FiltersView()
             }
