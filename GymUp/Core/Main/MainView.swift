@@ -17,7 +17,19 @@ struct MainView: View {
                 Background()
                 
                 ScrollView {
-                    VStack(spacing: 20){
+                    VStack(spacing: 20) {
+                        HStack {
+                            IconButton(systemName: "message") {
+                                viewModel.messageView.toggle()
+                            }
+                            
+                            Spacer()
+                            
+                            IconButton(systemName: "list.bullet") {
+                                viewModel.filtersView.toggle()
+                            }
+                        }
+                        
                         if let trainers = viewModel.allTrainers {
                             ForEach(trainers, id: \.id) { trainerInfo in
                                 UserProfileCell(trainer: trainerInfo)
@@ -34,16 +46,12 @@ struct MainView: View {
                     try? await viewModel.loadAllTrainers()
                 }
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Text("Main view")
-                        .font(.system(size: 24))
-                        .foregroundColor(Color.white)
-                }
-            }
             .task {
                 // try? await viewModel.loadCurrentUser() // аккаунт залогиненова тренера будет отображаться в самом верху
                 try? await viewModel.loadAllTrainers()
+            }
+            .sheet(isPresented: $viewModel.filtersView) {
+                FiltersView()
             }
         }
     }

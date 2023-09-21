@@ -45,6 +45,9 @@
 		156CED902AA632B50000EEEA /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 156CED8F2AA632B50000EEEA /* FirebaseFirestoreSwift */; };
 		156CED962AA637080000EEEA /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156CED952AA637080000EEEA /* ProfileView.swift */; };
 		156CED9B2AA66EB70000EEEA /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156CED9A2AA66EB70000EEEA /* UserManager.swift */; };
+		157978362ABCF1F20084B624 /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157978352ABCF1F20084B624 /* IconButton.swift */; };
+		1579783A2ABCF26D0084B624 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157978392ABCF26D0084B624 /* MessageView.swift */; };
+		1579783C2ABCF3BA0084B624 /* FiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1579783B2ABCF3BA0084B624 /* FiltersView.swift */; };
 		1594917A2AB8E4CA00C8A683 /* BeTrainerAddError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159491792AB8E4CA00C8A683 /* BeTrainerAddError.swift */; };
 		1594917C2AB8E51600C8A683 /* UserManagerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1594917B2AB8E51600C8A683 /* UserManagerError.swift */; };
 		159491802AB8E9A600C8A683 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1594917F2AB8E9A600C8A683 /* Background.swift */; };
@@ -100,6 +103,9 @@
 		156CED852AA5CD420000EEEA /* SignInAppleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInAppleHelper.swift; sourceTree = "<group>"; };
 		156CED952AA637080000EEEA /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		156CED9A2AA66EB70000EEEA /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		157978352ABCF1F20084B624 /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
+		157978392ABCF26D0084B624 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
+		1579783B2ABCF3BA0084B624 /* FiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersView.swift; sourceTree = "<group>"; };
 		159491792AB8E4CA00C8A683 /* BeTrainerAddError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeTrainerAddError.swift; sourceTree = "<group>"; };
 		1594917B2AB8E51600C8A683 /* UserManagerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManagerError.swift; sourceTree = "<group>"; };
 		1594917F2AB8E9A600C8A683 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
@@ -328,6 +334,22 @@
 			path = Firestore;
 			sourceTree = "<group>";
 		};
+		157978372ABCF2490084B624 /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				157978392ABCF26D0084B624 /* MessageView.swift */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
+		157978382ABCF2500084B624 /* Filters */ = {
+			isa = PBXGroup;
+			children = (
+				1579783B2ABCF3BA0084B624 /* FiltersView.swift */,
+			);
+			path = Filters;
+			sourceTree = "<group>";
+		};
 		159491772AB8D8D100C8A683 /* AddInfo&CreateTrainerAcc */ = {
 			isa = PBXGroup;
 			children = (
@@ -411,6 +433,9 @@
 			children = (
 				15BC79DF2AAB2EAE000DD93F /* MainView.swift */,
 				159491812AB8EC3A00C8A683 /* MainViewModel.swift */,
+				157978352ABCF1F20084B624 /* IconButton.swift */,
+				157978372ABCF2490084B624 /* Messages */,
+				157978382ABCF2500084B624 /* Filters */,
 				15AD51D12ABA470F00713ED9 /* UserProfileCell */,
 			);
 			path = Main;
@@ -507,6 +532,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				157978362ABCF1F20084B624 /* IconButton.swift in Sources */,
 				153689412AB367CE0043ABC8 /* BeTrainerAddViewModel.swift in Sources */,
 				1536894D2AB38EC50043ABC8 /* NeedToCreateAccountView.swift in Sources */,
 				153689582AB501FD0043ABC8 /* AboutMeView.swift in Sources */,
@@ -518,6 +544,7 @@
 				15BC79E52AAB2F36000DD93F /* TabBar.swift in Sources */,
 				15AD51D82ABB6FF300713ED9 /* InfoRow.swift in Sources */,
 				153689522AB5014F0043ABC8 /* DetailsView.swift in Sources */,
+				1579783A2ABCF26D0084B624 /* MessageView.swift in Sources */,
 				156CED682AA293720000EEEA /* AuthDataResultModel.swift in Sources */,
 				159491802AB8E9A600C8A683 /* Background.swift in Sources */,
 				1594917A2AB8E4CA00C8A683 /* BeTrainerAddError.swift in Sources */,
@@ -529,6 +556,7 @@
 				156CED612AA28DEB0000EEEA /* SignInView.swift in Sources */,
 				15AD51DE2ABB706F00713ED9 /* IconTextRow.swift in Sources */,
 				156CED782AA357C70000EEEA /* View+EmailSections.swift in Sources */,
+				1579783C2ABCF3BA0084B624 /* FiltersView.swift in Sources */,
 				156CED9B2AA66EB70000EEEA /* UserManager.swift in Sources */,
 				156CED762AA343840000EEEA /* AuthenticationView.swift in Sources */,
 				15AD51D62ABB6FB300713ED9 /* UserProfileImage.swift in Sources */,
