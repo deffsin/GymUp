@@ -8,17 +8,17 @@
 import SwiftUI
 
 struct UserProfileImageAndInfo: View {
+    var trainer: TrainerInformation
+    
     var body: some View {
         VStack(spacing: 10) {
-            // Spacer()
             UserProfileImage()
             
             VStack(spacing: 3){
-                InfoRow(imageName: "person.text.rectangle", text: "Denis")
-                InfoRow(imageName: "location", text: "Tallinn, Estonia")
-                InfoRowWithRating(valute: "20", rating: "4.7")
+                InfoRow(imageName: "person.text.rectangle", text: trainer.fullname ?? "")
+                InfoRow(imageName: "location", text: trainer.location ?? "")
+                InfoRowWithRating(valute: trainer.price ?? "", rating: String(describing: trainer.rating ?? 0))
             }
-            //Spacer()
         }
         .frame(width: 110, height: 170)
         // .background(Color.red)
