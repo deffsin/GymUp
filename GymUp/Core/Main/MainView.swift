@@ -17,8 +17,12 @@ struct MainView: View {
                 Background()
                 
                 ScrollView {
-                    VStack {
-                        UserProfileCell(viewModel: viewModel)
+                    VStack(spacing: 20){
+                        if let trainers = viewModel.allTrainers {
+                            ForEach(trainers, id: \.id) { trainerInfo in
+                                UserProfileCell(trainer: trainerInfo)
+                            }
+                        }
                     }
                     .padding(.horizontal, 20)
                     .foregroundColor(Color.white)
@@ -26,8 +30,20 @@ struct MainView: View {
                 }
                 .refreshable {
                     try? await Task.sleep(nanoseconds: 1_200_000_000)
-                    // try? await viewModel.loadCurrentUser()
+                    try? await viewModel.loadCurrentUser()
+                    try? await viewModel.loadAllTrainers()
                 }
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Text("Main view")
+                        .font(.system(size: 24))
+                        .foregroundColor(Color.white)
+                }
+            }
+            .task {
+                // try? await viewModel.loadCurrentUser() // аккаунт залогиненова тренера будет отображаться в самом верху
+                try? await viewModel.loadAllTrainers()
             }
         }
     }

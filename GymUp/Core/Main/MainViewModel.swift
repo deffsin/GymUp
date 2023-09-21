@@ -12,8 +12,8 @@ import SwiftUI
 final class MainViewModel: ObservableObject {
     
     @Published private(set) var user: DBUser? = nil
-    @Published private(set) var trainer: TrainerInformation? = nil
-        
+    @Published private(set) var allTrainers: [TrainerInformation]? = nil
+
     func loadCurrentUser() async throws {
         do {
             let authDataResult = try AuthenticationManager.shared.authenticatedUser()
@@ -23,16 +23,20 @@ final class MainViewModel: ObservableObject {
             }
             self.user = user
             // print(BeTrainerAddError.userDataLoaded.localizedDescription)
-            
-            guard let trainerInfo = try? await UserManager.shared.getFirstTrainerInformation(userId: authDataResult.uid) else {
-                throw BeTrainerAddError.trainerRetrievalError
-            }
-            self.trainer = trainerInfo
-            // print(BeTrainerAddError.trainerDataLoaded.localizedDescription)
-            
         } catch {
             // An authentication issue
             throw BeTrainerAddError.authenticationError
         }
     }
+    
+    func loadAllTrainers() async throws {
+        do {
+            let allTrainerInformation = try await UserManager.shared.getAllTrainerInformation()
+            self.allTrainers = allTrainerInformation
+            
+        } catch {
+            throw BeTrainerAddError.trainerRetrievalError
+        }
+    }
+
 }

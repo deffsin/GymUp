@@ -86,6 +86,27 @@ final class UserManager {
         }
     }
     
+    func getAllTrainerInformation() async throws -> [TrainerInformation] {
+        var allTrainerInfos: [TrainerInformation] = []
+        
+        do {
+            let snapshot = try await userCollection.getDocuments()
+            let userDocuments = snapshot.documents
+            
+            for userDoc in userDocuments {
+                let userId = userDoc.documentID
+                
+                if let trainerInfo = try? await getFirstTrainerInformation(userId: userId) {
+                    allTrainerInfos.append(trainerInfo)
+                }
+            }
+            return allTrainerInfos
+            
+        } catch {
+            throw UserManagerError.connectionFailed
+        }
+    }
+    
     // this function is used in the .sheet -> FillInformationView
     func addTrainerAllInformation(userId: String, fullname: String, phoneNumber: String, email: String, description: String, location: String, gyms: String, webLink: String, instagram: String, facebook: String, linkedIn: String, rating: Int, comments: Int, price: String) async throws {
         do {

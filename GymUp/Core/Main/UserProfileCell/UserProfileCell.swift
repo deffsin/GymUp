@@ -8,22 +8,21 @@
 import SwiftUI
 
 struct UserProfileCell: View {
-    @ObservedObject var viewModel: MainViewModel
+    var trainer: TrainerInformation
     
     var body: some View {
         ZStack {
             VStack {
                 HStack {
                     VStack(spacing: 10){
-                        // Spacer()
-                        UserProfileImageAndInfo()
+                        UserProfileImageAndInfo(trainer: trainer)
                     }
                     .frame(width: 110, height: 180)
                     // .background(Color.red)
                     
                     VStack(spacing: 8){
-                        TrainingPlaceInfo()
-                        TrainerExperienceInfo()
+                        TrainingPlaceInfo(trainer: trainer)
+                        TrainerExperienceInfo(trainer: trainer)
                     }
                     .frame(maxWidth: .infinity, maxHeight: 160)
                     // .background(Color.red)
@@ -33,7 +32,7 @@ struct UserProfileCell: View {
                 .padding([.horizontal, .vertical], 7)
             }
             .frame(maxWidth: .infinity, minHeight: 170)
-            .background(Color.white.opacity(0.8))
+            .background(Color.white.opacity(0.9))
             .foregroundColor(Color.black)
             .cornerRadius(15)
             .shadow(color: .black, radius: 8)
@@ -41,8 +40,8 @@ struct UserProfileCell: View {
     }
 }
 
-struct UserProfileCell_Previews: PreviewProvider {
-    static var previews: some View {
-        UserProfileCell(viewModel: MainViewModel())
-    }
-}
+// struct UserProfileCell_Previews: PreviewProvider {
+//     static var previews: some View {
+//         UserProfileCell(viewModel: MainViewModel())
+//     }
+// }
