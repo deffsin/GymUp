@@ -22,20 +22,31 @@ struct UserInfoView: View {
             
             if let trainer = viewModel.trainer {
                 VStack(spacing: 5){
-                    Text(trainer.fullname ?? "")
-                        .bold()
-                        .font(.system(size: 19))
+                    HStack(spacing: 5) {
+                        Image(systemName: "person.text.rectangle")
+                            .font(.system(size: 12))
+                        
+                        Text(trainer.fullname ?? "")
+                            .bold()
+                            .font(.system(size: 19))
+                    }
                     
-                    HStack(spacing: 5){
-                        Text(trainer.location ?? "")
-                            .font(.system(size: 15))
+                    HStack(spacing: 5) {
                         Image(systemName: "location")
                             .font(.system(size: 12))
+                        
+                        Text(trainer.location ?? "")
+                            .font(.system(size: 15))
                     }
                     .foregroundColor(Color.white.opacity(0.9))
                     
-                    Text("Trainer at: \(trainer.gyms ?? "")")
-                        .font(.system(size: 17))
+                    HStack(spacing: 5) {
+                        Image(systemName: "dumbbell")
+                            .font(.system(size: 12))
+                        
+                        Text("Trainer at: \(trainer.gyms ?? "")")
+                            .font(.system(size: 17))
+                    }
                 }
                 
                 HStack(spacing:25) {
