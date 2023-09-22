@@ -11,8 +11,9 @@ struct TrainingPlaceInfo: View {
     var trainer: TrainerInformation
     
     var body: some View {
-        HStack(alignment: .firstTextBaseline, spacing: 3) {
+        HStack(spacing: 3) {
             IconTextRow(imageName: "dumbbell", text: "Trainer at: \(trainer.gyms ?? "")")
+                .multilineTextAlignment(.leading)
             Spacer()
         }
     }

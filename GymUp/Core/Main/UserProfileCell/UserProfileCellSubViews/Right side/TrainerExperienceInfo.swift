@@ -12,8 +12,9 @@ struct TrainerExperienceInfo: View {
     
     var body: some View {
         VStack {
-            HStack(alignment: .firstTextBaseline, spacing: 8) {
+            HStack(spacing: 8) {
                 IconTextRow(imageName: "info.bubble", text: trainer.description ?? "")
+                    .multilineTextAlignment(.leading)
                 Spacer()
             }
             Spacer()

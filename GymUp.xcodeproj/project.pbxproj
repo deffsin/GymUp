@@ -21,6 +21,7 @@
 		153689562AB501BC0043ABC8 /* RatingsInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153689552AB501BC0043ABC8 /* RatingsInfoView.swift */; };
 		153689582AB501FD0043ABC8 /* AboutMeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153689572AB501FD0043ABC8 /* AboutMeView.swift */; };
 		1536895A2AB502100043ABC8 /* ResourcesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153689592AB502100043ABC8 /* ResourcesView.swift */; };
+		1540F6B72ABD902D00808427 /* UserProfileCellDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1540F6B62ABD902D00808427 /* UserProfileCellDetailView.swift */; };
 		156CED472AA287DC0000EEEA /* GymUpApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156CED462AA287DC0000EEEA /* GymUpApp.swift */; };
 		156CED492AA287DC0000EEEA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156CED482AA287DC0000EEEA /* ContentView.swift */; };
 		156CED4B2AA287DD0000EEEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 156CED4A2AA287DD0000EEEA /* Assets.xcassets */; };
@@ -82,6 +83,7 @@
 		153689552AB501BC0043ABC8 /* RatingsInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingsInfoView.swift; sourceTree = "<group>"; };
 		153689572AB501FD0043ABC8 /* AboutMeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutMeView.swift; sourceTree = "<group>"; };
 		153689592AB502100043ABC8 /* ResourcesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesView.swift; sourceTree = "<group>"; };
+		1540F6B62ABD902D00808427 /* UserProfileCellDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileCellDetailView.swift; sourceTree = "<group>"; };
 		156CED432AA287DC0000EEEA /* GymUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GymUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		156CED462AA287DC0000EEEA /* GymUpApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymUpApp.swift; sourceTree = "<group>"; };
 		156CED482AA287DC0000EEEA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -433,6 +435,7 @@
 			children = (
 				15BC79DF2AAB2EAE000DD93F /* MainView.swift */,
 				159491812AB8EC3A00C8A683 /* MainViewModel.swift */,
+				1540F6B62ABD902D00808427 /* UserProfileCellDetailView.swift */,
 				157978352ABCF1F20084B624 /* IconButton.swift */,
 				157978372ABCF2490084B624 /* Messages */,
 				157978382ABCF2500084B624 /* Filters */,
@@ -566,6 +569,7 @@
 				1511C9472AAE311000864044 /* FillInformationView.swift in Sources */,
 				15AD51DC2ABB705400713ED9 /* TrainerExperienceInfo.swift in Sources */,
 				153689452AB3680B0043ABC8 /* FillInformationViewModel.swift in Sources */,
+				1540F6B72ABD902D00808427 /* UserProfileCellDetailView.swift in Sources */,
 				156CED962AA637080000EEEA /* ProfileView.swift in Sources */,
 				1536895A2AB502100043ABC8 /* ResourcesView.swift in Sources */,
 				156CED862AA5CD420000EEEA /* SignInAppleHelper.swift in Sources */,
