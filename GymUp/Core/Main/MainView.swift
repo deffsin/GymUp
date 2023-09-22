@@ -17,10 +17,24 @@ struct MainView: View {
                 Background()
                 
                 ScrollView {
-                    VStack(spacing: 20){
+                    VStack(spacing: 20) {
+                        HStack {
+                            IconButton(systemName: "message") {
+                                viewModel.messageView.toggle()
+                            }
+                            
+                            Spacer()
+                            
+                            IconButton(systemName: "list.bullet") {
+                                viewModel.filtersView.toggle()
+                            }
+                        }
+                        
                         if let trainers = viewModel.allTrainers {
                             ForEach(trainers, id: \.id) { trainerInfo in
-                                UserProfileCell(trainer: trainerInfo)
+                                NavigationLink(destination: UserProfileCellDetailView(trainer: trainerInfo)) {
+                                    UserProfileCell(trainer: trainerInfo)
+                                }
                             }
                         }
                     }
@@ -30,20 +44,18 @@ struct MainView: View {
                 }
                 .refreshable {
                     try? await Task.sleep(nanoseconds: 1_200_000_000)
-                    try? await viewModel.loadCurrentUser()
+                    // try? await viewModel.loadCurrentUser() do i need it???
                     try? await viewModel.loadAllTrainers()
                 }
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Text("Main view")
-                        .font(.system(size: 24))
-                        .foregroundColor(Color.white)
-                }
-            }
             .task {
-                // try? await viewModel.loadCurrentUser() // аккаунт залогиненова тренера будет отображаться в самом верху
                 try? await viewModel.loadAllTrainers()
+            }
+            .navigationDestination(isPresented: $viewModel.messageView) {
+                MessageView()
+            }
+            .sheet(isPresented: $viewModel.filtersView) {
+                FiltersView()
             }
         }
     }
