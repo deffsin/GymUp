@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		1501CA2E2ABDB74100766F67 /* UserProfileCellInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1501CA2D2ABDB74100766F67 /* UserProfileCellInfoView.swift */; };
-		1501CA302ABDB77300766F67 /* UserProfileCellDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1501CA2F2ABDB77300766F67 /* UserProfileCellDetailsView.swift */; };
 		1501CA322ABDB78900766F67 /* UserProfileCellRatingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1501CA312ABDB78900766F67 /* UserProfileCellRatingsView.swift */; };
 		1501CA342ABDB79300766F67 /* UserProfileCellRatingsInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1501CA332ABDB79300766F67 /* UserProfileCellRatingsInfoView.swift */; };
 		1501CA362ABDB7B500766F67 /* UserProfileCellAboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1501CA352ABDB7B500766F67 /* UserProfileCellAboutView.swift */; };
 		1501CA382ABDB7BC00766F67 /* UserProfileCellResourcesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1501CA372ABDB7BC00766F67 /* UserProfileCellResourcesView.swift */; };
+		1501CA442ABE564100766F67 /* UserProfileCellDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1501CA432ABE564100766F67 /* UserProfileCellDetailsView.swift */; };
+		1501CA462ABE574B00766F67 /* BackgroundUserProfileCellDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1501CA452ABE574B00766F67 /* BackgroundUserProfileCellDetailView.swift */; };
 		1511C9472AAE311000864044 /* FillInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1511C9462AAE311000864044 /* FillInformationView.swift */; };
 		1536893A2AB1D0250043ABC8 /* TrainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153689392AB1D0250043ABC8 /* TrainerView.swift */; };
 		1536893E2AB1D4560043ABC8 /* View+TrainerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1536893D2AB1D4560043ABC8 /* View+TrainerButton.swift */; };
@@ -76,11 +77,12 @@
 
 /* Begin PBXFileReference section */
 		1501CA2D2ABDB74100766F67 /* UserProfileCellInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileCellInfoView.swift; sourceTree = "<group>"; };
-		1501CA2F2ABDB77300766F67 /* UserProfileCellDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileCellDetailsView.swift; sourceTree = "<group>"; };
 		1501CA312ABDB78900766F67 /* UserProfileCellRatingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileCellRatingsView.swift; sourceTree = "<group>"; };
 		1501CA332ABDB79300766F67 /* UserProfileCellRatingsInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileCellRatingsInfoView.swift; sourceTree = "<group>"; };
 		1501CA352ABDB7B500766F67 /* UserProfileCellAboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileCellAboutView.swift; sourceTree = "<group>"; };
 		1501CA372ABDB7BC00766F67 /* UserProfileCellResourcesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileCellResourcesView.swift; sourceTree = "<group>"; };
+		1501CA432ABE564100766F67 /* UserProfileCellDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileCellDetailsView.swift; sourceTree = "<group>"; };
+		1501CA452ABE574B00766F67 /* BackgroundUserProfileCellDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundUserProfileCellDetailView.swift; sourceTree = "<group>"; };
 		1511C9462AAE311000864044 /* FillInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillInformationView.swift; sourceTree = "<group>"; };
 		153689392AB1D0250043ABC8 /* TrainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerView.swift; sourceTree = "<group>"; };
 		1536893D2AB1D4560043ABC8 /* View+TrainerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+TrainerButton.swift"; sourceTree = "<group>"; };
@@ -168,8 +170,8 @@
 			isa = PBXGroup;
 			children = (
 				1501CA2D2ABDB74100766F67 /* UserProfileCellInfoView.swift */,
-				1501CA2F2ABDB77300766F67 /* UserProfileCellDetailsView.swift */,
 				1501CA312ABDB78900766F67 /* UserProfileCellRatingsView.swift */,
+				1501CA432ABE564100766F67 /* UserProfileCellDetailsView.swift */,
 				1501CA332ABDB79300766F67 /* UserProfileCellRatingsInfoView.swift */,
 				1501CA352ABDB7B500766F67 /* UserProfileCellAboutView.swift */,
 				1501CA372ABDB7BC00766F67 /* UserProfileCellResourcesView.swift */,
@@ -409,6 +411,7 @@
 			isa = PBXGroup;
 			children = (
 				1594917F2AB8E9A600C8A683 /* Background.swift */,
+				1501CA452ABE574B00766F67 /* BackgroundUserProfileCellDetailView.swift */,
 			);
 			path = Designs;
 			sourceTree = "<group>";
@@ -593,18 +596,19 @@
 				1501CA382ABDB7BC00766F67 /* UserProfileCellResourcesView.swift in Sources */,
 				156CED612AA28DEB0000EEEA /* SignInView.swift in Sources */,
 				15AD51DE2ABB706F00713ED9 /* IconTextRow.swift in Sources */,
-				1501CA302ABDB77300766F67 /* UserProfileCellDetailsView.swift in Sources */,
 				156CED782AA357C70000EEEA /* View+EmailSections.swift in Sources */,
 				1579783C2ABCF3BA0084B624 /* FiltersView.swift in Sources */,
 				156CED9B2AA66EB70000EEEA /* UserManager.swift in Sources */,
 				156CED762AA343840000EEEA /* AuthenticationView.swift in Sources */,
 				15AD51D62ABB6FB300713ED9 /* UserProfileImage.swift in Sources */,
 				153689492AB36C230043ABC8 /* DBUserModel.swift in Sources */,
+				1501CA462ABE574B00766F67 /* BackgroundUserProfileCellDetailView.swift in Sources */,
 				1536893E2AB1D4560043ABC8 /* View+TrainerButton.swift in Sources */,
 				1536893A2AB1D0250043ABC8 /* TrainerView.swift in Sources */,
 				1511C9472AAE311000864044 /* FillInformationView.swift in Sources */,
 				15AD51DC2ABB705400713ED9 /* TrainerExperienceInfo.swift in Sources */,
 				153689452AB3680B0043ABC8 /* FillInformationViewModel.swift in Sources */,
+				1501CA442ABE564100766F67 /* UserProfileCellDetailsView.swift in Sources */,
 				1540F6B72ABD902D00808427 /* UserProfileCellDetailView.swift in Sources */,
 				156CED962AA637080000EEEA /* ProfileView.swift in Sources */,
 				1536895A2AB502100043ABC8 /* ResourcesView.swift in Sources */,

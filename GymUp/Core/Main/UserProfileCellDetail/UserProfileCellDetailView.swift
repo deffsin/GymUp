@@ -13,7 +13,7 @@ struct UserProfileCellDetailView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                // background
+                BackgroundUserProfileCellDetailView()
                 
                 ScrollView {
                     VStack(spacing: 25) {
