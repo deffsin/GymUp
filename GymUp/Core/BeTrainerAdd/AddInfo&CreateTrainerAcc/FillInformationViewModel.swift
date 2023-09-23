@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 @MainActor
 final class FillInformationViewModel: ObservableObject {
@@ -28,6 +29,44 @@ final class FillInformationViewModel: ObservableObject {
     @Published var rating: Int = 0 // Double!
     @Published var comments: Int = 0 // Int! + it should be [] or {} in the Firebase(not for now)?
     @Published var price: String = "" // String!
+    
+    @Published var showButton: Bool = false
+    @Published var emailIsValid: Bool = false
+    var cancellables = Set<AnyCancellable>()
+    
+    init() {
+        addEmailSubscriber()
+        addButtonSubscriber()
+    }
+    
+    func addEmailSubscriber() {
+        $email
+            .debounce(for: .seconds(0.6), scheduler: DispatchQueue.main)
+            .map { (text) -> Bool in
+                if text.contains("@") {
+                    return true
+                }
+                return false
+            }
+            .sink(receiveValue: { [weak self] (isValid) in
+                self?.emailIsValid = isValid
+            })
+            .store(in: &cancellables)
+    }
+    
+    func addButtonSubscriber() {
+        $emailIsValid
+            //.combineLatest(fullname, description, location, gyms, phoneNumber)
+            .sink { [weak self] (isValid) in
+                guard let self = self else { return }
+                if isValid {
+                    self.showButton = true
+                } else {
+                    self.showButton = false
+                }
+            }
+            .store(in: &cancellables)
+    }
     
     func loadCurrentUser() async throws {
         let authDataResult = try AuthenticationManager.shared.authenticatedUser()

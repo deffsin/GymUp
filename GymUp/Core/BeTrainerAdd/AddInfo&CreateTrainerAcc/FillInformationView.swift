@@ -63,7 +63,9 @@ struct FillInformationView: View {
                             .foregroundColor(Color.white)
                             .background(Color.blue)
                             .cornerRadius(15)
+                            .opacity(viewModel.showButton ? 1.0 : 0.5)
                     }
+                    .disabled(!viewModel.showButton)
                 }
                 .padding(.horizontal, 10)
             }
