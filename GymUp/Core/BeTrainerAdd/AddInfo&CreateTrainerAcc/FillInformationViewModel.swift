@@ -32,11 +32,13 @@ final class FillInformationViewModel: ObservableObject {
     
     @Published var showButton: Bool = false
     @Published var emailIsValid: Bool = false
+    @Published var phoneNumberIsValid: Bool = false
     var cancellables = Set<AnyCancellable>()
     
     init() {
         addEmailSubscriber()
         addButtonSubscriber()
+        addPhoneNumberSubscriber()
     }
     
     func addEmailSubscriber() {
@@ -54,12 +56,26 @@ final class FillInformationViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
+    func addPhoneNumberSubscriber() {
+        $phoneNumber
+            .debounce(for: .seconds(0.6), scheduler: DispatchQueue.main)
+            .map { (text) -> Bool in
+                if text.contains("+") {
+                    return true
+                }
+                return false
+            }
+            .sink(receiveValue: { [weak self] (isValid) in
+                self?.phoneNumberIsValid = isValid
+            })
+            .store(in: &cancellables)
+    }
+    
     func addButtonSubscriber() {
-        $emailIsValid
-            //.combineLatest(fullname, description, location, gyms, phoneNumber)
-            .sink { [weak self] (isValid) in
+        Publishers.CombineLatest($emailIsValid, $phoneNumberIsValid)
+            .sink { [weak self] (emailIsValid, phoneNumberIsValid) in
                 guard let self = self else { return }
-                if isValid {
+                if emailIsValid && phoneNumberIsValid {
                     self.showButton = true
                 } else {
                     self.showButton = false
