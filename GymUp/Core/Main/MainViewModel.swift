@@ -11,7 +11,7 @@ import Combine
 
 @MainActor
 final class MainViewModel: ObservableObject {
-    // It might have been best to create a separate VM for the .searchable functionality, but for now i've decided to keep everything in MainViewModel because the logic isn't too complex
+    // It might have been best to create a separate VM for the .searchable functionality, but for now i've decided to keep everything in MainViewModel since the logic isn't too complex.
     
     @Published private(set) var user: DBUser? = nil
     @Published private(set) var allTrainers: [TrainerInformation]? = nil
@@ -21,6 +21,9 @@ final class MainViewModel: ObservableObject {
     
     @Published var filteredTrainers: [TrainerInformation] = []
     @Published var searchTerm = ""
+    
+    var cancellables: Set<AnyCancellable> = []
+
     
     init() {
         searchTermSubscriber()
@@ -56,14 +59,38 @@ final class MainViewModel: ObservableObject {
         }
     }
     
-    func loadAllTrainers() async throws {
-        do {
-            let allTrainerInformation = try await UserManager.shared.getAllTrainerInformation()
-            self.allTrainers = allTrainerInformation
-            
-        } catch {
-            throw BeTrainerAddError.trainerRetrievalError
+    func loadAllTrainers() {
+        Future<[TrainerInformation], BeTrainerAddError> { promise in
+            Task {
+                do {
+                    let allTrainerInformation = try await UserManager.shared.getAllTrainerInformation()
+                    promise(.success(allTrainerInformation))
+                } catch {
+                    promise(.failure(.trainerRetrievalError))
+                }
+            }
         }
-    }
-
+        .receive(on: DispatchQueue.main)
+        .sink(receiveCompletion: { completion in
+            switch completion {
+            case .finished:
+                break
+            case .failure(let error):
+                print("Error: \(error)")
+            }
+        }, receiveValue: { [weak self] trainerInformation in
+            self?.allTrainers = trainerInformation
+        })
+        .store(in: &cancellables)
+    } // Combine
 }
+
+//    func loadAllTrainers() async throws {
+//        do {
+//            let allTrainerInformation = try await UserManager.shared.getAllTrainerInformation()
+//            self.allTrainers = allTrainerInformation
+//
+//        } catch {
+//            throw BeTrainerAddError.trainerRetrievalError
+//        }
+//    }
