@@ -22,18 +22,18 @@ struct FillInformationView: View {
             } else {
                 VStack(spacing: 15) {
                     VStack {
-                        InformationField(title: "Fullname:", placeholder: "Name and last name", text: $viewModel.fullname)
-                        InformationField(title: "Email:", placeholder: "Email", text: $viewModel.email, keyboardType: .emailAddress)
-                        InformationField(title: "Number:", placeholder: "Phone number", text: $viewModel.phoneNumber, keyboardType: .phonePad)
-                        InformationField(title: "Location", placeholder: "Location", text: $viewModel.location)
-                        InformationField(title: "Gyms:", placeholder: "Gyms", text: $viewModel.gyms)
+                        InformationField(title: "Fullname:", placeholder: "Name and last name", text: $viewModel.fullname, isValid: viewModel.fullnameIsValid)
+                        InformationField(title: "Email:", placeholder: "Email", text: $viewModel.email, isValid: viewModel.emailIsValid, keyboardType: .emailAddress)
+                        InformationField(title: "Number:", placeholder: "Phone number", text: $viewModel.phoneNumber, isValid: viewModel.phoneNumberIsValid, keyboardType: .phonePad)
+                        InformationField(title: "Location", placeholder: "Location", text: $viewModel.location, isValid: viewModel.locationIsValid)
+                        InformationField(title: "Gyms:", placeholder: "Gyms", text: $viewModel.gyms, isValid: viewModel.gymsIsValid)
                     }
                     VStack {
                         InformationField(title: "Link:", placeholder: "Web link", text: $viewModel.webLink)
                         InformationField(title: "Instagram:", placeholder: "Instagram", text: $viewModel.instagram)
                         InformationField(title: "Facebook:", placeholder: "Facebook", text: $viewModel.facebook)
                         InformationField(title: "LinkedIn", placeholder: "LinkedIn", text: $viewModel.linkedIn)
-                        InformationField(title: "Hourly rate:", placeholder: "Hourly rate", text: $viewModel.price)
+                        InformationField(title: "Hourly rate:", placeholder: "Hourly rate", text: $viewModel.price, isValid: viewModel.priceIsValid)
                     }
                     
                     VStack {
@@ -44,6 +44,24 @@ struct FillInformationView: View {
                             TextEditor(text: $viewModel.description)
                                 .padding([.horizontal, .vertical], 5)
                                 .frame(width: 250, height: 100)
+                                .overlay (
+                                    ZStack {
+                                        Image(systemName: "xmark")
+                                            .foregroundColor(Color.red)
+                                            .opacity(
+                                                viewModel.description.count < 1 ? 0.0 :
+                                                    (viewModel.descriptionIsValid) ? 0.0 : 1.0
+                                            )
+                                        
+                                        Image(systemName: "checkmark")
+                                            .foregroundColor(Color.green)
+                                            .opacity(
+                                                (viewModel.descriptionIsValid) ? 1.0 : 0.0
+                                            )
+                                    }
+                                    .padding([.bottom, .trailing], 5)
+                                    ,alignment: .bottomTrailing
+                                )
                                 .overlay {
                                     RoundedRectangle(cornerRadius: 10)
                                         .stroke(Color.gray.opacity(0.4), lineWidth: 1)
@@ -81,6 +99,7 @@ struct InformationField: View {
     var title: String
     var placeholder: String
     @Binding var text: String
+    var isValid: Bool?
     var keyboardType: UIKeyboardType = .default
 
     var body: some View {
@@ -90,10 +109,28 @@ struct InformationField: View {
             TextField(placeholder, text: $text)
                 .padding([.horizontal, .vertical], 5)
                 .frame(width: 250, height: 30)
-                .overlay {
+                .overlay(
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(Color.gray.opacity(0.4), lineWidth: 1)
-                }
+                )
+                .overlay (
+                    ZStack {
+                        Image(systemName: "xmark")
+                            .foregroundColor(Color.red)
+                            .opacity(
+                                text.count < 1 ? 0.0 :
+                                    (isValid ?? false) ? 0.0 : 1.0
+                            )
+                        
+                        Image(systemName: "checkmark")
+                            .foregroundColor(Color.green)
+                            .opacity(
+                                (isValid ?? false) ? 1.0 : 0.0
+                            )
+                    }
+                    .padding(.trailing, 3)
+                    ,alignment: .trailing
+                )
                 .keyboardType(keyboardType)
             Spacer()
         }
