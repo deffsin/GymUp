@@ -31,19 +31,42 @@ final class FillInformationViewModel: ObservableObject {
     @Published var price: String = "" // String!
     
     @Published var showButton: Bool = false
+    @Published var fullnameIsValid: Bool = false
     @Published var emailIsValid: Bool = false
+    @Published var descriptionIsValid: Bool = false
+    @Published var locationIsValid: Bool = false
+    @Published var gymsIsValid: Bool = false
     @Published var phoneNumberIsValid: Bool = false
+    @Published var priceIsValid: Bool = false
+    
     var cancellables = Set<AnyCancellable>()
     
     init() {
+        addFullnameSubscriber()
         addEmailSubscriber()
-        addButtonSubscriber()
+        addDescriptionSubscriber()
+        addLocationSubscriber()
+        addGymsSubscriber()
         addPhoneNumberSubscriber()
+        addPriceSubscriber()
+        addButtonSubscriber()
+    }
+    
+    func addFullnameSubscriber() {
+        $fullname
+            .map { (text) -> Bool in
+                let regex = "^[a-zA-Z\\s]+$"
+                let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
+                return predicate.evaluate(with: text)
+            }
+            .sink(receiveValue: { [weak self] (isValid) in
+                self?.fullnameIsValid = isValid
+            })
+            .store(in: &cancellables)
     }
     
     func addEmailSubscriber() {
         $email
-            .debounce(for: .seconds(0.6), scheduler: DispatchQueue.main)
             .map { (text) -> Bool in
                 if text.contains("@") {
                     return true
@@ -56,9 +79,43 @@ final class FillInformationViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
+    func addDescriptionSubscriber() {
+        $description
+            .map { (text) -> Bool in
+                return !text.isEmpty
+            }
+            .sink(receiveValue: { [weak self] (isValid) in
+                self?.descriptionIsValid = isValid
+            })
+            .store(in: &cancellables)
+    }
+    
+    func addLocationSubscriber() {
+        $location
+            .map { (text) -> Bool in
+                let regex = "^[a-zA-Z\\s-',]+$"
+                let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
+                return predicate.evaluate(with: text)
+            }
+            .sink(receiveValue: { [weak self] (isValid) in
+                self?.locationIsValid = isValid
+            })
+            .store(in: &cancellables)
+    }
+    
+    func addGymsSubscriber() {
+        $gyms
+            .map { (text) -> Bool in
+                return !text.isEmpty
+            }
+            .sink(receiveValue: { [weak self] (isValid) in
+                self?.gymsIsValid = isValid
+            })
+            .store(in: &cancellables)
+    }
+    
     func addPhoneNumberSubscriber() {
         $phoneNumber
-            .debounce(for: .seconds(0.6), scheduler: DispatchQueue.main)
             .map { (text) -> Bool in
                 if text.contains("+") {
                     return true
@@ -71,11 +128,35 @@ final class FillInformationViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
+    func addPriceSubscriber() {
+        $price
+            .map { (text) -> Bool in
+                return !text.isEmpty
+            }
+            .sink(receiveValue: { [weak self] (isValid) in
+                self?.priceIsValid = isValid
+            })
+            .store(in: &cancellables)
+    }
+    
     func addButtonSubscriber() {
-        Publishers.CombineLatest($emailIsValid, $phoneNumberIsValid)
-            .sink { [weak self] (emailIsValid, phoneNumberIsValid) in
+        let combineLatestFirstFour = Publishers.CombineLatest4($fullnameIsValid, $emailIsValid, $descriptionIsValid, $locationIsValid)
+            .eraseToAnyPublisher()
+        
+        let combineLatestLastThree = Publishers.CombineLatest3($gymsIsValid, $phoneNumberIsValid, $priceIsValid)
+            .eraseToAnyPublisher()
+
+        let combineFinal = Publishers.CombineLatest(combineLatestFirstFour, combineLatestLastThree)
+            .map { (firstFour, lastThree) in
+                return (firstFour.0, firstFour.1, firstFour.2, firstFour.3, lastThree.0, lastThree.1, lastThree.2)
+            }
+            .eraseToAnyPublisher()
+            
+        combineFinal
+            .debounce(for: .seconds(0.6), scheduler: DispatchQueue.main)
+            .sink { [weak self] (fullnameIsValid, emailIsValid, descriptionIsValid, locationIsValid, gymsIsValid, phoneNumberIsValid, priceIsValid) in
                 guard let self = self else { return }
-                if emailIsValid && phoneNumberIsValid {
+                if fullnameIsValid && emailIsValid && descriptionIsValid && locationIsValid && gymsIsValid && phoneNumberIsValid && priceIsValid {
                     self.showButton = true
                 } else {
                     self.showButton = false
@@ -83,6 +164,7 @@ final class FillInformationViewModel: ObservableObject {
             }
             .store(in: &cancellables)
     }
+
     
     func loadCurrentUser() async throws {
         let authDataResult = try AuthenticationManager.shared.authenticatedUser()
