@@ -43,8 +43,8 @@ struct MainView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
                 .refreshable {
-                    viewModel.loadAllTrainers() // try? await 
-                    try? await Task.sleep(nanoseconds: 1_200_000_000)
+                    try? await Task.sleep(nanoseconds: 1_500_000_000)
+                    viewModel.loadAllTrainers() // try? await
                 }
             }
             .searchable(text: $viewModel.searchTerm)
