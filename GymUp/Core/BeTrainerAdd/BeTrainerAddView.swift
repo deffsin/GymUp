@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BeTrainerAddView: View {
-    
+    @StateObject var trainerEditVM = TrainerEditViewModel()
     @ObservedObject var viewModel: BeTrainerAddViewModel
     @State var showTrainerInformation = false
     
@@ -18,12 +18,13 @@ struct BeTrainerAddView: View {
                 if user.isTrainer == false {
                     NeedToCreateAccountView(viewModel: viewModel)
                 } else {
-                    TrainerView(viewModel: viewModel)
+                    TrainerView(viewModel: viewModel, trainerEditVM: trainerEditVM)
                 }
             }
         }
         .task {
             try? await viewModel.loadCurrentUser()
+            try? await viewModel.loadCurrentTrainer()
         }
     }
 }

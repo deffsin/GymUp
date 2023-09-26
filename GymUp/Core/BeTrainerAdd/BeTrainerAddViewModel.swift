@@ -22,20 +22,26 @@ final class BeTrainerAddViewModel: ObservableObject {
             }
             self.user = user
             print(BeTrainerAddError.userDataLoaded.localizedDescription)
+        }
+        
+    }
+        
+    func loadCurrentTrainer() async throws {
+        do {
+            let authDataResult = try AuthenticationManager.shared.authenticatedUser()
             
             guard let trainerInfo = try? await UserManager.shared.getFirstTrainerInformation(userId: authDataResult.uid) else {
                 throw BeTrainerAddError.trainerRetrievalError
             }
             self.trainer = trainerInfo
-            print(BeTrainerAddError.trainerDataLoaded.localizedDescription)
             
+            print(BeTrainerAddError.trainerDataLoaded.localizedDescription)
         } catch {
             // An authentication issue
             throw BeTrainerAddError.authenticationError
         }
     }
-
-    
+        
     func toggleTrainerStatus() {
         guard let user = user else { return }
         let currentValue = user.isTrainer ?? false

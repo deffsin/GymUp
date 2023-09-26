@@ -15,6 +15,8 @@
 		1501CA442ABE564100766F67 /* UserProfileCellDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1501CA432ABE564100766F67 /* UserProfileCellDetailsView.swift */; };
 		1501CA462ABE574B00766F67 /* BackgroundUserProfileCellDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1501CA452ABE574B00766F67 /* BackgroundUserProfileCellDetailView.swift */; };
 		1501CA482AC1C9D400766F67 /* InformationField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1501CA472AC1C9D400766F67 /* InformationField.swift */; };
+		1501CA4E2AC35D0300766F67 /* TrainerEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1501CA4D2AC35D0300766F67 /* TrainerEditView.swift */; };
+		1501CA502AC35EE900766F67 /* TrainerEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1501CA4F2AC35EE900766F67 /* TrainerEditViewModel.swift */; };
 		1511C9472AAE311000864044 /* FillInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1511C9462AAE311000864044 /* FillInformationView.swift */; };
 		1536893A2AB1D0250043ABC8 /* TrainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153689392AB1D0250043ABC8 /* TrainerView.swift */; };
 		1536893E2AB1D4560043ABC8 /* View+TrainerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1536893D2AB1D4560043ABC8 /* View+TrainerButton.swift */; };
@@ -85,6 +87,8 @@
 		1501CA432ABE564100766F67 /* UserProfileCellDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileCellDetailsView.swift; sourceTree = "<group>"; };
 		1501CA452ABE574B00766F67 /* BackgroundUserProfileCellDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundUserProfileCellDetailView.swift; sourceTree = "<group>"; };
 		1501CA472AC1C9D400766F67 /* InformationField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationField.swift; sourceTree = "<group>"; };
+		1501CA4D2AC35D0300766F67 /* TrainerEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerEditView.swift; sourceTree = "<group>"; };
+		1501CA4F2AC35EE900766F67 /* TrainerEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerEditViewModel.swift; sourceTree = "<group>"; };
 		1511C9462AAE311000864044 /* FillInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillInformationView.swift; sourceTree = "<group>"; };
 		153689392AB1D0250043ABC8 /* TrainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerView.swift; sourceTree = "<group>"; };
 		1536893D2AB1D4560043ABC8 /* View+TrainerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+TrainerButton.swift"; sourceTree = "<group>"; };
@@ -193,6 +197,8 @@
 			isa = PBXGroup;
 			children = (
 				153689392AB1D0250043ABC8 /* TrainerView.swift */,
+				1501CA4D2AC35D0300766F67 /* TrainerEditView.swift */,
+				1501CA4F2AC35EE900766F67 /* TrainerEditViewModel.swift */,
 				1536895B2AB502D70043ABC8 /* TrainerSubViews */,
 			);
 			path = TrainerView;
@@ -588,6 +594,7 @@
 				15AD51D82ABB6FF300713ED9 /* InfoRow.swift in Sources */,
 				153689522AB5014F0043ABC8 /* DetailsView.swift in Sources */,
 				1579783A2ABCF26D0084B624 /* MessageView.swift in Sources */,
+				1501CA502AC35EE900766F67 /* TrainerEditViewModel.swift in Sources */,
 				156CED682AA293720000EEEA /* AuthDataResultModel.swift in Sources */,
 				159491802AB8E9A600C8A683 /* Background.swift in Sources */,
 				1594917A2AB8E4CA00C8A683 /* BeTrainerAddError.swift in Sources */,
@@ -597,6 +604,7 @@
 				153689562AB501BC0043ABC8 /* RatingsInfoView.swift in Sources */,
 				153689502AB501310043ABC8 /* UserInfoView.swift in Sources */,
 				1501CA382ABDB7BC00766F67 /* UserProfileCellResourcesView.swift in Sources */,
+				1501CA4E2AC35D0300766F67 /* TrainerEditView.swift in Sources */,
 				156CED612AA28DEB0000EEEA /* SignInView.swift in Sources */,
 				15AD51DE2ABB706F00713ED9 /* IconTextRow.swift in Sources */,
 				156CED782AA357C70000EEEA /* View+EmailSections.swift in Sources */,
