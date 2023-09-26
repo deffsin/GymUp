@@ -44,12 +44,12 @@ struct MainView: View {
                 }
                 .refreshable {
                     try? await Task.sleep(nanoseconds: 1_200_000_000)
-                    try? await viewModel.loadAllTrainers()
+                    viewModel.loadAllTrainers() // try? await
                 }
             }
             .searchable(text: $viewModel.searchTerm)
             .task {
-                try? await viewModel.loadAllTrainers()
+                viewModel.loadAllTrainers() // try? await
             }
             .navigationDestination(isPresented: $viewModel.messageView) {
                 MessageView()
