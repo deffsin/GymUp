@@ -43,13 +43,13 @@ struct MainView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
                 .refreshable {
+                    viewModel.loadAllTrainers() // try? await 
                     try? await Task.sleep(nanoseconds: 1_200_000_000)
-                    viewModel.loadAllTrainers() // try? await
                 }
             }
             .searchable(text: $viewModel.searchTerm)
             .task {
-                viewModel.loadAllTrainers() // try? await
+                viewModel.loadAllTrainers()
             }
             .navigationDestination(isPresented: $viewModel.messageView) {
                 MessageView()
