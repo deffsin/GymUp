@@ -31,25 +31,25 @@ struct MainView: View {
                         }
                         
                         if let trainers = viewModel.allTrainers {
-                            ForEach(trainers, id: \.id) { trainerInfo in
+                            ForEach(viewModel.filteredTrainers, id: \.id) { trainerInfo in
                                 NavigationLink(destination: UserProfileCellDetailView(trainer: trainerInfo)) {
                                     UserProfileCell(trainer: trainerInfo)
                                 }
                             }
-                        }
+                          }
                     }
                     .padding(.horizontal, 20)
                     .foregroundColor(Color.white)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
                 .refreshable {
-                    try? await Task.sleep(nanoseconds: 1_200_000_000)
-                    // try? await viewModel.loadCurrentUser() do i need it???
-                    try? await viewModel.loadAllTrainers()
+                    try? await Task.sleep(nanoseconds: 1_500_000_000)
+                    viewModel.loadAllTrainers() // try? await
                 }
             }
+            .searchable(text: $viewModel.searchTerm)
             .task {
-                try? await viewModel.loadAllTrainers()
+                viewModel.loadAllTrainers()
             }
             .navigationDestination(isPresented: $viewModel.messageView) {
                 MessageView()
