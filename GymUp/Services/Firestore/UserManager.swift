@@ -135,6 +135,30 @@ final class UserManager {
             throw UserManagerError.connectionFailed
         }
     }
+    
+    func updateTrainerAllInformation(userId: String, trainerInformationId: String, newFullname: String, newPhoneNumber: String, newEmail: String, newDescription: String, newLocation: String, newGyms: String, newWebLink: String, newInstagram: String, newFacebook: String, newLinkedIn: String, newPrice: String) async throws {
+        let document = trainerInformationDocument(userId: userId, trainerInformationId: trainerInformationId)
+        
+        do {
+            let data: [String: Any] = [
+                TrainerInformation.CodingKeys.fullname.rawValue: newFullname,
+                TrainerInformation.CodingKeys.phoneNumber.rawValue : newPhoneNumber,
+                TrainerInformation.CodingKeys.email.rawValue : newEmail,
+                TrainerInformation.CodingKeys.description.rawValue : newDescription,
+                TrainerInformation.CodingKeys.location.rawValue : newLocation,
+                TrainerInformation.CodingKeys.gyms.rawValue : newGyms,
+                TrainerInformation.CodingKeys.webLink.rawValue : newWebLink,
+                TrainerInformation.CodingKeys.instagram.rawValue : newInstagram,
+                TrainerInformation.CodingKeys.facebook.rawValue : newFacebook,
+                TrainerInformation.CodingKeys.linkedIn.rawValue : newLinkedIn,
+                TrainerInformation.CodingKeys.price.rawValue : newPrice
+            ]
+            try await document.updateData(data)
+    
+        } catch {
+            throw UserManagerError.connectionFailed
+        }
+    }
         
     func updateUserTrainer(userId: String, isTrainer: Bool) async throws {
         do {
