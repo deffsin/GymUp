@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct TrainerEditView: View {
+    @Environment(\.dismiss) var dismiss
     @ObservedObject var viewModel: TrainerEditViewModel
     
     var body: some View {
@@ -61,6 +62,19 @@ struct TrainerEditView: View {
                         Spacer()
                     }
                 }
+                Button(action: {
+                    viewModel.updateTrainerAllInformation(newFullname: viewModel.fullnameEdit, newPhoneNumber: viewModel.phoneNumberEdit, newEmail: viewModel.emailEdit, newDescription: viewModel.descriptionEdit, newLocation: viewModel.locationEdit, newGyms: viewModel.gymsEdit, newWebLink: viewModel.webLinkEdit, newInstagram: viewModel.instagramEdit, newFacebook: viewModel.facebookEdit, newLinkedIn: viewModel.linkedinEdit, newPrice: viewModel.priceEdit)
+                    dismiss()
+                }) {
+                    Text("Save")
+                        .frame(width: 130, height: 20)
+                        .padding()
+                        .foregroundColor(Color.white)
+                        .background(Color.blue)
+                        .cornerRadius(15)
+                        .opacity(viewModel.showButton ? 1.0 : 0.5)
+                }
+                .disabled(!viewModel.showButton)
             }
             .padding(.horizontal, 10)
         }
