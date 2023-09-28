@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import Combine
 
 @MainActor
 final class BeTrainerAddViewModel: ObservableObject {
     
     @Published private(set) var user: DBUser? = nil
     @Published private(set) var trainer: TrainerInformation? = nil
+    
+    private var cancellables = Set<AnyCancellable>()
         
     func loadCurrentUser() async throws {
         do {
@@ -26,20 +29,37 @@ final class BeTrainerAddViewModel: ObservableObject {
         
     }
         
-    func loadCurrentTrainer() async throws {
-        do {
-            let authDataResult = try AuthenticationManager.shared.authenticatedUser()
-            
-            guard let trainerInfo = try? await UserManager.shared.getFirstTrainerInformation(userId: authDataResult.uid) else {
-                throw BeTrainerAddError.trainerRetrievalError
+    func loadCurrentTrainer() {
+        Future<TrainerInformation, Error> { promise in
+            Task {
+                do {
+                    let authDataResult = try AuthenticationManager.shared.authenticatedUser()
+                    guard let trainerInfo = try? await UserManager.shared.getFirstTrainerInformation(userId: authDataResult.uid) else {
+                        promise(.failure(BeTrainerAddError.trainerRetrievalError))
+                        return
+                    }
+                    promise(.success(trainerInfo))
+                } catch {
+                    promise(.failure(error))
+                }
             }
-            self.trainer = trainerInfo
-            
-            print(BeTrainerAddError.trainerDataLoaded.localizedDescription)
-        } catch {
-            // An authentication issue
-            throw BeTrainerAddError.authenticationError
         }
+        .receive(on: DispatchQueue.main)
+        .sink(receiveCompletion: { completion in
+            switch completion {
+            case .finished:
+                print(BeTrainerAddError.trainerDataLoaded.localizedDescription)
+            case .failure(let error):
+                if let error = error as? BeTrainerAddError, error == .authenticationError {
+                    print("Authentication error")
+                } else {
+                    print("Error loading trainer info: \(error.localizedDescription)")
+                }
+            }
+        }, receiveValue: { [weak self] trainerInfo in
+            self?.trainer = trainerInfo
+        })
+        .store(in: &cancellables)
     }
         
     func toggleTrainerStatus() {
