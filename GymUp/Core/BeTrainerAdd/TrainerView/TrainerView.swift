@@ -17,15 +17,6 @@ struct TrainerView: View {
                 Background()
                 
                 ScrollView {
-                    
-                    Button() {
-                        trainerEditVM.editInformation.toggle()
-                    } label: {
-                        Text("Edit profile")
-                            .padding()
-                            .background(Color.green.opacity(0.7))
-                    }
-                    
                     VStack(spacing: 25) {
                         UserInfoView(viewModel: viewModel)
                         DetailsView(viewModel: viewModel)
@@ -56,8 +47,22 @@ struct TrainerView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Text("My profile")
-                    .font(.system(size: 24))
-                    .foregroundColor(Color.white)
+                    .font(.system(size: 20))
+                    .foregroundColor(Color.black)
+            }
+            
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button() {
+                    trainerEditVM.editInformation.toggle()
+                } label: {
+                    HStack(spacing: 3) {
+                        Spacer()
+                        Text("Edit profile")
+                        Image(systemName: "pencil")
+                    }
+                    .font(.system(size: 16))
+                    .foregroundColor(Color.black)
+                }
             }
         }
     }
