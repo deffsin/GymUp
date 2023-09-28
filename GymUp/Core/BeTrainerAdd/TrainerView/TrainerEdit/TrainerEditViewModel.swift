@@ -213,6 +213,13 @@ final class TrainerEditViewModel: ObservableObject {
         self.linkedinEdit = trainer?.linkedIn ?? ""
         self.webLinkEdit = trainer?.webLink ?? ""
     }
+    
+    func updateTrainerAllInformation(newFullname: String, newPhoneNumber: String, newEmail: String, newDescription: String, newLocation: String, newGyms: String, newWebLink: String, newInstagram: String, newFacebook: String, newLinkedIn: String, newPrice: String) {
+        Task {
+            let authDataResult = try AuthenticationManager.shared.authenticatedUser()
+            try? await UserManager.shared.updateTrainerAllInformation(userId: authDataResult.uid, trainerInformationId: trainer!.id, newFullname: newFullname, newPhoneNumber: newPhoneNumber, newEmail: newEmail, newDescription: newDescription, newLocation: newLocation, newGyms: newGyms, newWebLink: newWebLink, newInstagram: newInstagram, newFacebook: newFacebook, newLinkedIn: newLinkedIn, newPrice: newPrice)
+        }
+    }
 }
 
 
