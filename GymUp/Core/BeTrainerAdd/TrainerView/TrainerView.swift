@@ -43,9 +43,13 @@ struct TrainerView: View {
             .refreshable {
                 try? await Task.sleep(nanoseconds: 1_200_000_000)
                 try? await viewModel.loadCurrentUser()
-                try? await viewModel.loadCurrentTrainer()
+                viewModel.loadCurrentTrainer()
             }
-            .sheet(isPresented: $trainerEditVM.editInformation) {
+            .sheet(isPresented: $trainerEditVM.editInformation, onDismiss: {
+                Task {
+                    viewModel.loadCurrentTrainer()
+                }
+            }) {
                 TrainerEditView(viewModel: TrainerEditViewModel())
             }
         }
