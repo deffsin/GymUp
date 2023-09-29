@@ -8,8 +8,21 @@
 import SwiftUI
 
 struct CommentsView: View {
+    @ObservedObject var commentsVM = CommentsViewModel()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            VStack {
+                if let trainers = commentsVM.allTrainers {
+                    ForEach(trainers, id: \.id) { trainerInfo in
+                        Text(trainerInfo.id)
+                    }
+                }
+            }
+        }
+        .task {
+            commentsVM.loadAllTrainers()
+        }
     }
 }
 

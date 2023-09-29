@@ -39,6 +39,10 @@ final class UserManager {
         trainerInformationCollection(userId: userId).document(trainerInformationId)
     }
     
+    private func trainerCommentsCollection(userId: String) -> CollectionReference {
+        userDocument(userId: userId).collection("trainer_comments")
+    }
+    
     private let encoder: Firestore.Encoder = { // encode перед созданием юзера и добавлением какого либо поля
         let encoder = Firestore.Encoder()
         // encoder.keyEncodingStrategy = .convertToSnakeCase
@@ -102,6 +106,22 @@ final class UserManager {
             }
             return allTrainerInfos
             
+        } catch {
+            throw UserManagerError.connectionFailed
+        }
+    }
+    
+    func addTrainerComments(userId: String, description: String, dataCreated: Data) async throws {
+        do {
+            let document = trainerCommentsCollection(userId: userId).document()
+            let documentId = document.documentID
+            
+            let data: [String:Any] = [
+                TrainerComments.CodingKeys.id.rawValue : documentId,
+                TrainerComments.CodingKeys.dataCreated.rawValue : Data(),
+                TrainerComments.CodingKeys.description.rawValue : description
+            ]
+            try await document.setData(data, merge: false)
         } catch {
             throw UserManagerError.connectionFailed
         }
