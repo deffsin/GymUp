@@ -9,6 +9,7 @@ import SwiftUI
 
 struct UserProfileCellDetailView: View {
     var trainer: TrainerInformation
+    @ObservedObject var addCommentVM: AddCommentViewModel
     
     var body: some View {
         NavigationStack {
@@ -16,6 +17,12 @@ struct UserProfileCellDetailView: View {
                 BackgroundUserProfileCellDetailView()
                 
                 ScrollView {
+                    Button(action: {
+                        addCommentVM.addComment.toggle()
+                    }) {
+                        Text("Add a comment")
+                    }
+                    
                     VStack(spacing: 25) {
                         UserProfileCellInfoView(trainer: trainer)
                         UserProfileCellDetailsView(trainer: trainer)
@@ -30,6 +37,9 @@ struct UserProfileCellDetailView: View {
                     .frame(maxWidth: .infinity, minHeight: 73)
                 }
             }
+        }
+        .navigationDestination(isPresented: $addCommentVM.addComment) {
+            AddCommentView(trainer: trainer)
         }
     }
 }

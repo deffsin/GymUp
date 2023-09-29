@@ -60,8 +60,8 @@
 		1575CC112AC6DB1400672481 /* CommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1575CC102AC6DB1400672481 /* CommentsView.swift */; };
 		1575CC142AC6DF4D00672481 /* CommentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1575CC132AC6DF4D00672481 /* CommentsViewModel.swift */; };
 		1575CC162AC6EEBD00672481 /* TrainerCommentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1575CC152AC6EEBD00672481 /* TrainerCommentsModel.swift */; };
-		1575CC182AC6F4B200672481 /* AddCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1575CC172AC6F4B200672481 /* AddCommentView.swift */; };
-		1575CC1A2AC6F4C500672481 /* AddCommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1575CC192AC6F4C500672481 /* AddCommentViewModel.swift */; };
+		1575CC1C2AC76A6300672481 /* AddCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1575CC1B2AC76A6300672481 /* AddCommentView.swift */; };
+		1575CC1E2AC76BA700672481 /* AddCommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1575CC1D2AC76BA700672481 /* AddCommentViewModel.swift */; };
 		157978362ABCF1F20084B624 /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157978352ABCF1F20084B624 /* IconButton.swift */; };
 		1579783A2ABCF26D0084B624 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157978392ABCF26D0084B624 /* MessageView.swift */; };
 		1579783C2ABCF3BA0084B624 /* FiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1579783B2ABCF3BA0084B624 /* FiltersView.swift */; };
@@ -135,8 +135,8 @@
 		1575CC102AC6DB1400672481 /* CommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsView.swift; sourceTree = "<group>"; };
 		1575CC132AC6DF4D00672481 /* CommentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewModel.swift; sourceTree = "<group>"; };
 		1575CC152AC6EEBD00672481 /* TrainerCommentsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerCommentsModel.swift; sourceTree = "<group>"; };
-		1575CC172AC6F4B200672481 /* AddCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommentView.swift; sourceTree = "<group>"; };
-		1575CC192AC6F4C500672481 /* AddCommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommentViewModel.swift; sourceTree = "<group>"; };
+		1575CC1B2AC76A6300672481 /* AddCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommentView.swift; sourceTree = "<group>"; };
+		1575CC1D2AC76BA700672481 /* AddCommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommentViewModel.swift; sourceTree = "<group>"; };
 		157978352ABCF1F20084B624 /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 		157978392ABCF26D0084B624 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		1579783B2ABCF3BA0084B624 /* FiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersView.swift; sourceTree = "<group>"; };
@@ -179,8 +179,8 @@
 			isa = PBXGroup;
 			children = (
 				1540F6B62ABD902D00808427 /* UserProfileCellDetailView.swift */,
-				1575CC172AC6F4B200672481 /* AddCommentView.swift */,
-				1575CC192AC6F4C500672481 /* AddCommentViewModel.swift */,
+				1575CC1B2AC76A6300672481 /* AddCommentView.swift */,
+				1575CC1D2AC76BA700672481 /* AddCommentViewModel.swift */,
 				1501CA2A2ABDB69A00766F67 /* UserProfileCellDetailSubViews */,
 			);
 			path = UserProfileCellDetail;
@@ -635,7 +635,7 @@
 				1575CC072AC4BB2800672481 /* InformationFieldWithoutMarks.swift in Sources */,
 				153689412AB367CE0043ABC8 /* BeTrainerAddViewModel.swift in Sources */,
 				1536894D2AB38EC50043ABC8 /* NeedToCreateAccountView.swift in Sources */,
-				1575CC182AC6F4B200672481 /* AddCommentView.swift in Sources */,
+				1575CC1C2AC76A6300672481 /* AddCommentView.swift in Sources */,
 				1575CC142AC6DF4D00672481 /* CommentsViewModel.swift in Sources */,
 				153689582AB501FD0043ABC8 /* AboutMeView.swift in Sources */,
 				1536894B2AB36C500043ABC8 /* TrainerInformationModel.swift in Sources */,
@@ -676,7 +676,7 @@
 				153689452AB3680B0043ABC8 /* FillInformationViewModel.swift in Sources */,
 				1501CA442ABE564100766F67 /* UserProfileCellDetailsView.swift in Sources */,
 				1540F6B72ABD902D00808427 /* UserProfileCellDetailView.swift in Sources */,
-				1575CC1A2AC6F4C500672481 /* AddCommentViewModel.swift in Sources */,
+				1575CC1E2AC76BA700672481 /* AddCommentViewModel.swift in Sources */,
 				156CED962AA637080000EEEA /* ProfileView.swift in Sources */,
 				1536895A2AB502100043ABC8 /* ResourcesView.swift in Sources */,
 				1575CC162AC6EEBD00672481 /* TrainerCommentsModel.swift in Sources */,
