@@ -31,6 +31,11 @@ final class UserManager {
         userCollection.document(userId)
     }
     
+    // документ другого пользователя
+    private func toOtherUserDocument(toUserId: String) -> DocumentReference {
+        userCollection.document(toUserId)
+    }
+    
     private func trainerInformationCollection(userId: String) -> CollectionReference {
         userDocument(userId: userId).collection("trainer_information")
     }
@@ -41,6 +46,11 @@ final class UserManager {
     
     private func trainerCommentsCollection(userId: String) -> CollectionReference {
         userDocument(userId: userId).collection("trainer_comments")
+    }
+    
+    // добавляет комментарии в аккаунт другого пользователя
+    private func toOtherTrainerCommentsCollection(toUserId: String) -> CollectionReference {
+        toOtherUserDocument(toUserId: toUserId).collection("trainer_comments")
     }
     
     private let encoder: Firestore.Encoder = { // encode перед созданием юзера и добавлением какого либо поля
@@ -111,15 +121,17 @@ final class UserManager {
         }
     }
     
-    func addTrainerComments(userId: String, description: String, dataCreated: Data) async throws {
+    func addTrainerComments(userId: String, toUserId: String, fullname: String, description: String, dataCreated: Data) async throws {
         do {
-            let document = trainerCommentsCollection(userId: userId).document()
+            let document = toOtherTrainerCommentsCollection(toUserId: toUserId).document()
             let documentId = document.documentID
             
             let data: [String:Any] = [
                 TrainerComments.CodingKeys.id.rawValue : documentId,
-                TrainerComments.CodingKeys.dataCreated.rawValue : Data(),
-                TrainerComments.CodingKeys.description.rawValue : description
+                TrainerComments.CodingKeys.fullname.rawValue : fullname,
+                TrainerComments.CodingKeys.toUserId.rawValue : toUserId,
+                TrainerComments.CodingKeys.description.rawValue : description,
+                TrainerComments.CodingKeys.dataCreated.rawValue : Data()
             ]
             try await document.setData(data, merge: false)
         } catch {
