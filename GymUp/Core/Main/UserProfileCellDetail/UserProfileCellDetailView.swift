@@ -9,6 +9,7 @@ import SwiftUI
 
 struct UserProfileCellDetailView: View {
     var trainer: TrainerInformation
+    // var dbUser: DBUser!!!!!
     @ObservedObject var addCommentVM: AddCommentViewModel
     
     var body: some View {
@@ -18,7 +19,7 @@ struct UserProfileCellDetailView: View {
                 
                 ScrollView {
                     Button(action: {
-                        addCommentVM.addComment.toggle()
+                        addCommentVM.navigateToAddComment.toggle()
                     }) {
                         Text("Add a comment")
                     }
@@ -38,7 +39,7 @@ struct UserProfileCellDetailView: View {
                 }
             }
         }
-        .navigationDestination(isPresented: $addCommentVM.addComment) {
+        .navigationDestination(isPresented: $addCommentVM.navigateToAddComment) {
             AddCommentView(trainer: trainer)
         }
     }
