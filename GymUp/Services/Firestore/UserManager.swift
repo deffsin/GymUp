@@ -121,7 +121,7 @@ final class UserManager {
         }
     }
     
-    func addTrainerComments(userId: String, toUserId: String, fullname: String, description: String, dataCreated: Data) async throws {
+    func addTrainerComments(userId: String, toUserId: String, fullname: String, description: String, dataCreated: Date) async throws {
         do {
             let document = toOtherTrainerCommentsCollection(toUserId: toUserId).document()
             let documentId = document.documentID
@@ -131,7 +131,7 @@ final class UserManager {
                 TrainerComments.CodingKeys.fullname.rawValue : fullname,
                 TrainerComments.CodingKeys.toUserId.rawValue : toUserId,
                 TrainerComments.CodingKeys.description.rawValue : description,
-                TrainerComments.CodingKeys.dataCreated.rawValue : Data()
+                TrainerComments.CodingKeys.dataCreated.rawValue : Date()
             ]
             try await document.setData(data, merge: false)
         } catch {

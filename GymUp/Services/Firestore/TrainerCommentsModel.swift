@@ -8,7 +8,7 @@
 import Foundation
 
 struct TrainerComments: Codable {
-    let id: String
+    let id: String // trainer_comments document ID
     let toUserId: String?
     let fullname: String?
     let description: String?
@@ -41,7 +41,7 @@ struct TrainerComments: Codable {
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
-        case toUserId = "toUserId"
+        case toUserId = "to_user_id"
         case fullname = "fullname"
         case description = "description"
         case dataCreated = "data_created"

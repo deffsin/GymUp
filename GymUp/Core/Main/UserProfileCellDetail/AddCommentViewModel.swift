@@ -12,7 +12,7 @@ import Combine
 @MainActor
 final class AddCommentViewModel: ObservableObject {
     
-    // DBUSER!!!!!!!????????
+    @Published private(set) var user: DBUser? = nil
     
     @Published var addComment = ""
     @Published var navigateToAddComment = false
@@ -55,7 +55,19 @@ final class AddCommentViewModel: ObservableObject {
     func addCommentToUser(toUserId: String, fullname: String, description: String) {
         Task {
             let authDataResult = try AuthenticationManager.shared.authenticatedUser()
-            try? await UserManager.shared.addTrainerComments(userId: authDataResult.uid, toUserId: toUserId, fullname: fullname, description: description, dataCreated: Data())
+            try? await UserManager.shared.addTrainerComments(userId: authDataResult.uid, toUserId: toUserId, fullname: fullname, description: description, dataCreated: Date())
+        }
+    }
+    
+    func loadCurrentUser() async throws {
+        do {
+            let authDataResult = try AuthenticationManager.shared.authenticatedUser()
+            
+            guard let user = try? await UserManager.shared.getUser(userId: authDataResult.uid) else {
+                throw BeTrainerAddError.userRetrievalError
+            }
+            self.user = user
+            print(BeTrainerAddError.userDataLoaded.localizedDescription)
         }
     }
 }

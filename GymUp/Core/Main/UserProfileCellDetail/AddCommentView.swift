@@ -14,14 +14,10 @@ struct AddCommentView: View {
     var body: some View {
         ZStack {
             VStack {
-                Text(trainer.fullname ?? "")
-                Text(trainer.id)
-                Text(trainer.userDocId ?? "")
-                
                 TextField("Comment", text: $addCommentVM.addComment)
                 
                 Button(action: {
-                    addCommentVM.addCommentToUser(toUserId: trainer.userDocId!, fullname: trainer.fullname!, description: addCommentVM.addComment)
+                    addCommentVM.addCommentToUser(toUserId: trainer.userDocId!, fullname: addCommentVM.user?.username ?? "", description: addCommentVM.addComment)
                 }) {
                     Text("Add comment")
                         .frame(width: 130, height: 20)
@@ -33,6 +29,9 @@ struct AddCommentView: View {
                 }
                 .disabled(!addCommentVM.showButton)
             }
+        }
+        .task {
+            try? await addCommentVM.loadCurrentUser()
         }
     }
 }
