@@ -140,13 +140,14 @@ final class UserManager {
     }
     
     // this function is used in the .sheet -> FillInformationView
-    func addTrainerAllInformation(userId: String, fullname: String, phoneNumber: String, email: String, description: String, location: String, gyms: String, webLink: String, instagram: String, facebook: String, linkedIn: String, rating: Int, comments: Int, price: String) async throws {
+    func addTrainerAllInformation(userId: String, userDocId: String, fullname: String, phoneNumber: String, email: String, description: String, location: String, gyms: String, webLink: String, instagram: String, facebook: String, linkedIn: String, rating: Int, comments: Int, price: String) async throws {
         do {
             let document = trainerInformationCollection(userId: userId).document()
             let documentId = document.documentID
             
             let data: [String:Any] = [
                 TrainerInformation.CodingKeys.id.rawValue : documentId,
+                TrainerInformation.CodingKeys.userDocId.rawValue : userDocId,
                 TrainerInformation.CodingKeys.fullname.rawValue : fullname,
                 TrainerInformation.CodingKeys.phoneNumber.rawValue : phoneNumber,
                 TrainerInformation.CodingKeys.email.rawValue : email,
