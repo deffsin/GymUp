@@ -175,7 +175,7 @@ final class FillInformationViewModel: ObservableObject {
         isAddingInformation = true
         Task {
             let authDataResult = try AuthenticationManager.shared.authenticatedUser()
-            try? await UserManager.shared.addTrainerAllInformation(userId: authDataResult.uid, fullname: fullname, phoneNumber: phoneNumber, email: email, description: description, location: location, gyms: gyms, webLink: webLink, instagram: instagram, facebook: facebook, linkedIn: linkedIn, rating: rating, comments: comments, price: price)
+            try? await UserManager.shared.addTrainerAllInformation(userId: authDataResult.uid, userDocId: user!.userId, fullname: fullname, phoneNumber: phoneNumber, email: email, description: description, location: location, gyms: gyms, webLink: webLink, instagram: instagram, facebook: facebook, linkedIn: linkedIn, rating: rating, comments: comments, price: price)
                 isAddingInformation = false
         }
     }

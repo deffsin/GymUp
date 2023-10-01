@@ -31,12 +31,26 @@ final class UserManager {
         userCollection.document(userId)
     }
     
+    // документ другого пользователя
+    private func toOtherUserDocument(toUserId: String) -> DocumentReference {
+        userCollection.document(toUserId)
+    }
+    
     private func trainerInformationCollection(userId: String) -> CollectionReference {
         userDocument(userId: userId).collection("trainer_information")
     }
     
     private func trainerInformationDocument(userId: String, trainerInformationId: String) -> DocumentReference {
         trainerInformationCollection(userId: userId).document(trainerInformationId)
+    }
+    
+    private func trainerCommentsCollection(userId: String) -> CollectionReference {
+        userDocument(userId: userId).collection("trainer_comments")
+    }
+    
+    // добавляет комментарии в аккаунт другого пользователя
+    private func toOtherTrainerCommentsCollection(toUserId: String) -> CollectionReference {
+        toOtherUserDocument(toUserId: toUserId).collection("trainer_comments")
     }
     
     private let encoder: Firestore.Encoder = { // encode перед созданием юзера и добавлением какого либо поля
@@ -107,14 +121,33 @@ final class UserManager {
         }
     }
     
+    func addTrainerComments(userId: String, toUserId: String, fullname: String, description: String, dataCreated: Date) async throws {
+        do {
+            let document = toOtherTrainerCommentsCollection(toUserId: toUserId).document()
+            let documentId = document.documentID
+            
+            let data: [String:Any] = [
+                TrainerComments.CodingKeys.id.rawValue : documentId,
+                TrainerComments.CodingKeys.fullname.rawValue : fullname,
+                TrainerComments.CodingKeys.toUserId.rawValue : toUserId,
+                TrainerComments.CodingKeys.description.rawValue : description,
+                TrainerComments.CodingKeys.dataCreated.rawValue : Date()
+            ]
+            try await document.setData(data, merge: false)
+        } catch {
+            throw UserManagerError.connectionFailed
+        }
+    }
+    
     // this function is used in the .sheet -> FillInformationView
-    func addTrainerAllInformation(userId: String, fullname: String, phoneNumber: String, email: String, description: String, location: String, gyms: String, webLink: String, instagram: String, facebook: String, linkedIn: String, rating: Int, comments: Int, price: String) async throws {
+    func addTrainerAllInformation(userId: String, userDocId: String, fullname: String, phoneNumber: String, email: String, description: String, location: String, gyms: String, webLink: String, instagram: String, facebook: String, linkedIn: String, rating: Int, comments: Int, price: String) async throws {
         do {
             let document = trainerInformationCollection(userId: userId).document()
             let documentId = document.documentID
             
             let data: [String:Any] = [
                 TrainerInformation.CodingKeys.id.rawValue : documentId,
+                TrainerInformation.CodingKeys.userDocId.rawValue : userDocId,
                 TrainerInformation.CodingKeys.fullname.rawValue : fullname,
                 TrainerInformation.CodingKeys.phoneNumber.rawValue : phoneNumber,
                 TrainerInformation.CodingKeys.email.rawValue : email,

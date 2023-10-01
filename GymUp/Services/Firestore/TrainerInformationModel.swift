@@ -10,6 +10,7 @@ import Foundation
 struct TrainerInformation: Codable {
     
     let id: String
+    let userDocId: String?
     let fullname: String?
     let description: String?
     let location: String?
@@ -26,6 +27,7 @@ struct TrainerInformation: Codable {
     
     init(auth: AuthDataResultModel) {
         self.id = auth.uid
+        self.userDocId = nil
         self.fullname = nil
         self.description = nil
         self.location = nil
@@ -43,6 +45,7 @@ struct TrainerInformation: Codable {
     
     init(
     id: String,
+    userDocId: String? = nil,
     fullname: String? = nil,
     description: String? = nil,
     location: String? = nil,
@@ -59,6 +62,7 @@ struct TrainerInformation: Codable {
     
     ) {
         self.id = id
+        self.userDocId = userDocId
         self.fullname = fullname
         self.description = description
         self.location = location
@@ -76,6 +80,7 @@ struct TrainerInformation: Codable {
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
+        case userDocId = "user_doc_id"
         case fullname = "fullname"
         case description = "description"
         case location = "location"
@@ -95,6 +100,7 @@ struct TrainerInformation: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         self.id = try container.decode(String.self, forKey: .id)
+        self.userDocId = try container.decode(String.self, forKey: .userDocId)
         self.fullname = try container.decode(String.self, forKey: .fullname)
         self.description = try container.decode(String.self, forKey: .description)
         self.location = try container.decode(String.self, forKey: .location)
@@ -113,6 +119,7 @@ struct TrainerInformation: Codable {
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.id, forKey: .id)
+        try container.encode(self.userDocId, forKey: .userDocId)
         try container.encode(self.fullname, forKey: .fullname)
         try container.encode(self.description, forKey: .description)
         try container.encode(self.location, forKey: .location)

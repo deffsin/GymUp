@@ -11,18 +11,25 @@ struct RatingsView: View {
     @ObservedObject var viewModel: BeTrainerAddViewModel
     
     var body: some View {
-        HStack {
-            Button(action: {}) {
-                if let trainer = viewModel.trainer {
-                    HStack(spacing: 2){
-                        Text("Comments: ")
-                            .font(.system(size: 17))
-                        Text("\(trainer.comments ?? 0)")
-                            .bold()
-                        Spacer()
+        NavigationStack {
+            HStack {
+                Button(action: {
+                    viewModel.navigateToComments.toggle()
+                }) {
+                    if let trainer = viewModel.trainer {
+                        HStack(spacing: 2){
+                            Text("Comments: ")
+                                .font(.system(size: 17))
+                            Text("\(trainer.comments ?? 0)")
+                                .bold()
+                            Spacer()
+                        }
                     }
                 }
             }
+        }
+        .navigationDestination(isPresented: $viewModel.navigateToComments) {
+            CommentsView()
         }
     }
 }
