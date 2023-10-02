@@ -121,7 +121,7 @@ final class UserManager {
         }
     }
     
-    func addTrainerComments(userId: String, toUserId: String, fullname: String, description: String, dataCreated: Date) async throws {
+    func addTrainerComments(userId: String, toUserId: String, fromUserId: String, fullname: String, description: String, dataCreated: Date) async throws {
         do {
             let document = toOtherTrainerCommentsCollection(toUserId: toUserId).document()
             let documentId = document.documentID
@@ -130,6 +130,7 @@ final class UserManager {
                 TrainerComments.CodingKeys.id.rawValue : documentId,
                 TrainerComments.CodingKeys.fullname.rawValue : fullname,
                 TrainerComments.CodingKeys.toUserId.rawValue : toUserId,
+                TrainerComments.CodingKeys.fromUserId.rawValue : fromUserId,
                 TrainerComments.CodingKeys.description.rawValue : description,
                 TrainerComments.CodingKeys.dataCreated.rawValue : Date()
             ]

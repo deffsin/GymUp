@@ -55,7 +55,7 @@ final class AddCommentViewModel: ObservableObject {
     func addCommentToUser(toUserId: String, fullname: String, description: String) {
         Task {
             let authDataResult = try AuthenticationManager.shared.authenticatedUser()
-            try? await UserManager.shared.addTrainerComments(userId: authDataResult.uid, toUserId: toUserId, fullname: fullname, description: description, dataCreated: Date())
+            try? await UserManager.shared.addTrainerComments(userId: authDataResult.uid, toUserId: toUserId, fromUserId: user!.userId, fullname: fullname, description: description, dataCreated: Date())
         }
     }
     
