@@ -15,7 +15,7 @@ final class AddCommentViewModel: ObservableObject {
     @Published private(set) var user: DBUser? = nil
     
     @Published var addComment = ""
-    @Published var navigateToAddComment = false
+    @Published var navigateToAddComment: Bool = false
     @Published var showButton = false
     
     var cancellables = Set<AnyCancellable>()

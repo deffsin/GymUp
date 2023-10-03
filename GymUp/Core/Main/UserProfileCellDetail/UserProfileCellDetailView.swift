@@ -36,10 +36,9 @@ struct UserProfileCellDetailView: View {
                     }
                     .frame(maxWidth: .infinity, minHeight: 73)
                 }
+                
+                AddCommentView(addCommentVM: addCommentVM, trainer: trainer, isShowing: $addCommentVM.navigateToAddComment)
             }
-        }
-        .navigationDestination(isPresented: $addCommentVM.navigateToAddComment) {
-            AddCommentView(addCommentVM: addCommentVM, trainer: trainer)
         }
     }
 }
