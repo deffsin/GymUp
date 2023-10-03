@@ -11,6 +11,7 @@ struct FillInformationView: View {
 
     @Environment(\.dismiss) var dismiss
     @StateObject var viewModel = FillInformationViewModel()
+    
 
     var body: some View {
         ZStack {
@@ -22,7 +23,6 @@ struct FillInformationView: View {
             } else {
                 VStack(spacing: 15) {
                     VStack {
-                        InformationField(title: "Fullname:", placeholder: "Name and last name", text: $viewModel.fullname, isValid: viewModel.fullnameIsValid)
                         InformationField(title: "Email:", placeholder: "Email", text: $viewModel.email, isValid: viewModel.emailIsValid, keyboardType: .emailAddress)
                         InformationField(title: "Number:", placeholder: "Phone number", text: $viewModel.phoneNumber, isValid: viewModel.phoneNumberIsValid, keyboardType: .phonePad)
                         InformationField(title: "Location", placeholder: "Location", text: $viewModel.location, isValid: viewModel.locationIsValid)
@@ -71,7 +71,7 @@ struct FillInformationView: View {
                     }
                     
                     Button(action: {
-                        viewModel.addTrainerAllInformation(fullname: viewModel.fullname, phoneNumber: viewModel.phoneNumber, email: viewModel.email, description: viewModel.description, location: viewModel.location, gyms: viewModel.gyms, webLink: viewModel.webLink, instagram: viewModel.instagram, facebook: viewModel.facebook, linkedIn: viewModel.linkedIn, rating: viewModel.rating, comments: viewModel.comments, price: viewModel.price)
+                        viewModel.addTrainerAllInformation(fullname: viewModel.user?.username ?? "", phoneNumber: viewModel.phoneNumber, email: viewModel.email, description: viewModel.description, location: viewModel.location, gyms: viewModel.gyms, webLink: viewModel.webLink, instagram: viewModel.instagram, facebook: viewModel.facebook, linkedIn: viewModel.linkedIn, rating: viewModel.rating, comments: viewModel.comments, price: viewModel.price)
                         viewModel.toggleTrainerStatus()
                         dismiss()
                     }) {
