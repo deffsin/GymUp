@@ -16,7 +16,6 @@ final class FillInformationViewModel: ObservableObject {
 
     // username?
     // photo?
-    @Published var fullname: String = ""
     @Published var email: String = ""
     @Published var description: String = ""
     @Published var location: String = ""
@@ -31,7 +30,6 @@ final class FillInformationViewModel: ObservableObject {
     @Published var price: String = "" // String!
     
     @Published var showButton: Bool = false
-    @Published var fullnameIsValid: Bool = false
     @Published var emailIsValid: Bool = false
     @Published var descriptionIsValid: Bool = false
     @Published var locationIsValid: Bool = false
@@ -42,7 +40,6 @@ final class FillInformationViewModel: ObservableObject {
     var cancellables = Set<AnyCancellable>()
     
     init() {
-        addFullnameSubscriber()
         addEmailSubscriber()
         addDescriptionSubscriber()
         addLocationSubscriber()
@@ -50,19 +47,6 @@ final class FillInformationViewModel: ObservableObject {
         addPhoneNumberSubscriber()
         addPriceSubscriber()
         addButtonSubscriber()
-    }
-    
-    func addFullnameSubscriber() {
-        $fullname
-            .map { (text) -> Bool in
-                let regex = "^[a-zA-Z\\s]+$"
-                let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
-                return predicate.evaluate(with: text)
-            }
-            .sink(receiveValue: { [weak self] (isValid) in
-                self?.fullnameIsValid = isValid
-            })
-            .store(in: &cancellables)
     }
     
     func addEmailSubscriber() {
@@ -140,7 +124,7 @@ final class FillInformationViewModel: ObservableObject {
     }
     
     func addButtonSubscriber() {
-        let combineLatestFirstFour = Publishers.CombineLatest4($fullnameIsValid, $emailIsValid, $descriptionIsValid, $locationIsValid)
+        let combineLatestFirstFour = Publishers.CombineLatest3($emailIsValid, $descriptionIsValid, $locationIsValid)
             .eraseToAnyPublisher()
         
         let combineLatestLastThree = Publishers.CombineLatest3($gymsIsValid, $phoneNumberIsValid, $priceIsValid)
@@ -148,15 +132,15 @@ final class FillInformationViewModel: ObservableObject {
 
         let combineFinal = Publishers.CombineLatest(combineLatestFirstFour, combineLatestLastThree)
             .map { (firstFour, lastThree) in
-                return (firstFour.0, firstFour.1, firstFour.2, firstFour.3, lastThree.0, lastThree.1, lastThree.2)
+                return (firstFour.0, firstFour.1, firstFour.2, lastThree.0, lastThree.1, lastThree.2)
             }
             .eraseToAnyPublisher()
             
         combineFinal
             .debounce(for: .seconds(0.6), scheduler: DispatchQueue.main)
-            .sink { [weak self] (fullnameIsValid, emailIsValid, descriptionIsValid, locationIsValid, gymsIsValid, phoneNumberIsValid, priceIsValid) in
+            .sink { [weak self] (emailIsValid, descriptionIsValid, locationIsValid, gymsIsValid, phoneNumberIsValid, priceIsValid) in
                 guard let self = self else { return }
-                if fullnameIsValid && emailIsValid && descriptionIsValid && locationIsValid && gymsIsValid && phoneNumberIsValid && priceIsValid {
+                if emailIsValid && descriptionIsValid && locationIsValid && gymsIsValid && phoneNumberIsValid && priceIsValid {
                     self.showButton = true
                 } else {
                     self.showButton = false

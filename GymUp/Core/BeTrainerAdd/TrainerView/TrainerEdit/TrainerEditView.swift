@@ -15,7 +15,6 @@ struct TrainerEditView: View {
         ZStack {
             VStack(spacing: 15) {
                 VStack {
-                    InformationField(title: "Fullname:", placeholder: "Name and last name", text: $viewModel.fullnameEdit, isValid: viewModel.fullnameIsValid)
                     InformationField(title: "Email:", placeholder: "Email", text: $viewModel.emailEdit, isValid: viewModel.emailIsValid, keyboardType: .emailAddress)
                     InformationField(title: "Number:", placeholder: "Phone number", text: $viewModel.phoneNumberEdit, isValid: viewModel.phoneNumberIsValid, keyboardType: .phonePad)
                     InformationField(title: "Location", placeholder: "Location", text: $viewModel.locationEdit, isValid: viewModel.locationIsValid)
@@ -63,7 +62,7 @@ struct TrainerEditView: View {
                     }
                 }
                 Button(action: {
-                    viewModel.updateTrainerAllInformation(newFullname: viewModel.fullnameEdit, newPhoneNumber: viewModel.phoneNumberEdit, newEmail: viewModel.emailEdit, newDescription: viewModel.descriptionEdit, newLocation: viewModel.locationEdit, newGyms: viewModel.gymsEdit, newWebLink: viewModel.webLinkEdit, newInstagram: viewModel.instagramEdit, newFacebook: viewModel.facebookEdit, newLinkedIn: viewModel.linkedinEdit, newPrice: viewModel.priceEdit)
+                    viewModel.updateTrainerAllInformation(newPhoneNumber: viewModel.phoneNumberEdit, newEmail: viewModel.emailEdit, newDescription: viewModel.descriptionEdit, newLocation: viewModel.locationEdit, newGyms: viewModel.gymsEdit, newWebLink: viewModel.webLinkEdit, newInstagram: viewModel.instagramEdit, newFacebook: viewModel.facebookEdit, newLinkedIn: viewModel.linkedinEdit, newPrice: viewModel.priceEdit)
                     dismiss()
                 }) {
                     Text("Save")

@@ -14,7 +14,6 @@ final class TrainerEditViewModel: ObservableObject {
     @Published private(set) var trainer: TrainerInformation? = nil
     
     @Published var editInformation = false
-    @Published var fullnameEdit: String = ""
     @Published var emailEdit: String = ""
     @Published var descriptionEdit: String = ""
     @Published var locationEdit: String = ""
@@ -30,7 +29,6 @@ final class TrainerEditViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     
     @Published var showButton: Bool = false
-    @Published var fullnameIsValid: Bool = false
     @Published var emailIsValid: Bool = false
     @Published var descriptionIsValid: Bool = false
     @Published var locationIsValid: Bool = false
@@ -43,7 +41,6 @@ final class TrainerEditViewModel: ObservableObject {
     @Published var webLinkIsValid: Bool = false
     
     init() {
-        addFullnameSubscriber()
         addEmailSubscriber()
         addDescriptionSubscriber()
         addLocationSubscriber()
@@ -51,19 +48,6 @@ final class TrainerEditViewModel: ObservableObject {
         addPhoneNumberSubscriber()
         addPriceSubscriber()
         addButtonSubscriber()
-    }
-    
-    func addFullnameSubscriber() {
-        $fullnameEdit
-            .map { (text) -> Bool in
-                let regex = "^[a-zA-Z\\s]+$"
-                let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
-                return predicate.evaluate(with: text)
-            }
-            .sink(receiveValue: { [weak self] (isValid) in
-                self?.fullnameIsValid = isValid
-            })
-            .store(in: &cancellables)
     }
     
     func addEmailSubscriber() {
@@ -141,7 +125,7 @@ final class TrainerEditViewModel: ObservableObject {
     }
     
     func addButtonSubscriber() {
-        let combineLatestFirstFour = Publishers.CombineLatest4($fullnameIsValid, $emailIsValid, $descriptionIsValid, $locationIsValid)
+        let combineLatestFirstFour = Publishers.CombineLatest3($emailIsValid, $descriptionIsValid, $locationIsValid)
             .eraseToAnyPublisher()
         
         let combineLatestLastThree = Publishers.CombineLatest3($gymsIsValid, $phoneNumberIsValid, $priceIsValid)
@@ -149,15 +133,15 @@ final class TrainerEditViewModel: ObservableObject {
 
         let combineFinal = Publishers.CombineLatest(combineLatestFirstFour, combineLatestLastThree)
             .map { (firstFour, lastThree) in
-                return (firstFour.0, firstFour.1, firstFour.2, firstFour.3, lastThree.0, lastThree.1, lastThree.2)
+                return (firstFour.0, firstFour.1, firstFour.2, lastThree.0, lastThree.1, lastThree.2)
             }
             .eraseToAnyPublisher()
             
         combineFinal
             .debounce(for: .seconds(0.6), scheduler: DispatchQueue.main)
-            .sink { [weak self] (fullnameIsValid, emailIsValid, descriptionIsValid, locationIsValid, gymsIsValid, phoneNumberIsValid, priceIsValid) in
+            .sink { [weak self] (emailIsValid, descriptionIsValid, locationIsValid, gymsIsValid, phoneNumberIsValid, priceIsValid) in
                 guard let self = self else { return }
-                if fullnameIsValid && emailIsValid && descriptionIsValid && locationIsValid && gymsIsValid && phoneNumberIsValid && priceIsValid {
+                if emailIsValid && descriptionIsValid && locationIsValid && gymsIsValid && phoneNumberIsValid && priceIsValid {
                     self.showButton = true
                 } else {
                     self.showButton = false
@@ -201,7 +185,6 @@ final class TrainerEditViewModel: ObservableObject {
     }
     
     func getInformationForEdit() {
-        self.fullnameEdit = trainer?.fullname ?? ""
         self.emailEdit = trainer?.email ?? ""
         self.descriptionEdit = trainer?.description ?? ""
         self.locationEdit = trainer?.location ?? ""
@@ -214,10 +197,10 @@ final class TrainerEditViewModel: ObservableObject {
         self.webLinkEdit = trainer?.webLink ?? ""
     }
     
-    func updateTrainerAllInformation(newFullname: String, newPhoneNumber: String, newEmail: String, newDescription: String, newLocation: String, newGyms: String, newWebLink: String, newInstagram: String, newFacebook: String, newLinkedIn: String, newPrice: String) {
+    func updateTrainerAllInformation(newPhoneNumber: String, newEmail: String, newDescription: String, newLocation: String, newGyms: String, newWebLink: String, newInstagram: String, newFacebook: String, newLinkedIn: String, newPrice: String) {
         Task {
             let authDataResult = try AuthenticationManager.shared.authenticatedUser()
-            try? await UserManager.shared.updateTrainerAllInformation(userId: authDataResult.uid, trainerInformationId: trainer!.id, newFullname: newFullname, newPhoneNumber: newPhoneNumber, newEmail: newEmail, newDescription: newDescription, newLocation: newLocation, newGyms: newGyms, newWebLink: newWebLink, newInstagram: newInstagram, newFacebook: newFacebook, newLinkedIn: newLinkedIn, newPrice: newPrice)
+            try? await UserManager.shared.updateTrainerAllInformation(userId: authDataResult.uid, trainerInformationId: trainer!.id, newPhoneNumber: newPhoneNumber, newEmail: newEmail, newDescription: newDescription, newLocation: newLocation, newGyms: newGyms, newWebLink: newWebLink, newInstagram: newInstagram, newFacebook: newFacebook, newLinkedIn: newLinkedIn, newPrice: newPrice)
         }
     }
 }
