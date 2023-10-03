@@ -36,8 +36,13 @@ struct UserProfileCellDetailView: View {
                     }
                     .frame(maxWidth: .infinity, minHeight: 73)
                 }
-                
+            }
+            .sheet(isPresented: $addCommentVM.navigateToAddComment) {
                 AddCommentView(addCommentVM: addCommentVM, trainer: trainer, isShowing: $addCommentVM.navigateToAddComment)
+                    // .presentationBackground(.thinMaterial) iOS 16.4
+                    // .presentationCornerRadius() iOS 16.4
+                    .presentationDragIndicator(.visible)
+                    .presentationDetents([.fraction(0.3)])
             }
         }
     }
