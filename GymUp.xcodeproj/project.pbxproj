@@ -179,8 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				1540F6B62ABD902D00808427 /* UserProfileCellDetailView.swift */,
-				1575CC1B2AC76A6300672481 /* AddCommentView.swift */,
-				1575CC1D2AC76BA700672481 /* AddCommentViewModel.swift */,
+				15D747232ACC25640092B319 /* AddComment */,
 				1501CA2A2ABDB69A00766F67 /* UserProfileCellDetailSubViews */,
 			);
 			path = UserProfileCellDetail;
@@ -547,6 +546,15 @@
 				15BC79E62AAB2F3E000DD93F /* TabBarView1.swift */,
 			);
 			path = CustomTabBar;
+			sourceTree = "<group>";
+		};
+		15D747232ACC25640092B319 /* AddComment */ = {
+			isa = PBXGroup;
+			children = (
+				1575CC1B2AC76A6300672481 /* AddCommentView.swift */,
+				1575CC1D2AC76BA700672481 /* AddCommentViewModel.swift */,
+			);
+			path = AddComment;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

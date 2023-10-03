@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AddCommentView: View {
-    @StateObject var addCommentVM = AddCommentViewModel()
+    @ObservedObject var addCommentVM: AddCommentViewModel
     var trainer: TrainerInformation
     
     var body: some View {

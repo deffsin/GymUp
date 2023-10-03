@@ -9,8 +9,7 @@ import SwiftUI
 
 struct UserProfileCellDetailView: View {
     var trainer: TrainerInformation
-    // var dbUser: DBUser!!!!!
-    @ObservedObject var addCommentVM: AddCommentViewModel
+    @StateObject var addCommentVM = AddCommentViewModel()
     
     var body: some View {
         NavigationStack {
@@ -40,7 +39,7 @@ struct UserProfileCellDetailView: View {
             }
         }
         .navigationDestination(isPresented: $addCommentVM.navigateToAddComment) {
-            AddCommentView(trainer: trainer)
+            AddCommentView(addCommentVM: addCommentVM, trainer: trainer)
         }
     }
 }
