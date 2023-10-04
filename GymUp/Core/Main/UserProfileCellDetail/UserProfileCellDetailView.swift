@@ -33,7 +33,10 @@ struct UserProfileCellDetailView: View {
                     .padding(.horizontal, 20)
                 }
             }
-            .sheet(isPresented: $addCommentVM.navigateToAddComment) {
+            .sheet(isPresented: $addCommentVM.navigateToAddComment, onDismiss: {
+                self.addCommentVM.addComment = ""
+                self.addCommentVM.rating = 0
+            }) {
                 AddCommentView(addCommentVM: addCommentVM, trainer: trainer, isShowing: $addCommentVM.navigateToAddComment)
                     // .presentationBackground(.thinMaterial) iOS 16.4
                     // .presentationCornerRadius() iOS 16.4
