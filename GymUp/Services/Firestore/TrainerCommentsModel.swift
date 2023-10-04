@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TrainerComments: Codable {
+struct TrainerReviews: Codable {
     let id: String // trainer_comments document ID
     let toUserId: String?
     let fromUserId: String?

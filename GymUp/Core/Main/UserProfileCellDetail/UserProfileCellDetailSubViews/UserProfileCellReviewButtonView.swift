@@ -15,7 +15,12 @@ struct UserProfileCellReviewButtonView: View {
             Button(action: {
                 addCommentVM.navigateToAddComment.toggle()
             }) {
-                Text("Add a review")
+                HStack {
+                    Text("Add a review")
+                    Image(systemName: "plus.bubble")
+                        .font(.system(size: 12))
+                }
+                .foregroundColor(Color.white)
             }
         }
     }

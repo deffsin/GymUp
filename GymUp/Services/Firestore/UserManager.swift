@@ -44,13 +44,13 @@ final class UserManager {
         trainerInformationCollection(userId: userId).document(trainerInformationId)
     }
     
-    private func trainerCommentsCollection(userId: String) -> CollectionReference {
-        userDocument(userId: userId).collection("trainer_comments")
+    private func trainerReviewsCollection(userId: String) -> CollectionReference {
+        userDocument(userId: userId).collection("trainer_reviews")
     }
     
     // добавляет комментарии в аккаунт другого пользователя
-    private func toOtherTrainerCommentsCollection(toUserId: String) -> CollectionReference {
-        toOtherUserDocument(toUserId: toUserId).collection("trainer_comments")
+    private func toOtherTrainerReviewsCollection(toUserId: String) -> CollectionReference {
+        toOtherUserDocument(toUserId: toUserId).collection("trainer_reviews")
     }
     
     private let encoder: Firestore.Encoder = { // encode перед созданием юзера и добавлением какого либо поля
@@ -123,16 +123,16 @@ final class UserManager {
     
     func addTrainerComments(userId: String, toUserId: String, fromUserId: String, fullname: String, description: String, dataCreated: Date) async throws {
         do {
-            let document = toOtherTrainerCommentsCollection(toUserId: toUserId).document()
+            let document = toOtherTrainerReviewsCollection(toUserId: toUserId).document()
             let documentId = document.documentID
             
             let data: [String:Any] = [
-                TrainerComments.CodingKeys.id.rawValue : documentId,
-                TrainerComments.CodingKeys.fullname.rawValue : fullname,
-                TrainerComments.CodingKeys.toUserId.rawValue : toUserId,
-                TrainerComments.CodingKeys.fromUserId.rawValue : fromUserId,
-                TrainerComments.CodingKeys.description.rawValue : description,
-                TrainerComments.CodingKeys.dataCreated.rawValue : Date()
+                TrainerReviews.CodingKeys.id.rawValue : documentId,
+                TrainerReviews.CodingKeys.fullname.rawValue : fullname,
+                TrainerReviews.CodingKeys.toUserId.rawValue : toUserId,
+                TrainerReviews.CodingKeys.fromUserId.rawValue : fromUserId,
+                TrainerReviews.CodingKeys.description.rawValue : description,
+                TrainerReviews.CodingKeys.dataCreated.rawValue : Date()
             ]
             try await document.setData(data, merge: false)
         } catch {
@@ -141,7 +141,7 @@ final class UserManager {
     }
     
     // this function is used in the .sheet -> FillInformationView
-    func addTrainerAllInformation(userId: String, userDocId: String, fullname: String, phoneNumber: String, email: String, description: String, location: String, gyms: String, webLink: String, instagram: String, facebook: String, linkedIn: String, rating: Int, comments: Int, price: String) async throws {
+    func addTrainerAllInformation(userId: String, userDocId: String, fullname: String, phoneNumber: String, email: String, description: String, location: String, gyms: String, webLink: String, instagram: String, facebook: String, linkedIn: String, rating: Int, reviews: Int, price: String) async throws {
         do {
             let document = trainerInformationCollection(userId: userId).document()
             let documentId = document.documentID
@@ -160,7 +160,7 @@ final class UserManager {
                 TrainerInformation.CodingKeys.facebook.rawValue : facebook,
                 TrainerInformation.CodingKeys.linkedIn.rawValue : linkedIn,
                 TrainerInformation.CodingKeys.rating.rawValue : rating,
-                TrainerInformation.CodingKeys.comments.rawValue : comments,
+                TrainerInformation.CodingKeys.reviews.rawValue : reviews,
                 TrainerInformation.CodingKeys.price.rawValue : price
             ]
             try await document.setData(data, merge: false)

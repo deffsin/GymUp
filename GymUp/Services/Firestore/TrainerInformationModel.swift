@@ -22,7 +22,7 @@ struct TrainerInformation: Codable {
     let webLink: String?
     let linkedIn: String?
     let rating: Int? // Double!
-    let comments: Int? // Int!
+    let reviews: Int? // Int!
     let price: String? // String!
     
     init(auth: AuthDataResultModel) {
@@ -39,7 +39,7 @@ struct TrainerInformation: Codable {
         self.webLink = nil
         self.linkedIn = nil
         self.rating = nil
-        self.comments = nil
+        self.reviews = nil
         self.price = nil
     }
     
@@ -57,7 +57,7 @@ struct TrainerInformation: Codable {
     webLink: String? = nil,
     linkedIn: String? = nil,
     rating: Int? = nil,
-    comments: Int? = nil,
+    reviews: Int? = nil,
     price: String? = nil
     
     ) {
@@ -74,7 +74,7 @@ struct TrainerInformation: Codable {
         self.webLink = webLink
         self.linkedIn = linkedIn
         self.rating = rating
-        self.comments = comments
+        self.reviews = reviews
         self.price = price
     }
     
@@ -92,7 +92,7 @@ struct TrainerInformation: Codable {
         case webLink = "web_link" // ???
         case linkedIn = "linkedIn"
         case rating = "rating"
-        case comments = "comments"
+        case reviews = "reviews"
         case price = "price"
     }
     
@@ -112,7 +112,7 @@ struct TrainerInformation: Codable {
         self.webLink = try container.decode(String.self, forKey: .webLink)
         self.linkedIn = try container.decode(String.self, forKey: .linkedIn)
         self.rating = try container.decode(Int.self, forKey: .rating)
-        self.comments = try container.decode(Int.self, forKey: .comments)
+        self.reviews = try container.decode(Int.self, forKey: .reviews)
         self.price = try container.decode(String.self, forKey: .price)
     }
     
@@ -131,7 +131,7 @@ struct TrainerInformation: Codable {
         try container.encode(self.webLink, forKey: .webLink)
         try container.encode(self.linkedIn, forKey: .linkedIn)
         try container.encode(self.rating, forKey: .rating)
-        try container.encode(self.comments, forKey: .comments)
+        try container.encode(self.reviews, forKey: .reviews)
         try container.encode(self.price, forKey: .price)
     }
 }

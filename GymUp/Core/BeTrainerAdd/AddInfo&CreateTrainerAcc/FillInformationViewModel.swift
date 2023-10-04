@@ -26,7 +26,7 @@ final class FillInformationViewModel: ObservableObject {
     @Published var facebook: String = ""
     @Published var linkedIn: String = ""
     @Published var rating: Int = 0 // Double!
-    @Published var comments: Int = 0 // Int! + it should be [] or {} in the Firebase(not for now)?
+    @Published var reviews: Int = 0 // Int! + it should be [] or {} in the Firebase(not for now)?
     @Published var price: String = "" // String!
     
     @Published var showButton: Bool = false
@@ -155,11 +155,11 @@ final class FillInformationViewModel: ObservableObject {
         self.user = try await UserManager.shared.getUser(userId: authDataResult.uid)
     }
     
-    func addTrainerAllInformation(fullname: String, phoneNumber: String, email: String, description: String, location: String, gyms: String, webLink: String, instagram: String, facebook: String, linkedIn: String, rating: Int, comments: Int, price: String) {
+    func addTrainerAllInformation(fullname: String, phoneNumber: String, email: String, description: String, location: String, gyms: String, webLink: String, instagram: String, facebook: String, linkedIn: String, rating: Int, reviews: Int, price: String) {
         isAddingInformation = true
         Task {
             let authDataResult = try AuthenticationManager.shared.authenticatedUser()
-            try? await UserManager.shared.addTrainerAllInformation(userId: authDataResult.uid, userDocId: user!.userId, fullname: fullname, phoneNumber: phoneNumber, email: email, description: description, location: location, gyms: gyms, webLink: webLink, instagram: instagram, facebook: facebook, linkedIn: linkedIn, rating: rating, comments: comments, price: price)
+            try? await UserManager.shared.addTrainerAllInformation(userId: authDataResult.uid, userDocId: user!.userId, fullname: fullname, phoneNumber: phoneNumber, email: email, description: description, location: location, gyms: gyms, webLink: webLink, instagram: instagram, facebook: facebook, linkedIn: linkedIn, rating: rating, reviews: reviews, price: price)
                 isAddingInformation = false
         }
     }
