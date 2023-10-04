@@ -121,7 +121,7 @@ final class UserManager {
         }
     }
     
-    func addTrainerComments(userId: String, toUserId: String, fromUserId: String, fullname: String, description: String, rating: Int, dataCreated: Date) async throws {
+    func addTrainerReviews(userId: String, toUserId: String, fromUserId: String, fullname: String, description: String, rating: Int, dataCreated: Date) async throws {
         do {
             let document = toOtherTrainerReviewsCollection(toUserId: toUserId).document()
             let documentId = document.documentID

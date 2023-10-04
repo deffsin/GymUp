@@ -1,5 +1,5 @@
 //
-//  CommentsViewModel.swift
+//  ReviewsViewModel.swift
 //  GymUp
 //
 //  Created by Denis Sinitsa on 29.09.2023.
@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 @MainActor
-final class CommentsViewModel: ObservableObject {
+final class ReviewsViewModel: ObservableObject {
     
     @Published private(set) var allTrainers: [TrainerInformation]? = nil
     

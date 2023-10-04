@@ -14,7 +14,7 @@ final class BeTrainerAddViewModel: ObservableObject {
     @Published private(set) var user: DBUser? = nil
     @Published private(set) var trainer: TrainerInformation? = nil
     
-    @Published var navigateToComments = false
+    @Published var navigateToReviews = false
     
     private var cancellables = Set<AnyCancellable>()
         

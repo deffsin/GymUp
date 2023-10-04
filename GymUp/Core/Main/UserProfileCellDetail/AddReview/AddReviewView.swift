@@ -1,5 +1,5 @@
 //
-//  AddCommentView.swift
+//  AddReviewView.swift
 //  GymUp
 //
 //  Created by Denis Sinitsa on 29.09.2023.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct AddCommentView: View {
+struct AddReviewView: View {
     @Environment(\.dismiss) var dismiss
-    @ObservedObject var addCommentVM: AddCommentViewModel
+    @ObservedObject var addReviewVM: AddReviewViewModel
     var trainer: TrainerInformation
     @Binding var isShowing: Bool
 
@@ -21,7 +21,7 @@ struct AddCommentView: View {
         }
         .frame(width: 250)
         .task {
-            try? await addCommentVM.loadCurrentUser()
+            try? await addReviewVM.loadCurrentUser()
         }
     }
     
@@ -30,7 +30,7 @@ struct AddCommentView: View {
             Text("Rating:")
                 .bold()
                 .opacity(0.8)
-            RatingView(rating: $addCommentVM.rating)
+            RatingView(rating: $addReviewVM.rating)
             Spacer()
         }
         .padding(.top, 30)
@@ -38,10 +38,13 @@ struct AddCommentView: View {
     
     private var commentSection: some View {
         VStack(spacing: 7) {
-            Text("Write a review:")
-                .opacity(0.6)
+            HStack {
+                Text("Write a review:")
+                    .opacity(0.6)
+                Spacer()
+            }
             
-            TextEditor(text: $addCommentVM.addComment)
+            TextEditor(text: $addReviewVM.addReview)
                 .padding([.horizontal, .vertical], 5)
                 .frame(height: 80)
                 .overlay(
@@ -53,7 +56,7 @@ struct AddCommentView: View {
 
     private var addCommentButton: some View {
         Button(action: {
-            addCommentVM.addCommentToUser(toUserId: trainer.userDocId!, fullname: addCommentVM.user?.username ?? "", description: addCommentVM.addComment, rating: addCommentVM.rating)
+            addReviewVM.addReviewToUser(toUserId: trainer.userDocId!, fullname: addReviewVM.user?.username ?? "", description: addReviewVM.addReview, rating: addReviewVM.rating)
             dismiss()
         }) {
             Text("Add comment")
@@ -62,9 +65,9 @@ struct AddCommentView: View {
                 .foregroundColor(.white)
                 .background(Color.pink)
                 .cornerRadius(15)
-                .opacity(addCommentVM.showButton ? 1.0 : 0.5)
-                .shadow(color: addCommentVM.showButton ? .black : .black.opacity(0.5), radius: 3)
+                .opacity(addReviewVM.showButton ? 1.0 : 0.5)
+                .shadow(color: addReviewVM.showButton ? .black : .black.opacity(0.5), radius: 3)
         }
-        .disabled(!addCommentVM.showButton)
+        .disabled(!addReviewVM.showButton)
     }
 }

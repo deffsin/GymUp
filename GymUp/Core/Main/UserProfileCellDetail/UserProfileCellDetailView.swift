@@ -9,7 +9,7 @@ import SwiftUI
 
 struct UserProfileCellDetailView: View {
     var trainer: TrainerInformation
-    @StateObject var addCommentVM = AddCommentViewModel()
+    @StateObject var addReviewVM = AddReviewViewModel()
     
     var body: some View {
         NavigationStack {
@@ -20,7 +20,7 @@ struct UserProfileCellDetailView: View {
                     VStack {
                         HStack {
                             Spacer()
-                            UserProfileCellReviewButtonView(addCommentVM: addCommentVM)
+                            UserProfileCellReviewButtonView(addReviewVM: addReviewVM)
                         }
                         
                         VStack(spacing: 25) {
@@ -33,11 +33,11 @@ struct UserProfileCellDetailView: View {
                     .padding(.horizontal, 20)
                 }
             }
-            .sheet(isPresented: $addCommentVM.navigateToAddComment, onDismiss: {
-                self.addCommentVM.addComment = ""
-                self.addCommentVM.rating = 0
+            .sheet(isPresented: $addReviewVM.showAddReview, onDismiss: {
+                self.addReviewVM.addReview = ""
+                self.addReviewVM.rating = 0
             }) {
-                AddCommentView(addCommentVM: addCommentVM, trainer: trainer, isShowing: $addCommentVM.navigateToAddComment)
+                AddReviewView(addReviewVM: addReviewVM, trainer: trainer, isShowing: $addReviewVM.showAddReview)
                     // .presentationBackground(.thinMaterial) iOS 16.4
                     // .presentationCornerRadius() iOS 16.4
                     .presentationDragIndicator(.visible)

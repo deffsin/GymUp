@@ -32,7 +32,7 @@ struct MainView: View {
                         
                         if let trainers = viewModel.allTrainers {
                             ForEach(viewModel.filteredTrainers, id: \.id) { trainerInfo in
-                                NavigationLink(destination: UserProfileCellDetailView(trainer: trainerInfo, addCommentVM: AddCommentViewModel())) {
+                                NavigationLink(destination: UserProfileCellDetailView(trainer: trainerInfo, addReviewVM: AddReviewViewModel())) {
                                     UserProfileCell(trainer: trainerInfo)
                                 }
                             }

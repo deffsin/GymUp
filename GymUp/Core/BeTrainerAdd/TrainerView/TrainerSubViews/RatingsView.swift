@@ -14,7 +14,7 @@ struct RatingsView: View {
         NavigationStack {
             HStack {
                 Button(action: {
-                    viewModel.navigateToComments.toggle()
+                    viewModel.navigateToReviews.toggle()
                 }) {
                     if let trainer = viewModel.trainer {
                         HStack(spacing: 2){
@@ -28,8 +28,8 @@ struct RatingsView: View {
                 }
             }
         }
-        .navigationDestination(isPresented: $viewModel.navigateToComments) {
-            CommentsView()
+        .navigationDestination(isPresented: $viewModel.navigateToReviews) {
+            ReviewsView()
         }
     }
 }

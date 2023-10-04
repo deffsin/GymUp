@@ -1,5 +1,5 @@
 //
-//  AddCommentViewModel.swift
+//  AddReviewViewModel.swift
 //  GymUp
 //
 //  Created by Denis Sinitsa on 29.09.2023.
@@ -10,41 +10,41 @@ import SwiftUI
 import Combine
 
 @MainActor
-final class AddCommentViewModel: ObservableObject {
+final class AddReviewViewModel: ObservableObject {
     
     @Published private(set) var user: DBUser? = nil
     
     @Published var rating: Int = 0
-    @Published var addComment = ""
-    @Published var navigateToAddComment: Bool = false
+    @Published var addReview = ""
+    @Published var showAddReview: Bool = false
     @Published var showButton = false
     
     var cancellables = Set<AnyCancellable>()
     
-    @Published var addCommentIsValid: Bool = false
+    @Published var addReviewIsValid: Bool = false
     
     init() {
-        addCommentSubscriber()
+        addReviewSubscriber()
         addButtonSubscriber()
     }
     
-    func addCommentSubscriber() {
-        $addComment
+    func addReviewSubscriber() {
+        $addReview
             .map { (text) -> Bool in
                 return !text.isEmpty
             }
             .sink(receiveValue: { [weak self] (isValid) in
-                self?.addCommentIsValid = isValid
+                self?.addReviewIsValid = isValid
             })
             .store(in: &cancellables)
     }
     
     func addButtonSubscriber() {
-        $addCommentIsValid
+        $addReviewIsValid
             .debounce(for: .seconds(0.6), scheduler: DispatchQueue.main)
-            .sink { [weak self] (addCommentIsValid) in
+            .sink { [weak self] (addReviewIsValid) in
                 guard let self = self else { return }
-                if addCommentIsValid {
+                if addReviewIsValid {
                     self.showButton = true
                 } else {
                     self.showButton = false
@@ -53,10 +53,10 @@ final class AddCommentViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
-    func addCommentToUser(toUserId: String, fullname: String, description: String, rating: Int) {
+    func addReviewToUser(toUserId: String, fullname: String, description: String, rating: Int) {
         Task {
             let authDataResult = try AuthenticationManager.shared.authenticatedUser()
-            try? await UserManager.shared.addTrainerComments(userId: authDataResult.uid, toUserId: toUserId, fromUserId: user!.userId, fullname: fullname, description: description, rating: rating, dataCreated: Date())
+            try? await UserManager.shared.addTrainerReviews(userId: authDataResult.uid, toUserId: toUserId, fromUserId: user!.userId, fullname: fullname, description: description, rating: rating, dataCreated: Date())
         }
     }
     

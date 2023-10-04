@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct UserProfileCellReviewButtonView: View {
-    @ObservedObject var addCommentVM: AddCommentViewModel
+    @ObservedObject var addReviewVM: AddReviewViewModel
     
     var body: some View {
         VStack {
             Button(action: {
-                addCommentVM.navigateToAddComment.toggle()
+                addReviewVM.showAddReview.toggle()
             }) {
                 HStack {
                     Text("Add a review")
@@ -28,6 +28,6 @@ struct UserProfileCellReviewButtonView: View {
 
 struct UserProfileCellReviewButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        UserProfileCellReviewButtonView(addCommentVM: AddCommentViewModel())
+        UserProfileCellReviewButtonView(addReviewVM: AddReviewViewModel())
     }
 }
