@@ -59,7 +59,7 @@
 		1575CC0A2AC4BD7F00672481 /* TrainerEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1575CC092AC4BD7F00672481 /* TrainerEditViewModel.swift */; };
 		1575CC112AC6DB1400672481 /* ReviewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1575CC102AC6DB1400672481 /* ReviewsView.swift */; };
 		1575CC142AC6DF4D00672481 /* ReviewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1575CC132AC6DF4D00672481 /* ReviewsViewModel.swift */; };
-		1575CC162AC6EEBD00672481 /* TrainerCommentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1575CC152AC6EEBD00672481 /* TrainerCommentsModel.swift */; };
+		1575CC162AC6EEBD00672481 /* TrainerReviewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1575CC152AC6EEBD00672481 /* TrainerReviewsModel.swift */; };
 		1575CC1C2AC76A6300672481 /* AddReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1575CC1B2AC76A6300672481 /* AddReviewView.swift */; };
 		1575CC1E2AC76BA700672481 /* AddReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1575CC1D2AC76BA700672481 /* AddReviewViewModel.swift */; };
 		157978362ABCF1F20084B624 /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157978352ABCF1F20084B624 /* IconButton.swift */; };
@@ -138,7 +138,7 @@
 		1575CC092AC4BD7F00672481 /* TrainerEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerEditViewModel.swift; sourceTree = "<group>"; };
 		1575CC102AC6DB1400672481 /* ReviewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsView.swift; sourceTree = "<group>"; };
 		1575CC132AC6DF4D00672481 /* ReviewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsViewModel.swift; sourceTree = "<group>"; };
-		1575CC152AC6EEBD00672481 /* TrainerCommentsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerCommentsModel.swift; sourceTree = "<group>"; };
+		1575CC152AC6EEBD00672481 /* TrainerReviewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerReviewsModel.swift; sourceTree = "<group>"; };
 		1575CC1B2AC76A6300672481 /* AddReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReviewView.swift; sourceTree = "<group>"; };
 		1575CC1D2AC76BA700672481 /* AddReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReviewViewModel.swift; sourceTree = "<group>"; };
 		157978352ABCF1F20084B624 /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
@@ -398,7 +398,7 @@
 				156CED9A2AA66EB70000EEEA /* UserManager.swift */,
 				153689482AB36C230043ABC8 /* DBUserModel.swift */,
 				1536894A2AB36C500043ABC8 /* TrainerInformationModel.swift */,
-				1575CC152AC6EEBD00672481 /* TrainerCommentsModel.swift */,
+				1575CC152AC6EEBD00672481 /* TrainerReviewsModel.swift */,
 				156CED692AA29A400000EEEA /* GoogleService-Info.plist */,
 			);
 			path = Firestore;
@@ -711,7 +711,7 @@
 				156CED962AA637080000EEEA /* ProfileView.swift in Sources */,
 				15D7472A2ACD6CA10092B319 /* UserProfileCellReviewButtonView.swift in Sources */,
 				1536895A2AB502100043ABC8 /* ResourcesView.swift in Sources */,
-				1575CC162AC6EEBD00672481 /* TrainerCommentsModel.swift in Sources */,
+				1575CC162AC6EEBD00672481 /* TrainerReviewsModel.swift in Sources */,
 				156CED862AA5CD420000EEEA /* SignInAppleHelper.swift in Sources */,
 				1501CA362ABDB7B500766F67 /* UserProfileCellAboutView.swift in Sources */,
 				156CED842AA3E6DF0000EEEA /* SignInGoogleHelper.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  TrainerComments.swift
+//  TrainerReviews.swift
 //  GymUp
 //
 //  Created by Denis Sinitsa on 29.09.2023.
