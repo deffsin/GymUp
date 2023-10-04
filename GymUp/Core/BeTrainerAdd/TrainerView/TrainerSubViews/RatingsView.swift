@@ -20,7 +20,7 @@ struct RatingsView: View {
                         HStack(spacing: 2){
                             Text("Comments: ")
                                 .font(.system(size: 17))
-                            Text("\(trainer.comments ?? 0)")
+                            Text("\(trainer.reviews ?? 0)")
                                 .bold()
                             Spacer()
                         }

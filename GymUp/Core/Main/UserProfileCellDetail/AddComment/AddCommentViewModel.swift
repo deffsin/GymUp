@@ -14,8 +14,9 @@ final class AddCommentViewModel: ObservableObject {
     
     @Published private(set) var user: DBUser? = nil
     
+    @Published var rating: Int = 0
     @Published var addComment = ""
-    @Published var navigateToAddComment = false
+    @Published var navigateToAddComment: Bool = false
     @Published var showButton = false
     
     var cancellables = Set<AnyCancellable>()
@@ -52,10 +53,10 @@ final class AddCommentViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
-    func addCommentToUser(toUserId: String, fullname: String, description: String) {
+    func addCommentToUser(toUserId: String, fullname: String, description: String, rating: Int) {
         Task {
             let authDataResult = try AuthenticationManager.shared.authenticatedUser()
-            try? await UserManager.shared.addTrainerComments(userId: authDataResult.uid, toUserId: toUserId, fromUserId: user!.userId, fullname: fullname, description: description, dataCreated: Date())
+            try? await UserManager.shared.addTrainerComments(userId: authDataResult.uid, toUserId: toUserId, fromUserId: user!.userId, fullname: fullname, description: description, rating: rating, dataCreated: Date())
         }
     }
     

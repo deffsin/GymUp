@@ -9,8 +9,7 @@ import SwiftUI
 
 struct UserProfileCellDetailView: View {
     var trainer: TrainerInformation
-    // var dbUser: DBUser!!!!!
-    @ObservedObject var addCommentVM: AddCommentViewModel
+    @StateObject var addCommentVM = AddCommentViewModel()
     
     var body: some View {
         NavigationStack {
@@ -18,29 +17,32 @@ struct UserProfileCellDetailView: View {
                 BackgroundUserProfileCellDetailView()
                 
                 ScrollView {
-                    Button(action: {
-                        addCommentVM.navigateToAddComment.toggle()
-                    }) {
-                        Text("Add a comment")
-                    }
-                    
-                    VStack(spacing: 25) {
-                        UserProfileCellInfoView(trainer: trainer)
-                        UserProfileCellDetailsView(trainer: trainer)
+                    VStack {
+                        HStack {
+                            Spacer()
+                            UserProfileCellReviewButtonView(addCommentVM: addCommentVM)
+                        }
+                        
+                        VStack(spacing: 25) {
+                            UserProfileCellInfoView(trainer: trainer)
+                            UserProfileCellDetailsView(trainer: trainer)
+                        }
+                        .foregroundColor(Color.white)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                     }
                     .padding(.horizontal, 20)
-                    .foregroundColor(Color.white)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    
-                    VStack {
-                        
-                    }
-                    .frame(maxWidth: .infinity, minHeight: 73)
                 }
             }
-        }
-        .navigationDestination(isPresented: $addCommentVM.navigateToAddComment) {
-            AddCommentView(trainer: trainer)
+            .sheet(isPresented: $addCommentVM.navigateToAddComment, onDismiss: {
+                self.addCommentVM.addComment = ""
+                self.addCommentVM.rating = 0
+            }) {
+                AddCommentView(addCommentVM: addCommentVM, trainer: trainer, isShowing: $addCommentVM.navigateToAddComment)
+                    // .presentationBackground(.thinMaterial) iOS 16.4
+                    // .presentationCornerRadius() iOS 16.4
+                    .presentationDragIndicator(.visible)
+                    .presentationDetents([.fraction(0.3)])
+            }
         }
     }
 }

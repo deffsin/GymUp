@@ -14,9 +14,9 @@ struct UserProfileCellRatingsView: View {
         HStack {
             Button(action: {}) {
                 HStack(spacing: 2){
-                    Text("Comments: ")
+                    Text("Reviews: ")
                         .font(.system(size: 17))
-                    Text("\(trainer.comments ?? 0)")
+                    Text("\(trainer.reviews ?? 0)")
                         .bold()
                     Spacer()
                 }

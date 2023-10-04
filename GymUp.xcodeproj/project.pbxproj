@@ -82,6 +82,10 @@
 		15BC79E22AAB2EBA000DD93F /* BeTrainerAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BC79E12AAB2EBA000DD93F /* BeTrainerAddView.swift */; };
 		15BC79E52AAB2F36000DD93F /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BC79E42AAB2F36000DD93F /* TabBar.swift */; };
 		15BC79E72AAB2F3E000DD93F /* TabBarView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BC79E62AAB2F3E000DD93F /* TabBarView1.swift */; };
+		15D747252ACC95E80092B319 /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D747242ACC95E80092B319 /* RoundedCorner.swift */; };
+		15D747282ACC961C0092B319 /* View+CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D747272ACC961C0092B319 /* View+CornerRadius.swift */; };
+		15D7472A2ACD6CA10092B319 /* UserProfileCellReviewButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D747292ACD6CA10092B319 /* UserProfileCellReviewButtonView.swift */; };
+		15D7472C2ACD8FA70092B319 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D7472B2ACD8FA70092B319 /* RatingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -157,6 +161,10 @@
 		15BC79E12AAB2EBA000DD93F /* BeTrainerAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeTrainerAddView.swift; sourceTree = "<group>"; };
 		15BC79E42AAB2F36000DD93F /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		15BC79E62AAB2F3E000DD93F /* TabBarView1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView1.swift; sourceTree = "<group>"; };
+		15D747242ACC95E80092B319 /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
+		15D747272ACC961C0092B319 /* View+CornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+CornerRadius.swift"; sourceTree = "<group>"; };
+		15D747292ACD6CA10092B319 /* UserProfileCellReviewButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileCellReviewButtonView.swift; sourceTree = "<group>"; };
+		15D7472B2ACD8FA70092B319 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,8 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				1540F6B62ABD902D00808427 /* UserProfileCellDetailView.swift */,
-				1575CC1B2AC76A6300672481 /* AddCommentView.swift */,
-				1575CC1D2AC76BA700672481 /* AddCommentViewModel.swift */,
+				15D747232ACC25640092B319 /* AddComment */,
 				1501CA2A2ABDB69A00766F67 /* UserProfileCellDetailSubViews */,
 			);
 			path = UserProfileCellDetail;
@@ -195,6 +202,7 @@
 				1501CA332ABDB79300766F67 /* UserProfileCellRatingsInfoView.swift */,
 				1501CA352ABDB7B500766F67 /* UserProfileCellAboutView.swift */,
 				1501CA372ABDB7BC00766F67 /* UserProfileCellResourcesView.swift */,
+				15D747292ACD6CA10092B319 /* UserProfileCellReviewButtonView.swift */,
 			);
 			path = UserProfileCellDetailSubViews;
 			sourceTree = "<group>";
@@ -300,6 +308,7 @@
 		156CED582AA289560000EEEA /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				15D747262ACC95F70092B319 /* Main */,
 				156CED772AA357C70000EEEA /* View+EmailSections.swift */,
 				1536893F2AB1D5030043ABC8 /* BeTrainerAddExtension */,
 			);
@@ -549,6 +558,25 @@
 			path = CustomTabBar;
 			sourceTree = "<group>";
 		};
+		15D747232ACC25640092B319 /* AddComment */ = {
+			isa = PBXGroup;
+			children = (
+				1575CC1B2AC76A6300672481 /* AddCommentView.swift */,
+				1575CC1D2AC76BA700672481 /* AddCommentViewModel.swift */,
+				15D7472B2ACD8FA70092B319 /* RatingView.swift */,
+				15D747242ACC95E80092B319 /* RoundedCorner.swift */,
+			);
+			path = AddComment;
+			sourceTree = "<group>";
+		};
+		15D747262ACC95F70092B319 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				15D747272ACC961C0092B319 /* View+CornerRadius.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -639,6 +667,7 @@
 				1575CC142AC6DF4D00672481 /* CommentsViewModel.swift in Sources */,
 				153689582AB501FD0043ABC8 /* AboutMeView.swift in Sources */,
 				1536894B2AB36C500043ABC8 /* TrainerInformationModel.swift in Sources */,
+				15D747252ACC95E80092B319 /* RoundedCorner.swift in Sources */,
 				15BC79E72AAB2F3E000DD93F /* TabBarView1.swift in Sources */,
 				156CED802AA3629E0000EEEA /* AuthenticationViewModel.swift in Sources */,
 				156CED742AA3367C0000EEEA /* SettingsViewModel.swift in Sources */,
@@ -660,6 +689,7 @@
 				1501CA4E2AC35D0300766F67 /* TrainerEditView.swift in Sources */,
 				156CED612AA28DEB0000EEEA /* SignInView.swift in Sources */,
 				15AD51DE2ABB706F00713ED9 /* IconTextRow.swift in Sources */,
+				15D747282ACC961C0092B319 /* View+CornerRadius.swift in Sources */,
 				156CED782AA357C70000EEEA /* View+EmailSections.swift in Sources */,
 				1579783C2ABCF3BA0084B624 /* FiltersView.swift in Sources */,
 				156CED9B2AA66EB70000EEEA /* UserManager.swift in Sources */,
@@ -674,10 +704,12 @@
 				1511C9472AAE311000864044 /* FillInformationView.swift in Sources */,
 				15AD51DC2ABB705400713ED9 /* TrainerExperienceInfo.swift in Sources */,
 				153689452AB3680B0043ABC8 /* FillInformationViewModel.swift in Sources */,
+				15D7472C2ACD8FA70092B319 /* RatingView.swift in Sources */,
 				1501CA442ABE564100766F67 /* UserProfileCellDetailsView.swift in Sources */,
 				1540F6B72ABD902D00808427 /* UserProfileCellDetailView.swift in Sources */,
 				1575CC1E2AC76BA700672481 /* AddCommentViewModel.swift in Sources */,
 				156CED962AA637080000EEEA /* ProfileView.swift in Sources */,
+				15D7472A2ACD6CA10092B319 /* UserProfileCellReviewButtonView.swift in Sources */,
 				1536895A2AB502100043ABC8 /* ResourcesView.swift in Sources */,
 				1575CC162AC6EEBD00672481 /* TrainerCommentsModel.swift in Sources */,
 				156CED862AA5CD420000EEEA /* SignInAppleHelper.swift in Sources */,

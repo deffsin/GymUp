@@ -71,7 +71,7 @@ struct FillInformationView: View {
                     }
                     
                     Button(action: {
-                        viewModel.addTrainerAllInformation(fullname: viewModel.user?.username ?? "", phoneNumber: viewModel.phoneNumber, email: viewModel.email, description: viewModel.description, location: viewModel.location, gyms: viewModel.gyms, webLink: viewModel.webLink, instagram: viewModel.instagram, facebook: viewModel.facebook, linkedIn: viewModel.linkedIn, rating: viewModel.rating, comments: viewModel.comments, price: viewModel.price)
+                        viewModel.addTrainerAllInformation(fullname: viewModel.user?.username ?? "", phoneNumber: viewModel.phoneNumber, email: viewModel.email, description: viewModel.description, location: viewModel.location, gyms: viewModel.gyms, webLink: viewModel.webLink, instagram: viewModel.instagram, facebook: viewModel.facebook, linkedIn: viewModel.linkedIn, rating: viewModel.rating, reviews: viewModel.reviews, price: viewModel.price)
                         viewModel.toggleTrainerStatus()
                         dismiss()
                     }) {

@@ -7,12 +7,13 @@
 
 import Foundation
 
-struct TrainerComments: Codable {
+struct TrainerReviews: Codable {
     let id: String // trainer_comments document ID
     let toUserId: String?
     let fromUserId: String?
     let fullname: String?
     let description: String?
+    let rating: Int?
     let dataCreated: Date?
     // from userId + name
     
@@ -23,6 +24,7 @@ struct TrainerComments: Codable {
         self.fromUserId = nil
         self.fullname = nil
         self.description = nil
+        self.rating = nil // 0?
         self.dataCreated = Date()
     }
     
@@ -32,6 +34,7 @@ struct TrainerComments: Codable {
     fromUserId: String? = nil,
     fullname: String? = nil,
     description: String? = nil,
+    rating: Int? = nil,
     dataCreated: Date? = nil
     ) {
         self.id = id
@@ -39,6 +42,7 @@ struct TrainerComments: Codable {
         self.fromUserId = fromUserId
         self.fullname = fullname
         self.description = description
+        self.rating = rating
         self.dataCreated = dataCreated
 
     }
@@ -49,6 +53,7 @@ struct TrainerComments: Codable {
         case fromUserId = "from_user_id"
         case fullname = "fullname"
         case description = "description"
+        case rating = "rating"
         case dataCreated = "data_created"
     }
     
@@ -59,6 +64,7 @@ struct TrainerComments: Codable {
         self.fromUserId = try container.decodeIfPresent(String.self, forKey: .fromUserId)
         self.fullname = try container.decodeIfPresent(String.self, forKey: .fullname)
         self.description = try container.decodeIfPresent(String.self, forKey: .description)
+        self.rating = try container.decodeIfPresent(Int.self, forKey: .rating)
         self.dataCreated = try container.decodeIfPresent(Date.self, forKey: .dataCreated)
     }
     
@@ -69,6 +75,7 @@ struct TrainerComments: Codable {
         try container.encodeIfPresent(self.fromUserId, forKey: .fromUserId)
         try container.encodeIfPresent(self.fullname, forKey: .fullname)
         try container.encodeIfPresent(self.description, forKey: .description)
+        try container.encodeIfPresent(self.rating, forKey: .rating)
         try container.encodeIfPresent(self.dataCreated, forKey: .dataCreated)
 
     }
