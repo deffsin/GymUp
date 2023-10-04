@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AddCommentView: View {
+    @Environment(\.dismiss) var dismiss
     @ObservedObject var addCommentVM: AddCommentViewModel
     var trainer: TrainerInformation
     @Binding var isShowing: Bool
@@ -36,6 +37,7 @@ struct AddCommentView: View {
     private var addCommentButton: some View {
         Button(action: {
             addCommentVM.addCommentToUser(toUserId: trainer.userDocId!, fullname: addCommentVM.user?.username ?? "", description: addCommentVM.addComment)
+            dismiss()
         }) {
             Text("Add comment")
                 .frame(width: 130, height: 20)

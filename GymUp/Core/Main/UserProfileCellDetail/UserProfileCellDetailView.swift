@@ -17,24 +17,20 @@ struct UserProfileCellDetailView: View {
                 BackgroundUserProfileCellDetailView()
                 
                 ScrollView {
-                    Button(action: {
-                        addCommentVM.navigateToAddComment.toggle()
-                    }) {
-                        Text("Add a comment")
-                    }
-                    
-                    VStack(spacing: 25) {
-                        UserProfileCellInfoView(trainer: trainer)
-                        UserProfileCellDetailsView(trainer: trainer)
+                    VStack {
+                        HStack {
+                            Spacer()
+                            UserProfileCellReviewButtonView(addCommentVM: addCommentVM)
+                        }
+                        
+                        VStack(spacing: 25) {
+                            UserProfileCellInfoView(trainer: trainer)
+                            UserProfileCellDetailsView(trainer: trainer)
+                        }
+                        .foregroundColor(Color.white)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                     }
                     .padding(.horizontal, 20)
-                    .foregroundColor(Color.white)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    
-                    VStack {
-                        
-                    }
-                    .frame(maxWidth: .infinity, minHeight: 73)
                 }
             }
             .sheet(isPresented: $addCommentVM.navigateToAddComment) {
