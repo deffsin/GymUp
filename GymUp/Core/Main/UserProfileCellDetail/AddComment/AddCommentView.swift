@@ -14,29 +14,46 @@ struct AddCommentView: View {
     @Binding var isShowing: Bool
 
     var body: some View {
-        ZStack {
-            VStack(spacing: 20) {
-                Text("Rating: 1, 2, 3, 4, 5")
-                
-                TextEditor(text: $addCommentVM.addComment)
-                    .padding([.horizontal, .vertical], 5)
-                    .frame(width: 250, height: 80)
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.gray.opacity(0.4), lineWidth: 1)
-                    }
-                
-                addCommentButton
-            }
+        VStack(spacing: 20) {
+            ratingSection
+            commentSection
+            addCommentButton
         }
+        .frame(width: 250)
         .task {
             try? await addCommentVM.loadCurrentUser()
         }
     }
     
+    private var ratingSection: some View {
+        HStack {
+            Text("Rating:")
+                .bold()
+                .opacity(0.8)
+            RatingView(rating: $addCommentVM.rating)
+            Spacer()
+        }
+        .padding(.top, 30)
+    }
+    
+    private var commentSection: some View {
+        VStack(spacing: 7) {
+            Text("Write a review:")
+                .opacity(0.6)
+            
+            TextEditor(text: $addCommentVM.addComment)
+                .padding([.horizontal, .vertical], 5)
+                .frame(height: 80)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.gray.opacity(0.4), lineWidth: 1)
+                )
+        }
+    }
+
     private var addCommentButton: some View {
         Button(action: {
-            addCommentVM.addCommentToUser(toUserId: trainer.userDocId!, fullname: addCommentVM.user?.username ?? "", description: addCommentVM.addComment)
+            addCommentVM.addCommentToUser(toUserId: trainer.userDocId!, fullname: addCommentVM.user?.username ?? "", description: addCommentVM.addComment, rating: addCommentVM.rating)
             dismiss()
         }) {
             Text("Add comment")
@@ -51,10 +68,3 @@ struct AddCommentView: View {
         .disabled(!addCommentVM.showButton)
     }
 }
-
-
-//struct AddCommentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AddCommentView()
-//    }
-//}
