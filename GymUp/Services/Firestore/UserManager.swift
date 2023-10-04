@@ -121,7 +121,7 @@ final class UserManager {
         }
     }
     
-    func addTrainerComments(userId: String, toUserId: String, fromUserId: String, fullname: String, description: String, dataCreated: Date) async throws {
+    func addTrainerComments(userId: String, toUserId: String, fromUserId: String, fullname: String, description: String, rating: Int, dataCreated: Date) async throws {
         do {
             let document = toOtherTrainerReviewsCollection(toUserId: toUserId).document()
             let documentId = document.documentID
@@ -132,6 +132,7 @@ final class UserManager {
                 TrainerReviews.CodingKeys.toUserId.rawValue : toUserId,
                 TrainerReviews.CodingKeys.fromUserId.rawValue : fromUserId,
                 TrainerReviews.CodingKeys.description.rawValue : description,
+                TrainerReviews.CodingKeys.rating.rawValue : rating,
                 TrainerReviews.CodingKeys.dataCreated.rawValue : Date()
             ]
             try await document.setData(data, merge: false)
