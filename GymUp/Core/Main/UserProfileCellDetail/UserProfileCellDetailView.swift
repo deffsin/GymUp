@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct UserProfileCellDetailView: View {
-    var trainer: TrainerInformation
+    var trainer: TrainerInformation // State?
     @StateObject var addReviewVM = AddReviewViewModel()
     
     var body: some View {
@@ -32,6 +32,10 @@ struct UserProfileCellDetailView: View {
                     }
                     .padding(.horizontal, 20)
                 }
+                .navigationBarTitleDisplayMode(.inline)
+            }
+            .refreshable {
+                try? await Task.sleep(nanoseconds: 1_200_000_000)
             }
             .sheet(isPresented: $addReviewVM.showAddReview, onDismiss: {
                 self.addReviewVM.addReview = ""
