@@ -86,6 +86,7 @@
 		15D747282ACC961C0092B319 /* View+CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D747272ACC961C0092B319 /* View+CornerRadius.swift */; };
 		15D7472A2ACD6CA10092B319 /* UserProfileCellReviewButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D747292ACD6CA10092B319 /* UserProfileCellReviewButtonView.swift */; };
 		15D7472C2ACD8FA70092B319 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D7472B2ACD8FA70092B319 /* RatingView.swift */; };
+		15D747342AD0A8190092B319 /* UserReviewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D747332AD0A8190092B319 /* UserReviewsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -165,6 +166,7 @@
 		15D747272ACC961C0092B319 /* View+CornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+CornerRadius.swift"; sourceTree = "<group>"; };
 		15D747292ACD6CA10092B319 /* UserProfileCellReviewButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileCellReviewButtonView.swift; sourceTree = "<group>"; };
 		15D7472B2ACD8FA70092B319 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
+		15D747332AD0A8190092B319 /* UserReviewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReviewsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				1540F6B62ABD902D00808427 /* UserProfileCellDetailView.swift */,
+				15D747322AD0A80D0092B319 /* UserReviews */,
 				15D747232ACC25640092B319 /* AddReview */,
 				1501CA2A2ABDB69A00766F67 /* UserProfileCellDetailSubViews */,
 			);
@@ -577,6 +580,14 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		15D747322AD0A80D0092B319 /* UserReviews */ = {
+			isa = PBXGroup;
+			children = (
+				15D747332AD0A8190092B319 /* UserReviewsView.swift */,
+			);
+			path = UserReviews;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -714,6 +725,7 @@
 				1575CC162AC6EEBD00672481 /* TrainerReviewsModel.swift in Sources */,
 				156CED862AA5CD420000EEEA /* SignInAppleHelper.swift in Sources */,
 				1501CA362ABDB7B500766F67 /* UserProfileCellAboutView.swift in Sources */,
+				15D747342AD0A8190092B319 /* UserReviewsView.swift in Sources */,
 				156CED842AA3E6DF0000EEEA /* SignInGoogleHelper.swift in Sources */,
 				15BC79E02AAB2EAE000DD93F /* MainView.swift in Sources */,
 				156CED492AA287DC0000EEEA /* ContentView.swift in Sources */,
