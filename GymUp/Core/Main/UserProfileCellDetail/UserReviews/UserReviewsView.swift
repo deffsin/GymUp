@@ -8,13 +8,22 @@
 import SwiftUI
 
 struct UserReviewsView: View {
+    @StateObject var userReviewsVM = UserReviewsViewModel()
+    var trainer: TrainerInformation
+    
     var body: some View {
-        Text("UserReviewsView")
-    }
-}
-
-struct UserReviewsView_Previews: PreviewProvider {
-    static var previews: some View {
-        UserReviewsView()
+        ZStack {
+            VStack {
+                Text("UserReviewsView")
+                if let userReviews = userReviewsVM.allReviews {
+                    ForEach(userReviews, id: \.id) { review in
+                        Text(review.description!)
+                    }
+                }
+            }
+        }
+        .task {
+            userReviewsVM.loadAllTrainerReviews(userId: trainer.userDocId!)
+        }
     }
 }

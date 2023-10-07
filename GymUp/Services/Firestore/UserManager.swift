@@ -121,6 +121,16 @@ final class UserManager {
         }
     }
     
+    func getAllTrainerReviews(userId: String) async throws -> [TrainerReviews] {
+        do {
+            let snapshot = try await trainerReviewsCollection(userId: userId).getDocuments()
+            return snapshot.documents.compactMap { try? $0.data(as: TrainerReviews.self) }
+            
+        } catch {
+            throw UserManagerError.connectionFailed
+        }
+    }
+    
     func addTrainerReviews(userId: String, toUserId: String, fromUserId: String, fullname: String, description: String, rating: Int, dataCreated: Date) async throws {
         do {
             let document = toOtherTrainerReviewsCollection(toUserId: toUserId).document()
