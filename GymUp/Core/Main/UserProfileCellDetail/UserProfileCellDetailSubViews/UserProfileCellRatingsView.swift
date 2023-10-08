@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct UserProfileCellRatingsView: View {
+struct UserProfileCellRatingsView: View { // UserProfileCellReviewsView
     var trainer: TrainerInformation
     
     var body: some View {
-        HStack {
-            Button(action: {}) {
+        ZStack {
+            NavigationLink(destination: UserReviewsView(trainer: trainer)) {
                 HStack(spacing: 2){
                     Text("Reviews: ")
                         .font(.system(size: 17))

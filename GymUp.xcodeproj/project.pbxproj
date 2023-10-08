@@ -31,6 +31,9 @@
 		153689582AB501FD0043ABC8 /* AboutMeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153689572AB501FD0043ABC8 /* AboutMeView.swift */; };
 		1536895A2AB502100043ABC8 /* ResourcesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153689592AB502100043ABC8 /* ResourcesView.swift */; };
 		1540F6B72ABD902D00808427 /* UserProfileCellDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1540F6B62ABD902D00808427 /* UserProfileCellDetailView.swift */; };
+		1563A69F2AD185110021EB19 /* UserReviewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1563A69E2AD185110021EB19 /* UserReviewsView.swift */; };
+		1563A6A12AD193610021EB19 /* UserReviewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1563A6A02AD193610021EB19 /* UserReviewsViewModel.swift */; };
+		1563A6A32AD2146E0021EB19 /* UserRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1563A6A22AD2146E0021EB19 /* UserRatingView.swift */; };
 		156CED472AA287DC0000EEEA /* GymUpApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156CED462AA287DC0000EEEA /* GymUpApp.swift */; };
 		156CED492AA287DC0000EEEA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156CED482AA287DC0000EEEA /* ContentView.swift */; };
 		156CED4B2AA287DD0000EEEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 156CED4A2AA287DD0000EEEA /* Assets.xcassets */; };
@@ -113,6 +116,9 @@
 		153689572AB501FD0043ABC8 /* AboutMeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutMeView.swift; sourceTree = "<group>"; };
 		153689592AB502100043ABC8 /* ResourcesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesView.swift; sourceTree = "<group>"; };
 		1540F6B62ABD902D00808427 /* UserProfileCellDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileCellDetailView.swift; sourceTree = "<group>"; };
+		1563A69E2AD185110021EB19 /* UserReviewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReviewsView.swift; sourceTree = "<group>"; };
+		1563A6A02AD193610021EB19 /* UserReviewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReviewsViewModel.swift; sourceTree = "<group>"; };
+		1563A6A22AD2146E0021EB19 /* UserRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRatingView.swift; sourceTree = "<group>"; };
 		156CED432AA287DC0000EEEA /* GymUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GymUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		156CED462AA287DC0000EEEA /* GymUpApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymUpApp.swift; sourceTree = "<group>"; };
 		156CED482AA287DC0000EEEA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -187,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				1540F6B62ABD902D00808427 /* UserProfileCellDetailView.swift */,
+				1563A69D2AD185060021EB19 /* UserReviews */,
 				15D747232ACC25640092B319 /* AddReview */,
 				1501CA2A2ABDB69A00766F67 /* UserProfileCellDetailSubViews */,
 			);
@@ -237,6 +244,16 @@
 				153689592AB502100043ABC8 /* ResourcesView.swift */,
 			);
 			path = TrainerSubViews;
+			sourceTree = "<group>";
+		};
+		1563A69D2AD185060021EB19 /* UserReviews */ = {
+			isa = PBXGroup;
+			children = (
+				1563A69E2AD185110021EB19 /* UserReviewsView.swift */,
+				1563A6A22AD2146E0021EB19 /* UserRatingView.swift */,
+				1563A6A02AD193610021EB19 /* UserReviewsViewModel.swift */,
+			);
+			path = UserReviews;
 			sourceTree = "<group>";
 		};
 		156CED3A2AA287DC0000EEEA = {
@@ -663,6 +680,7 @@
 				1575CC072AC4BB2800672481 /* InformationFieldWithoutMarks.swift in Sources */,
 				153689412AB367CE0043ABC8 /* BeTrainerAddViewModel.swift in Sources */,
 				1536894D2AB38EC50043ABC8 /* NeedToCreateAccountView.swift in Sources */,
+				1563A6A12AD193610021EB19 /* UserReviewsViewModel.swift in Sources */,
 				1575CC1C2AC76A6300672481 /* AddReviewView.swift in Sources */,
 				1575CC142AC6DF4D00672481 /* ReviewsViewModel.swift in Sources */,
 				153689582AB501FD0043ABC8 /* AboutMeView.swift in Sources */,
@@ -686,6 +704,7 @@
 				153689562AB501BC0043ABC8 /* RatingsInfoView.swift in Sources */,
 				153689502AB501310043ABC8 /* UserInfoView.swift in Sources */,
 				1501CA382ABDB7BC00766F67 /* UserProfileCellResourcesView.swift in Sources */,
+				1563A6A32AD2146E0021EB19 /* UserRatingView.swift in Sources */,
 				1501CA4E2AC35D0300766F67 /* TrainerEditView.swift in Sources */,
 				156CED612AA28DEB0000EEEA /* SignInView.swift in Sources */,
 				15AD51DE2ABB706F00713ED9 /* IconTextRow.swift in Sources */,
@@ -714,6 +733,7 @@
 				1575CC162AC6EEBD00672481 /* TrainerReviewsModel.swift in Sources */,
 				156CED862AA5CD420000EEEA /* SignInAppleHelper.swift in Sources */,
 				1501CA362ABDB7B500766F67 /* UserProfileCellAboutView.swift in Sources */,
+				1563A69F2AD185110021EB19 /* UserReviewsView.swift in Sources */,
 				156CED842AA3E6DF0000EEEA /* SignInGoogleHelper.swift in Sources */,
 				15BC79E02AAB2EAE000DD93F /* MainView.swift in Sources */,
 				156CED492AA287DC0000EEEA /* ContentView.swift in Sources */,
