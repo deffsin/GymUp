@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RatingsView: View {
+struct RatingsView: View { // ReviewsView*
     @ObservedObject var viewModel: BeTrainerAddViewModel
     
     var body: some View {

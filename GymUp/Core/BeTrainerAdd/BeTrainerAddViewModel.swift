@@ -29,7 +29,7 @@ final class BeTrainerAddViewModel: ObservableObject {
                 throw BeTrainerAddError.userRetrievalError
             }
             self.user = user
-            print(BeTrainerAddError.userDataLoaded.localizedDescription)
+            // print(BeTrainerAddError.userDataLoaded.localizedDescription)
         }
     }
     
@@ -52,7 +52,8 @@ final class BeTrainerAddViewModel: ObservableObject {
         .sink(receiveCompletion: { completion in
             switch completion {
             case .finished:
-                print(BeTrainerAddError.trainerDataLoaded.localizedDescription)
+                break
+                // print(BeTrainerAddError.trainerDataLoaded.localizedDescription)
             case .failure(let error):
                 if let error = error as? BeTrainerAddError, error == .authenticationError {
                     print("Authentication error")
