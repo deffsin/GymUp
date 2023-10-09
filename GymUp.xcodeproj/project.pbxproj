@@ -204,7 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				1501CA2D2ABDB74100766F67 /* UserProfileCellInfoView.swift */,
-				1501CA312ABDB78900766F67 /* UserProfileCellRatingsView.swift */,
+				1563A6A42AD421AE0021EB19 /* UserProfileCellRatings */,
 				1501CA432ABE564100766F67 /* UserProfileCellDetailsView.swift */,
 				1501CA332ABDB79300766F67 /* UserProfileCellRatingsInfoView.swift */,
 				1501CA352ABDB7B500766F67 /* UserProfileCellAboutView.swift */,
@@ -254,6 +254,14 @@
 				1563A6A02AD193610021EB19 /* UserReviewsViewModel.swift */,
 			);
 			path = UserReviews;
+			sourceTree = "<group>";
+		};
+		1563A6A42AD421AE0021EB19 /* UserProfileCellRatings */ = {
+			isa = PBXGroup;
+			children = (
+				1501CA312ABDB78900766F67 /* UserProfileCellRatingsView.swift */,
+			);
+			path = UserProfileCellRatings;
 			sourceTree = "<group>";
 		};
 		156CED3A2AA287DC0000EEEA = {

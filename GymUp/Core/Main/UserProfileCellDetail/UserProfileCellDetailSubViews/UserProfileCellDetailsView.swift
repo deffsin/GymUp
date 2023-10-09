@@ -13,7 +13,7 @@ struct UserProfileCellDetailsView: View {
     var body: some View {
         VStack {
             HStack {
-                UserProfileCellRatingsView(trainer: trainer)
+                UserProfileCellRatingsView(userReviewsVM: UserReviewsViewModel(), trainer: trainer)
                 Divider()
                 UserProfileCellRatingsInfoView(trainer: trainer)
             }
