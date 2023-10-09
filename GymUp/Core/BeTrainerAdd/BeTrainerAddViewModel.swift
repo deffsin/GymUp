@@ -13,10 +13,13 @@ final class BeTrainerAddViewModel: ObservableObject {
     
     @Published private(set) var user: DBUser? = nil
     @Published private(set) var trainer: TrainerInformation? = nil
+    @Published private(set) var allReviews: [TrainerReviews]? = nil
     
     @Published var navigateToReviews = false
     
     private var cancellables = Set<AnyCancellable>()
+    private var cancellablesArray: Set<AnyCancellable> = []
+
         
     func loadCurrentUser() async throws {
         do {
@@ -28,9 +31,8 @@ final class BeTrainerAddViewModel: ObservableObject {
             self.user = user
             print(BeTrainerAddError.userDataLoaded.localizedDescription)
         }
-        
     }
-        
+    
     func loadCurrentTrainer() {
         Future<TrainerInformation, Error> { promise in
             Task {
@@ -63,6 +65,31 @@ final class BeTrainerAddViewModel: ObservableObject {
         })
         .store(in: &cancellables)
     }
+    
+    func loadAllTrainerReviews(userId: String) {
+        Future<[TrainerReviews], BeTrainerAddError> { promise in
+            Task {
+                do {
+                    let allTrainerReviews = try await UserManager.shared.getAllTrainerReviews(userId: userId)
+                    promise(.success(allTrainerReviews))
+                } catch {
+                    promise(.failure(.trainerRetrievalError))
+                }
+            }
+        }
+        .receive(on: DispatchQueue.main)
+        .sink(receiveCompletion: { completion in
+            switch completion {
+            case .finished:
+                break
+            case .failure(let error):
+                print("Error: \(error)")
+            }
+        }, receiveValue: { [weak self] trainerReviews in
+            self?.allReviews = trainerReviews
+        })
+        .store(in: &cancellablesArray)
+    } // Combine
         
     func toggleTrainerStatus() {
         guard let user = user else { return }
