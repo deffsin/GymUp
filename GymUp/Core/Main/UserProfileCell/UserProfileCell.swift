@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct UserProfileCell: View {
+    
+    @StateObject var userProfileCellVM = UserProfileCellViewModel()
     var trainer: TrainerInformation
     
     var body: some View {
@@ -15,7 +17,7 @@ struct UserProfileCell: View {
             VStack {
                 HStack {
                     VStack(spacing: 10){
-                        UserProfileImageAndInfo(trainer: trainer)
+                        UserProfileImageAndInfo(userProfileCellVM: userProfileCellVM, trainer: trainer)
                     }
                     .frame(width: 110, height: 180)
                     // .background(Color.red)
@@ -36,6 +38,9 @@ struct UserProfileCell: View {
             .foregroundColor(Color.black)
             .cornerRadius(15)
             .shadow(color: .black, radius: 8)
+        }
+        .task {
+            userProfileCellVM.loadAllTrainerReviews(userId: trainer.userDocId!)
         }
     }
 }
