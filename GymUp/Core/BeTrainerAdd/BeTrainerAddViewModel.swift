@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 
 @MainActor
-final class BeTrainerAddViewModel: ObservableObject {
+final class BeTrainerAddViewModel: ObservableObject { 
     
     @Published private(set) var user: DBUser? = nil
     @Published private(set) var trainer: TrainerInformation? = nil

@@ -13,28 +13,19 @@ struct TrainerView: View {
     
     var body: some View {
         NavigationStack {
-            ZStack {
-                Background()
-                
-                ScrollView {
-                    VStack(spacing: 25) {
-                        UserInfoView(viewModel: viewModel)
-                        DetailsView(viewModel: viewModel)
-                    }
-                    .padding(.horizontal, 20)
-                    .foregroundColor(Color.white)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    
-                    VStack {
-                        
-                    }
-                    .frame(maxWidth: .infinity, minHeight: 73)
+            ZStack {                
+                VStack(spacing: 25) {
+                    UserInfoView(viewModel: viewModel)
+                    DetailsView(viewModel: viewModel)
                 }
-            }
-            .refreshable {
-                try? await Task.sleep(nanoseconds: 1_200_000_000)
-                try? await viewModel.loadCurrentUser()
-                viewModel.loadCurrentTrainer()
+                .padding(.horizontal, 20)
+                .foregroundColor(Color.white)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                
+                VStack {
+                    
+                }
+                .frame(maxWidth: .infinity, minHeight: 73)
             }
             .sheet(isPresented: $trainerEditVM.editInformation, onDismiss: {
                 Task {

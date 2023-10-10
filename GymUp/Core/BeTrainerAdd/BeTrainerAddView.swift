@@ -14,17 +14,27 @@ struct BeTrainerAddView: View {
     
     var body: some View {
         ZStack {
-            if let user = viewModel.user {
-                if user.isTrainer == false {
-                    NeedToCreateAccountView(viewModel: viewModel)
-                } else {
-                    TrainerView(viewModel: viewModel, trainerEditVM: trainerEditVM)
+            Background()
+
+            ScrollView {
+                if let user = viewModel.user {
+                    if user.isTrainer == false {
+                        NeedToCreateAccountView(viewModel: viewModel)
+                    } else {
+                        TrainerView(viewModel: viewModel, trainerEditVM: trainerEditVM)
+                    }
                 }
+            }
+            .refreshable {
+                try? await Task.sleep(nanoseconds: 1_200_000_000)
+                try? await viewModel.loadCurrentUser()
+                viewModel.loadCurrentTrainer()
             }
         }
         .task {
             try? await viewModel.loadCurrentUser()
-            try? await viewModel.loadCurrentTrainer()
+            viewModel.loadCurrentTrainer()
+            viewModel.loadAllTrainerReviews(userId: viewModel.user?.userId ?? "")
         }
     }
 }
