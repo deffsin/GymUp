@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct UserProfileCellDetailsView: View {
+    @ObservedObject var userReviewsVM: UserReviewsViewModel
     var trainer: TrainerInformation
     
     var body: some View {
         VStack {
             HStack {
-                UserProfileCellRatingsView(userReviewsVM: UserReviewsViewModel(), trainer: trainer)
+                UserProfileCellRatingsView(userReviewsVM: userReviewsVM, trainer: trainer)
                 Divider()
-                UserProfileCellRatingsInfoView(trainer: trainer)
+                UserProfileCellRatingsInfoView(userReviewsVM: userReviewsVM, trainer: trainer)
             }
             .frame(width: 280, height: 50)
             Divider()

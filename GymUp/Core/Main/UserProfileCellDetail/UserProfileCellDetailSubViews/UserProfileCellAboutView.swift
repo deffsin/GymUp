@@ -18,6 +18,7 @@ struct UserProfileCellAboutView: View {
                 Text(trainer.description ?? "")
                 Spacer()
             }
+            Spacer()
         }
         .padding(.horizontal, 10)
         Spacer()
