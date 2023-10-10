@@ -27,10 +27,6 @@ struct RatingsView: View { // ReviewsView*
                     }
                 }
             }
-            .task {
-                try? await viewModel.loadCurrentUser()
-                viewModel.loadAllTrainerReviews(userId: viewModel.user?.userId ?? "")
-            }
         }
         .navigationDestination(isPresented: $viewModel.navigateToReviews) {
             ReviewsView()
