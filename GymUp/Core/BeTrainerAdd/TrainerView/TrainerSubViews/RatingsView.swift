@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RatingsView: View {
+struct RatingsView: View { // ReviewsView*
     @ObservedObject var viewModel: BeTrainerAddViewModel
     
     var body: some View {
@@ -18,14 +18,18 @@ struct RatingsView: View {
                 }) {
                     if let trainer = viewModel.trainer {
                         HStack(spacing: 2){
-                            Text("Comments: ")
+                            Text("Reviews: ")
                                 .font(.system(size: 17))
-                            Text("\(trainer.reviews ?? 0)")
+                            Text("\(viewModel.allReviews?.count ?? 0)")
                                 .bold()
                             Spacer()
                         }
                     }
                 }
+            }
+            .task {
+                try? await viewModel.loadCurrentUser()
+                viewModel.loadAllTrainerReviews(userId: viewModel.user?.userId ?? "")
             }
         }
         .navigationDestination(isPresented: $viewModel.navigateToReviews) {

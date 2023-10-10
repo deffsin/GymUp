@@ -54,6 +54,7 @@ struct UserReviewsView: View {
                             }
                             .frame(width: 270)
                             .frame(minHeight: 80)
+                            .foregroundColor(Color.black)
                             .background(Color.white)
                             .cornerRadius(10)
                             .overlay(
