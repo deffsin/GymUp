@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct UserReviewsView: View {
-    @StateObject var userReviewsVM = UserReviewsViewModel() // возможно стоит создавать StateObject не прямо тут
+    @ObservedObject var userReviewsVM: UserReviewsViewModel
     var trainer: TrainerInformation
     
     let dateFormatter: DateFormatter = {

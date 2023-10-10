@@ -10,6 +10,7 @@ import SwiftUI
 struct UserProfileCellDetailView: View {
     var trainer: TrainerInformation // State?
     @StateObject var addReviewVM = AddReviewViewModel()
+    @StateObject var userReviewsVM = UserReviewsViewModel()
     
     var body: some View {
         NavigationStack {
@@ -25,7 +26,7 @@ struct UserProfileCellDetailView: View {
                         
                         VStack(spacing: 25) {
                             UserProfileCellInfoView(trainer: trainer)
-                            UserProfileCellDetailsView(trainer: trainer)
+                            UserProfileCellDetailsView(userReviewsVM: userReviewsVM, trainer: trainer)
                         }
                         .foregroundColor(Color.white)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -34,8 +35,8 @@ struct UserProfileCellDetailView: View {
                 }
                 .navigationBarTitleDisplayMode(.inline)
             }
-            .refreshable {
-                try? await Task.sleep(nanoseconds: 1_200_000_000)
+            .task {
+                userReviewsVM.loadAllTrainerReviews(userId: trainer.userDocId!)
             }
             .sheet(isPresented: $addReviewVM.showAddReview, onDismiss: {
                 self.addReviewVM.addReview = ""

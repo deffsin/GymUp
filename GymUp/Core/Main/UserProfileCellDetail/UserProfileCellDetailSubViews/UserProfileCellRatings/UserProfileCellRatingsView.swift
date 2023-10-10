@@ -13,7 +13,7 @@ struct UserProfileCellRatingsView: View { // UserProfileCellReviewsView
     
     var body: some View {
         ZStack {
-            NavigationLink(destination: UserReviewsView(trainer: trainer)) {
+            NavigationLink(destination: UserReviewsView(userReviewsVM: userReviewsVM, trainer: trainer)) {
                 HStack(spacing: 2){
                     Text("Reviews: ")
                         .font(.system(size: 17))
@@ -22,9 +22,6 @@ struct UserProfileCellRatingsView: View { // UserProfileCellReviewsView
                     Spacer()
                 }
             }
-        }
-        .task {
-            userReviewsVM.loadAllTrainerReviews(userId: trainer.userDocId!)
         }
     }
 }
