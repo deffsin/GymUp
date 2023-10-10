@@ -11,16 +11,24 @@ struct RatingsInfoView: View {
     @ObservedObject var viewModel: BeTrainerAddViewModel
     
     var body: some View {
-        HStack(spacing: 2) {
-            Spacer()
-            if let trainer = viewModel.trainer {
+        ZStack {
+            HStack(spacing: 2) {
+                Spacer()
                 Text("Rating: ")
                     .font(.system(size: 17))
-                Text("\(trainer.rating ?? 0)")
+                
+                Text(String(format: "%.1f", averageRating))
                     .bold()
+                
                 Image(systemName: "star.fill")
                     .foregroundColor(Color.yellow)
             }
         }
+    }
+
+    var averageRating: Double {
+        guard let reviews = viewModel.allReviews, !reviews.isEmpty else { return 0.0 }
+        let totalRating = reviews.compactMap { $0.rating }.reduce(0, +)
+        return Double(totalRating) / Double(reviews.count)
     }
 }
