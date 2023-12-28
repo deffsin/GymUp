@@ -16,9 +16,6 @@ final class MainViewModel: ObservableObject {
     @Published private(set) var user: DBUser? = nil
     @Published private(set) var allTrainers: [TrainerInformation]? = nil
     
-    @Published var messageView = false
-    @Published var filtersView = false
-    
     @Published var filteredTrainers: [TrainerInformation] = []
     @Published var searchTerm = ""
     

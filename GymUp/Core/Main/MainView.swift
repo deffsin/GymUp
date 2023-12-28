@@ -18,18 +18,6 @@ struct MainView: View {
                 
                 ScrollView {
                     VStack(spacing: 20) {
-                        HStack {
-                            IconButton(systemName: "message") {
-                                viewModel.messageView.toggle()
-                            }
-                            
-                            Spacer()
-                            
-                            IconButton(systemName: "list.bullet") {
-                                viewModel.filtersView.toggle()
-                            }
-                        }
-                        
                         if let trainers = viewModel.allTrainers {
                             ForEach(viewModel.filteredTrainers, id: \.id) { trainerInfo in
                                 NavigationLink(destination: UserProfileCellDetailView(trainer: trainerInfo, addReviewVM: AddReviewViewModel())) {
@@ -50,12 +38,6 @@ struct MainView: View {
             .searchable(text: $viewModel.searchTerm)
             .task {
                 viewModel.loadAllTrainers()
-            }
-            .navigationDestination(isPresented: $viewModel.messageView) {
-                MessageView()
-            }
-            .sheet(isPresented: $viewModel.filtersView) {
-                FiltersView()
             }
         }
     }

@@ -15,7 +15,6 @@ struct DBUser: Codable {
     let dataCreated: Date?
     let isTrainer: Bool?
     let preferences: [String]?
-    let favoriteMovie: Movie?
     
     init(auth: AuthDataResultModel) {
         self.userId = auth.uid
@@ -24,7 +23,6 @@ struct DBUser: Codable {
         self.dataCreated = Date()
         self.isTrainer = false
         self.preferences = nil
-        self.favoriteMovie = nil
     }
     
     init(
@@ -33,8 +31,7 @@ struct DBUser: Codable {
     username: String? = nil,
     dataCreated: Date? = nil,
     isTrainer: Bool? = nil,
-    preferences: [String]? = nil,
-    favoriteMovie: Movie? = nil
+    preferences: [String]? = nil
     ) {
         self.userId = userId
         self.email = email
@@ -42,7 +39,6 @@ struct DBUser: Codable {
         self.dataCreated = dataCreated
         self.isTrainer = isTrainer
         self.preferences = preferences
-        self.favoriteMovie = favoriteMovie
     }
     
     enum CodingKeys: String, CodingKey {
@@ -52,7 +48,6 @@ struct DBUser: Codable {
         case dataCreated = "data_created"
         case isTrainer = "user_isTrainer"
         case preferences = "preferences"
-        case favoriteMovie = "favorite_movie"
     }
     
     init(from decoder: Decoder) throws {
@@ -63,7 +58,6 @@ struct DBUser: Codable {
         self.dataCreated = try container.decodeIfPresent(Date.self, forKey: .dataCreated)
         self.isTrainer = try container.decodeIfPresent(Bool.self, forKey: .isTrainer)
         self.preferences = try container.decodeIfPresent([String].self, forKey: .preferences)
-        self.favoriteMovie = try container.decodeIfPresent(Movie.self, forKey: .favoriteMovie)
     }
     
     func encode(to encoder: Encoder) throws {
@@ -73,6 +67,5 @@ struct DBUser: Codable {
         try container.encodeIfPresent(self.username, forKey: .username)
         try container.encodeIfPresent(self.dataCreated, forKey: .dataCreated)
         try container.encodeIfPresent(self.isTrainer, forKey: .isTrainer)
-        try container.encodeIfPresent(self.favoriteMovie, forKey: .favoriteMovie)
     }
 }
