@@ -12,7 +12,7 @@ final class ProfileViewModel: ObservableObject {
     
     @Published private(set) var user: DBUser? = nil
     
-    func loadCurrentUser() async throws { // протестировать вызов функции
+    func loadCurrentUser() async throws {
         let authDataResult = try AuthenticationManager.shared.authenticatedUser()
         self.user = try await UserManager.shared.getUser(userId: authDataResult.uid)
     }
@@ -41,36 +41,11 @@ final class ProfileViewModel: ObservableObject {
             self.user = try await UserManager.shared.getUser(userId: user.userId)
         }
     }
-    
-    func addFavoriteMovie() {
-        guard let user else { return }
-        let movie = Movie(id: "1", title: "Avatar 2", isPopular: true)
-        Task {
-            try await UserManager.shared.addFavoriteMovie(userId: user.userId, movie: movie)
-            self.user = try await UserManager.shared.getUser(userId: user.userId)
-        }
-    }
-    
-    func removeFavoriteMovie() {
-        guard let user else { return }
-        Task {
-            try await UserManager.shared.removeFavoriteMovie(userId: user.userId)
-            self.user = try await UserManager.shared.getUser(userId: user.userId)
-        }
-    }
-
 }
 
 struct ProfileView: View {
-    
     @StateObject private var viewModel = ProfileViewModel()
     @Binding var showSignInView: Bool
-    
-    let preferenceOptions: [String] = ["Sports", "Movies", "Books"]
-    
-    private func preferenceIsSelected(text: String) -> Bool {
-        viewModel.user?.preferences?.contains(text) == true
-    }
     
     var body: some View {
         List {
@@ -81,36 +56,6 @@ struct ProfileView: View {
                     viewModel.toggleTrainerStatus()
                 } label: {
                     Text("User is trainer: \((user.isTrainer ?? false).description.capitalized)")
-                }
-                
-                VStack {
-                    HStack {
-                        ForEach(preferenceOptions, id: \.self) { string in
-                            Button(string) { // gyms
-                                if preferenceIsSelected(text: string) {
-                                    viewModel.removeUserPreference(text: string)
-                                } else {
-                                    viewModel.addUserPreference(text: string)
-                                }
-                            }
-                            .font(.headline)
-                            .buttonStyle(.borderedProminent)
-                            .tint(preferenceIsSelected(text: string) ? .green : .red)
-                        }
-                    }
-                    Text("User preferencies: \((user.preferences ?? []).joined(separator: ", "))")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                }
-                
-                Button {
-                    if user.favoriteMovie == nil {
-                        viewModel.addFavoriteMovie()
-                    } else {
-                        viewModel.removeFavoriteMovie()
-                    }
-                    
-                } label: {
-                    Text("Favorite Movie: \((user.favoriteMovie?.title ?? ""))")
                 }
             }
         }

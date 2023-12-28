@@ -9,17 +9,6 @@ import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-//
-
-struct Movie: Codable {
-    let id: String
-    let title: String
-    let isPopular: Bool
-}
-
-//
-
-
 final class UserManager {
     
     static let shared = UserManager()
@@ -228,22 +217,5 @@ final class UserManager {
             DBUser.CodingKeys.preferences.rawValue : FieldValue.arrayRemove([preference])
         ]
         try await userDocument(userId: userId).updateData(data)
-    }
-    
-    func addFavoriteMovie(userId: String, movie: Movie) async throws {
-        guard let data = try? encoder.encode(movie) else {
-            throw URLError(.badURL)
-        }
-        let dict: [String:Any] = [
-            DBUser.CodingKeys.favoriteMovie.rawValue : data
-        ]
-        try await userDocument(userId: userId).updateData(dict)
-    }
-    
-    func removeFavoriteMovie(userId: String) async throws {
-        let data: [String:Any?] = [
-            DBUser.CodingKeys.favoriteMovie.rawValue : nil
-        ]
-        try await userDocument(userId: userId).updateData(data as [AnyHashable : Any])
     }
 }

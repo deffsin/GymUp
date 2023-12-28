@@ -324,7 +324,6 @@
 			children = (
 				1594917E2AB8E98B00C8A683 /* Designs */,
 				159491782AB8E4A400C8A683 /* AppErrors */,
-				156CED5B2AA289880000EEEA /* Utils */,
 				156CED582AA289560000EEEA /* Extensions */,
 			);
 			path = Shared;
@@ -347,13 +346,6 @@
 				156CED5C2AA289B50000EEEA /* Network */,
 			);
 			path = Services;
-			sourceTree = "<group>";
-		};
-		156CED5B2AA289880000EEEA /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Utils;
 			sourceTree = "<group>";
 		};
 		156CED5C2AA289B50000EEEA /* Network */ = {
